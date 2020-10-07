@@ -19,7 +19,7 @@ public class EmployeeDao {
         Class.forName("com.mysql.jdbc.Driver");
 
         try (Connection connection = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/employees?serverTimezone=Europe/Rome", "root", "pwd");
+            .getConnection("jdbc:mysql://localhost:3306/employee?serverTimezone=Europe/Rome", "root", "password");
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
