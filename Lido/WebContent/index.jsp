@@ -3,11 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Lido Belvedere</title>
+	<link rel="stylesheet" type="text/css" href="././css/index.css">
+	<meta charset="UTF-8">
+	<title>Lido Belvedere</title>
 </head>
 <body>
-<h1>Welcome to Lido Belvedere!</h1>
-<p>This is the homepage</p>
+	<h1>Welcome to Lido Belvedere!</h1>
+	<div class="dropdown">
+  		<button class="dropbtn">Dropdown</button>
+  		<div class="dropdown-content">
+    		<a href="#">Link 1</a>
+    		<a href="#">Link 2</a>
+    		<a href="#">Link 3</a>
+  		</div>
+	</div> 
 </body>
 </html>

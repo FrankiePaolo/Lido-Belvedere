@@ -1,12 +1,13 @@
 package it.unipa.community.castiglione.francescopaolo.registration.model;
 
-public class Employee {
+public class Customer {
 	private String firstName;
 	private String lastName;
 	private String username;
 	private String password;
-	private String address;
-	private String contact;
+	private String email;
+	private String id;
+	private boolean here;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -31,18 +32,25 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getAddress() {
-		return address;
+	public String getEmail() {
+		return email;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getContact() {
-		return contact;
+	public String getId() {
+		return id;
 	}
-	public void setContact(String contact) {
-		this.contact = contact;
+	public void setId(String id) {
+		this.id = id;
 	}
+	public boolean isHere() {
+		return this.here;
+	}
+	public void setHere(boolean here) {
+		this.here = here;
+	}
+	
 
 
 }

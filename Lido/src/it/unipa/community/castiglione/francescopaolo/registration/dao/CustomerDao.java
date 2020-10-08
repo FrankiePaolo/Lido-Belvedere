@@ -5,30 +5,30 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import it.unipa.community.castiglione.francescopaolo.registration.model.Employee;
+import it.unipa.community.castiglione.francescopaolo.registration.model.Customer;
 
-public class EmployeeDao {
+public class CustomerDao {
 
-    public int registerEmployee(Employee employee) throws ClassNotFoundException {
+    public int registerCustomer(Customer customer) throws ClassNotFoundException {
         String INSERT_USERS_SQL = "INSERT INTO employee" +
-            "  (first_name, last_name, username, password, address, contact) VALUES " +
-            " (?,?,?,?,?,?);";
+            "  (first_name, last_name, username, password, email, here) VALUES " +
+            " (?,?,?,?,?,?,?);";
 
         int result = 0;
 
         Class.forName("com.mysql.jdbc.Driver");
 
         try (Connection connection = DriverManager
-            .getConnection("jdbc:mysql://localhost:3306/employee?serverTimezone=Europe/Rome", "root", "password");
+            .getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
-            preparedStatement.setString(1, employee.getFirstName());
-            preparedStatement.setString(2, employee.getLastName());
-            preparedStatement.setString(3, employee.getUsername());
-            preparedStatement.setString(4, employee.getPassword());
-            preparedStatement.setString(5, employee.getAddress());
-            preparedStatement.setString(6, employee.getContact());
+            preparedStatement.setString(1, customer.getFirstName());
+            preparedStatement.setString(2, customer.getLastName());
+            preparedStatement.setString(3, customer.getUsername());
+            preparedStatement.setString(4, customer.getPassword());
+            preparedStatement.setString(5, customer.getEmail());
+            preparedStatement.setBoolean(6, false);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query

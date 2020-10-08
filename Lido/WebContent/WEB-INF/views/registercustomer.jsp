@@ -39,11 +39,8 @@
                 <label for="psw-repeat"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="password-repeat" id="password-repeat" required>
                 
-                <label for="email"><b>Address</b></label>
-                <input type="text" placeholder="Enter Email" name="address" id="address" required>
-
-   				<label for="Contact No"><b>Contact No</b></label>
-                <input type="text" placeholder="Enter Contact No" name="contact" id="contact" required>
+                <label for="email"><b>Email</b></label>
+                <input type="email" placeholder="Enter Email" name="email" id="email" required>
   
                 <hr>
 

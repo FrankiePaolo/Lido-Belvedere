@@ -8,19 +8,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import it.unipa.community.castiglione.francescopaolo.registration.dao.EmployeeDao;
-import it.unipa.community.castiglione.francescopaolo.registration.model.Employee;
+import it.unipa.community.castiglione.francescopaolo.registration.dao.CustomerDao;
+import it.unipa.community.castiglione.francescopaolo.registration.model.Customer;
 /**
  * Servlet implementation class EmployeeServlet
  */
 @WebServlet("/register")
-public class EmployeeServlet extends HttpServlet {
+public class CustomerRegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private EmployeeDao employeeDao=new EmployeeDao();
+    private CustomerDao customerDao=new CustomerDao();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeeServlet() {
+    public CustomerRegistrationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,19 +45,17 @@ public class EmployeeServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String address = request.getParameter("address");
-        String contact = request.getParameter("contact");
+        String email = request.getParameter("email");
 
-        Employee employee = new Employee();
-        employee.setFirstName(firstName);
-        employee.setLastName(lastName);
-        employee.setUsername(username);
-        employee.setPassword(password);
-        employee.setContact(contact);
-        employee.setAddress(address);
+        Customer customer = new Customer();
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setUsername(username);
+        customer.setPassword(password);
+        customer.setEmail(email);
 
         try {
-            employeeDao.registerEmployee(employee);
+            customerDao.registerCustomer(customer);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
