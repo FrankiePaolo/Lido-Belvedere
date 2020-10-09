@@ -1,23 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
+<jsp:useBean id="form_customer" class="it.unipa.community.castiglione.francescopaolo.beans.Customer" scope="session" />
+
 <html>
     <head>
-        <title>Lido Belvedere - Register</title>
+    	<meta name="viewport" content="width=device-width ,initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="././css/employeeregister.css">
+        <script>
+        	//We need to make sure the two password match
+        	$(document).ready(function(){
+        		$('[name=password]').change(function(){
+        			$	
+        		
+        		})
+        	})
+        </script>
+    	<title>Registration form</title>
     </head>
     <body>
-
-        <!-- Intro text -->
-        <div class="text">
-            <p id="intro">
-                Welcome to lido Belvedere!
-            </p>
-        </div>
-
-        <form action="<%= request.getContextPath() %>/register" method="post">
-
+		  <form action="<%= request.getContextPath() %>/register" method="post">
             <!-- Registration form -->
             <div class="registrationform">
                 <h1>Register</h1>

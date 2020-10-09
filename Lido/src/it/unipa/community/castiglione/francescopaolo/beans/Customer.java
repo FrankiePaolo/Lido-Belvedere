@@ -1,13 +1,10 @@
-package it.unipa.community.castiglione.francescopaolo.registration.model;
+package it.unipa.community.castiglione.francescopaolo.beans;
 
 public class Customer {
 	private String firstName;
 	private String lastName;
-	private String username;
 	private String password;
 	private String email;
-	private String id;
-	private boolean here;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -19,12 +16,6 @@ public class Customer {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -38,19 +29,4 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public boolean isHere() {
-		return this.here;
-	}
-	public void setHere(boolean here) {
-		this.here = here;
-	}
-	
-
-
 }
