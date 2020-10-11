@@ -7,7 +7,7 @@
     <head>
     	<meta name="viewport" content="width=device-width ,initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/employeeregister.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/registercustomer.css">
     	<title>Registration form</title>
     </head>
     <body>
@@ -39,18 +39,16 @@
 	                <input type="text" placeholder="Enter Name" name="firstName" value="${form_results.firstName}" required>
 	
 	                <label for="surname"><b>Last Name</b></label>
-	                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_results.lastName}" required>     
+	                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_results.lastName}" required>  
+	                
+	                <label for="email"><b>Email</b></label>
+	                <input type="email" placeholder="Enter Email" name="email" id="email" required>   
 	
 	                <label for="psw"><b>Password</b></label>
 	                <input type="password" placeholder="Enter Password" name="password" id="password" required>
 	                
 	                <label for="psw-repeat"><b>Repeat Password</b></label>
-	                <input type="password" placeholder="Repeat Password" name="password_repeat" id="password_repeat" required>
-	                
-	                <label for="email"><b>Email</b></label>
-	                <input type="email" placeholder="Enter Email" name="email" id="email" required>
-	  
-	                <hr>
+	                <input type="password" placeholder="Repeat Password" name="password_repeat" id="password_repeat" required>	              
 	                
 	                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 	                <button type="submit" value="Submit" class="registerbtn">Register</button>

@@ -11,7 +11,8 @@ import it.unipa.community.castiglione.francescopaolo.beans.Customer;
 
 public class DBMSHandler {
 
-    public static int registerCustomer(String firstName,String lastName,String password,String email) throws ClassNotFoundException {
+	//This method registers the user into the database
+    public static int registerCustomer(String firstName,String lastName,String email,String password) throws ClassNotFoundException {
     	// This is the SQL query, we will use the preparedStatement for increased security
         String sql_query = "INSERT INTO User (Firstname,Lastname,Email,Password) SELECT ?, ?, ?, sha2(?,256)";
         int result = 0;
@@ -34,6 +35,7 @@ public class DBMSHandler {
         return result;
     }
     
+    //This method checks if the given email was already used by another user
     public static boolean isRegistered(String email) {
     	boolean registered=false;
     	String sql_query="SELECT * FROM User WHERE Email=?";
