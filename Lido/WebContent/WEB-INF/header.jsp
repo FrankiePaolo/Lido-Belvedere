@@ -10,7 +10,7 @@
 			<a href="${pageContext.request.contextPath}/Login">Login</a>
 			<a href="${pageContext.request.contextPath}/RegisterCustomer">Register</a>
 		<% }else{ %>
-			<a href="">Logout</a>
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>
 			<% } %>
 	</div>
 </nav>
