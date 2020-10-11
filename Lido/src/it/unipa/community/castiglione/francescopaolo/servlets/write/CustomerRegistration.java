@@ -42,7 +42,7 @@ public class CustomerRegistration extends HttpServlet {
 		
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
-		String password2=request.getParameter("password2");
+		String password_repeat=request.getParameter("password_repeat");
 		String firstName=request.getParameter("firstName");
 		String lastName=request.getParameter("lastName");
 
@@ -52,9 +52,9 @@ public class CustomerRegistration extends HttpServlet {
 		customer_form.setLastName(lastName);
 		
 		//We need to check for missing fields
-		if(email != null && password != null && password2 !=null && firstName != null && lastName != null ) {
+		if(email != null && password != null && password_repeat !=null && firstName != null && lastName != null ) {
 			//We check if the two passwords match
-			if(!password.equals(password2)) {
+			if(!password.equals(password_repeat)) {
 				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=noMatch");
 			}else if(DBMSHandler.isRegistered(email)) {
 				//There already is a customer with given email

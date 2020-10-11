@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<header>
+<nav>
 
-</body>
-</html>
+<!-- Login / Register / Logout -->
+	<div id="authentication">
+		<% if(request.getRemoteUser()==null) {%>
+			<a href="">Login</a>
+			<a href="${pageContext.request.contextPath}/RegisterCustomer">Register</a>
+		<% }else{ %>
+			<a href="">Logout</a>
+			<% } %>
+	</div>
+</nav>
+</header>
