@@ -1,0 +1,25 @@
+<Context path="/Lido">
+
+	<Resource auth="Container"
+		driverClassName="com.mysql.cj.jdbc.Driver"		
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+		maxActive="10"
+		minIdle="2"
+        maxIdle="6"
+		maxWait="1000"
+		name="jdbc/lido"
+		username="root"
+		password="password"
+		type="javax.sql.DataSource"
+		url="jdbc:mysql://localhost:3306/lido?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Rome"
+		testOnBorrow="true"
+		validationQuery="SELECT 1" />
+		
+	<Realm className="org.apache.catalina.realm.JDBCRealm"
+		   driverName="com.mysql.cj.jdbc.Driver"		   
+		   connectionURL="jdbc:mysql://localhost:3306/lido?user=root&amp;password=password&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Rome"
+		   userTable="User" userNameCol="Email" userCredCol="Password"
+		   userRoleTable="User" roleNameCol="Role">
+	</Realm>
+   
+</Context>

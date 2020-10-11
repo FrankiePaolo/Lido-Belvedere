@@ -7,7 +7,7 @@
 <!-- Login / Register / Logout -->
 	<div id="authentication">
 		<% if(request.getRemoteUser()==null) {%>
-			<a href="">Login</a>
+			<a href="${pageContext.request.contextPath}/Login">Login</a>
 			<a href="${pageContext.request.contextPath}/RegisterCustomer">Register</a>
 		<% }else{ %>
 			<a href="">Logout</a>
