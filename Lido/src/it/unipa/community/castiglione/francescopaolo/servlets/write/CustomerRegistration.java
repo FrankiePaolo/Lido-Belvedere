@@ -38,7 +38,7 @@ public class CustomerRegistration extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session= request.getSession();
-		Customer customer_form=(Customer) session.getAttribute("form_customer");
+		Customer customer_form=(Customer) session.getAttribute("form_results");
 		
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
@@ -66,7 +66,6 @@ public class CustomerRegistration extends HttpServlet {
 						response.sendRedirect(request.getContextPath()+"/RegisterCustomer?success=false");
 					}else {
 						response.sendRedirect(request.getContextPath()+"/RegisterCustomer?success=true");
-
 					}
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block

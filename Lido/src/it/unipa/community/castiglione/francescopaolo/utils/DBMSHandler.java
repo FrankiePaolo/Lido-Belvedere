@@ -17,6 +17,7 @@ public class DBMSHandler {
         int result = 0;
         //Class.forName("com.mysql.jdbc.Driver");
     	// Tries to connect to the mysql database
+        Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
             // Creates a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
@@ -37,7 +38,7 @@ public class DBMSHandler {
     	boolean registered=false;
     	String sql_query="SELECT * FROM User WHERE Email=?";
     	// Tries to connect to the mysql database
-         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
              // Creates a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
              preparedStatement.setString(1, email);

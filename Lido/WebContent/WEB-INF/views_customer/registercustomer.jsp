@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE html>
-<jsp:useBean id="form_customer" class="it.unipa.community.castiglione.francescopaolo.beans.Customer" scope="session" />
+<jsp:useBean id="form_results" class="it.unipa.community.castiglione.francescopaolo.beans.Customer" scope="session" />
 
 <html>
     <head>
@@ -15,13 +15,11 @@
 	    	<div class="identity">
 		<% String success=request.getParameter("success"); 
 	    	if(success !=null && success.equals("true")){ 
-	    		if (request.isUserInRole("Cashier")){ %>
-	    		<script>window.close()</script>
-	    	<% } %>
+	     %>
 	    		<a href="${pageContext.request.contextPath}/login}">Registration was successful. Please log in.</a>
-	    <%} else {%>
+	    <% } else {%>
 	    		<h1>Register</h1>
-				<form class="identity" action="${pageContext.request.contextPath}/RegisterCustomer" method="post">
+				<form class="identity" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">
 					<div class="imgcontainer">
 						<img src="${pageContext.request.contextPath}/img/user-3331257_1280.png" width="10%" alt="Avatar" class="avatar" />
 					</div>
@@ -38,10 +36,10 @@
 					<%}%>
 					
 					<label for="name"><b>First Name</b></label>
-	                <input type="text" placeholder="Enter Name" name="firstName" value="${form_customer.firstName}" required>
+	                <input type="text" placeholder="Enter Name" name="firstName" value="${form_results.firstName}" required>
 	
 	                <label for="surname"><b>Last Name</b></label>
-	                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_customer.lastName}" required>     
+	                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_results.lastName}" required>     
 	
 	                <label for="psw"><b>Password</b></label>
 	                <input type="password" placeholder="Enter Password" name="password" id="password" required>
