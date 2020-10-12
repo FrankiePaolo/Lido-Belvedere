@@ -20,6 +20,11 @@
 		   connectionURL="jdbc:mysql://localhost:3306/lido?user=root&amp;password=password&amp;useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Rome"
 		   userTable="User" userNameCol="Email" userCredCol="Password"
 		   userRoleTable="User" roleNameCol="Role">
+		   <CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler"
+						   algorithm="SHA-256"
+						   iterations="1"
+						   saltlenght="0"
+		/>
 	</Realm>
    
 </Context>

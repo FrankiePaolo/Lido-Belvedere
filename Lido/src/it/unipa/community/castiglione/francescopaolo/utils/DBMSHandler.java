@@ -14,7 +14,7 @@ public class DBMSHandler {
 	//This method registers the user into the database
     public static int registerCustomer(String firstName,String lastName,String email,String password) throws ClassNotFoundException {
     	// This is the SQL query, we will use the preparedStatement for increased security
-        String sql_query = "INSERT INTO User (Firstname,Lastname,Email,Password) SELECT ?, ?, ?, ?";
+        String sql_query = "INSERT INTO User (Firstname,Lastname,Email,Password) SELECT ?, ?, ?, sha2(?,256)";
         int result = 0;
     	// Tries to connect to the mysql database
         Class.forName("com.mysql.jdbc.Driver");

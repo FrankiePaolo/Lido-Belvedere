@@ -16,7 +16,7 @@
 		<% String success=request.getParameter("success"); 
 	    	if(success !=null && success.equals("true")){ 
 	     %>
-	    		<a href="${pageContext.request.contextPath}/Login}">Registration was successful. Please log in.</a>
+	    		<a href="${pageContext.request.contextPath}/Login">Registration was successful. Please log in.</a>
 	    <% } else {%>
 	    		<h1>Register</h1>
 				<form class="identity" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">
