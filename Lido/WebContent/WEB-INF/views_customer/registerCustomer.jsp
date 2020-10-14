@@ -25,14 +25,14 @@
 					</div>
 					<% String error =request.getParameter("error"); 
 					   if (error !=null && error.equals("mailExists")){ %>
-						<div class="errormsg">Email already used!</div>
+					  	<script>alert("Email already used!");</script>
 					<%} else if (error !=null && error.equals("noMatch")){ %>
-						<div class="errormsg">The two password do not match!</div>
+						<script>alert("The two passwords do not match!");</script>
 					<%} else if (error !=null && error.equals("fields_missing")){ %>
-						<div class="errormsg">There are some missing fields!</div>
+						<script>alert("There are some missing fields!");</script>
 					<%}%>
 					<%if (success !=null && success.equals("false")){ %>
-						<div class="errormsg">There was some unexpected issue. Please retry.</div>
+						<script>alert("There was some unexpected issue. Please retry.");</script>
 					<%}%>
 					
 					<label for="name"><b>First Name</b></label>

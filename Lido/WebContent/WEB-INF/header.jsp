@@ -12,6 +12,7 @@
 		<% }else{ %>
 			<a href="${pageContext.request.contextPath}/Logout">Logout</a>
 			<% } %>
+			<a href="${pageContext.request.contextPath}/">Home</a>
 	</div>
 </nav>
 </header>
