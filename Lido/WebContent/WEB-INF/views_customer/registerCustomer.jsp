@@ -12,14 +12,16 @@
     </head>
     <body>
     	<jsp:include page="/WEB-INF/header.jsp"/>
-	    	<div class="identity">
+	    <div class="identity">
 		<% String success=request.getParameter("success"); 
 	    	if(success !=null && success.equals("true")){ 
 	     %>
 	    		<a href="${pageContext.request.contextPath}/Login">Registration was successful. Please log in.</a>
+	    <% } else if(success !=null && success.equals("false")){ %>
+				<script>alert("There was some unexpected issue. Please retry.");</script>
 	    <% } else {%>
-	    		<h1>Register</h1>
-				<form class="identity" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">
+	    		<label for="identity">Register</label>
+				<form class="identity" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">			
 					<div class="imgcontainer">
 						<img src="${pageContext.request.contextPath}/img/user-3331257_1280.png" width="10%" alt="Avatar" class="avatar" />
 					</div>
@@ -53,7 +55,7 @@
 	                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 	                <button type="submit" value="Submit" class="registerbtn">Register</button>
 				</form>
-			 	<% } %>
+			<%} %>
 	    	</div>
 	    <jsp:include page="/WEB-INF/footer.jsp" />
     </body>

@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Login error</title>
+	<title>Login error</title>
 </head>
 <body>
     <h2>Invalid user name or password.</h2>

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <header>
-<nav>
 
 <!-- Login / Register / Logout / Home -->
 	<div id="authentication">
@@ -21,5 +20,5 @@
 		<% } %>
 			<a href="${pageContext.request.contextPath}/">Home</a>
 	</div>
-</nav>
+	
 </header>
