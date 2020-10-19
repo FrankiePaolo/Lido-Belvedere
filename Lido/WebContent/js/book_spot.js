@@ -3,11 +3,16 @@
  */
 
 $(document).ready(function(){
+	
+	//This returns the current date
 	var current_date=new Date();
-	var time=(date.getHours() <=12? "Afternoon" : "Morning");
+	//This returns the current time
+	var current_time=(current_date.getHours() >=12? "Afternoon" : "Morning");
 	
 	var $inputDate=$("input[name='date']");
 	
-	//We get only the date
-	$inputDate.attr("min",date.toIsoString().split("T")[0]);
+	//Sets the minimum date, which is obviousely the current date
+	$inputDate.attr("min",current_date.toISOString().split("T")[0]);
+	
+	console.log($inputDate);
 });

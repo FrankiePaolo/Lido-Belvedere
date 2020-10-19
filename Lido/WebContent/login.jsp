@@ -9,16 +9,17 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/header.jsp"/>
-	<h2>Hello, please log in:</h2>
-	<br><br>
-	<form action="j_security_check" method=post>
-	    <p><strong>Please Enter Your Email: </strong>
-	    <input type="text" name="j_username" size="25" required>
-	    <p><p><strong>Please Enter Your Password: </strong>
-	    <input type="password" size="15" name="j_password" required>
-	    <p><p>
-	    <input type="submit" value="Submit">
-	    <input type="reset" value="Reset">
-	</form>
+    <div class="login_form">    
+	    <h2>Hello, please log in:</h2>
+		<form class="login_form" action="j_security_check" method=post>
+		    <p><strong>Please Enter Your Email: </strong>
+		    <input type="text" name="j_username" size="25" required>
+		    <p><p><strong>Please Enter Your Password: </strong>
+		    <input type="password" size="15" name="j_password" required>
+		    <br><br>
+		    <input type="submit" value="Submit">
+		    <input type="reset" value="Reset">
+		</form>
+    </div>
 </body>
 </html>

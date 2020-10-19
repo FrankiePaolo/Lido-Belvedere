@@ -9,6 +9,7 @@
 	<title>Homepage</title>
 </head>
 <body>
+	<!-- UPDATE THE CSS FOR GRID-CONTAINER -->
 	<div class="grid-container">
 		<div class="grid-item1">
 			<jsp:include page="/WEB-INF/header.jsp" />

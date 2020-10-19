@@ -13,50 +13,50 @@
     <body>
     	<jsp:include page="/WEB-INF/header.jsp"/>
 	    <div class="identity">
-		<% String success=request.getParameter("success"); 
-	    	if(success !=null && success.equals("true")){ 
-	     %>
-	    		<a href="${pageContext.request.contextPath}/Login">Registration was successful. Please log in.</a>
-	    <% } else if(success !=null && success.equals("false")){ %>
-				<script>alert("There was some unexpected issue. Please retry.");</script>
-	    <% } else {%>
-	    		<label for="identity">Register</label>
-				<form class="identity" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">			
-					<div class="imgcontainer">
-						<img src="${pageContext.request.contextPath}/img/user-3331257_1280.png" width="10%" alt="Avatar" class="avatar" />
-					</div>
-					<% String error =request.getParameter("error"); 
-					   if (error !=null && error.equals("mailExists")){ %>
-					  	<script>alert("Email already used!");</script>
-					<%} else if (error !=null && error.equals("noMatch")){ %>
-						<script>alert("The two passwords do not match!");</script>
-					<%} else if (error !=null && error.equals("fields_missing")){ %>
-						<script>alert("There are some missing fields!");</script>
-					<%}%>
-					<%if (success !=null && success.equals("false")){ %>
-						<script>alert("There was some unexpected issue. Please retry.");</script>
-					<%}%>
-					
-					<label for="name"><b>First Name</b></label>
-	                <input type="text" placeholder="Enter Name" name="firstName" value="${form_results.firstName}" required>
-	
-	                <label for="surname"><b>Last Name</b></label>
-	                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_results.lastName}" required>  
-	                
-	                <label for="email"><b>Email</b></label>
-	                <input type="email" placeholder="Enter Email" name="email" id="email" required>   
-	
-	                <label for="psw"><b>Password</b></label>
-	                <input type="password" placeholder="Enter Password" name="password" id="password" required>
-	                
-	                <label for="psw-repeat"><b>Repeat Password</b></label>
-	                <input type="password" placeholder="Repeat Password" name="password_repeat" id="password_repeat" required>	              
-	                
-	                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-	                <button type="submit" value="Submit" class="registerbtn">Register</button>
-				</form>
-			<%} %>
-	    	</div>
+			<% String success=request.getParameter("success"); 
+		    	if(success !=null && success.equals("true")){ 
+		     %>
+		    		<a href="${pageContext.request.contextPath}/Login">Registration was successful. Please log in.</a>
+		    <% } else if(success !=null && success.equals("false")){ %>
+					<script>alert("There was some unexpected issue. Please retry.");</script>
+		    <% } else {%>
+		    		<label for="registration_form">Register</label>
+					<form class="registration_form" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">			
+						<div class="img_container">
+							<img src="${pageContext.request.contextPath}/img/user-3331257_1280.png" width="10%" alt="Avatar" class="avatar" />
+						</div>
+						<% String error = request.getParameter("error"); 
+						   if (error !=null && error.equals("mailExists")){ %>
+						  	<script>alert("Email already used!");</script>
+						<%} else if (error !=null && error.equals("noMatch")){ %>
+							<script>alert("The two passwords do not match!");</script>
+						<%} else if (error !=null && error.equals("fields_missing")){ %>
+							<script>alert("There are some missing fields!");</script>
+						<%}%>
+						<%if (success !=null && success.equals("false")){ %>
+							<script>alert("There was some unexpected issue. Please retry.");</script>
+						<%}%>
+						
+						<label for="name"><b>First Name</b></label>
+		                <input type="text" placeholder="Enter Name" name="firstName" value="${form_results.firstName}" required>
+		
+		                <label for="surname"><b>Last Name</b></label>
+		                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_results.lastName}" required>  
+		                
+		                <label for="email"><b>Email</b></label>
+		                <input type="email" placeholder="Enter Email" name="email" id="email" required>   
+		
+		                <label for="password"><b>Password</b></label>
+		                <input type="password" placeholder="Enter Password" name="password" id="password" required>
+		                
+		                <label for="password_repeat"><b>Repeat Password</b></label>
+		                <input type="password" placeholder="Repeat Password" name="password_repeat" id="password_repeat" required>	              
+		                
+		                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>			<!-- ADD LINK TO TERMS AND PRIVACY -->
+		                <button type="submit" value="Submit" class="registerbtn">Register</button>
+					</form>
+				<%} %>
+	    </div>
 	    <jsp:include page="/WEB-INF/footer.jsp" />
     </body>
 </html>

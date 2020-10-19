@@ -10,15 +10,17 @@
 	<title>Book a spot</title>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/header.jsp" />
+ 	<div class="w3-container">
+    	<jsp:include page="/WEB-INF/header.jsp" />
+    </div>
     
-    <div class="date">
+    <div class="booking_date">
         <label for="date">Date:</label>
     	<input type="date" id="date" name="date">
     </div>
-    <div class="time">   
-    	 <label for="hour">Time:</label>
-	    <select name="hour" >
+    <div class="booking_time">   
+    	 <label for="time">Time:</label>
+	    <select name="time" >
 	    	<option value="Morning">Morning</option>
 	        <option value="Afternoon">Afternoon</option>
 	        <option value="Entire day">Entire day</option>
