@@ -3,23 +3,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width ,initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-	<title>Login Page</title>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="././css/style.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/header.jsp"/>
-    <div class="login_form">    
-	    <h2>Hello, please log in:</h2>
-		<form class="login_form" action="j_security_check" method=post>
-		    <p><strong>Please Enter Your Email: </strong>
-		    <input type="text" name="j_username" size="25" required>
-		    <p><p><strong>Please Enter Your Password: </strong>
-		    <input type="password" size="15" name="j_password" required>
-		    <br><br>
-		    <input class="button" type="submit" value="Submit">
-		    <input class="button" type="reset" value="Reset">
-		</form>
-    </div>
+
+		<jsp:include page="/WEB-INF/header.jsp" />
+		<%
+		String error =request.getParameter("error");
+		if(error != null && error.equals("login")){ %>
+			<div class="alert alert-danger" role="alert">
+				Invalid user name or password. Please <a href="${pageContext.request.contextPath}/Login" class="alert-link">try again</a>.
+			</div>
+		<% }%>
+		
+			
+		<div class="container pt-3">
+			<h2>Dear customer, please log in:</h2>
+			<img src="${pageContext.request.contextPath}/img/user.png" alt="Avatar" class="img-thumbnail w-25">
+			
+			<form action="j_security_check" method=post>
+				<div class="form-group">
+				  <label for="exampleInputEmail1">Email address</label>
+				  <input type="email" class="form-control" name="j_username" aria-describedby="emailHelp" placeholder="Enter email">
+				  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				</div>
+				<div class="form-group">
+				  <label for="exampleInputPassword1">Password</label>
+				  <input type="password" class="form-control" name="j_password" placeholder="Password">
+				</div>
+	  			<button type="submit" class="btn btn-primary">Submit</button>
+	  			<br>
+			</form>
+		</div>
+	  
+		<div class="jumbotron text-center fixed-bottom" style="margin-bottom:0">
+			<jsp:include page="/WEB-INF/footer.jsp" />
+		</div>		
+	
 </body>
 </html>
