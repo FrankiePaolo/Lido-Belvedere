@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- UPDATE WITH BOOTSTRAP FOR IMPROVED UI EXPERIENCE -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="././css/index.css">
+	<link rel="stylesheet" type="text/css" href="././css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<title>Homepage</title>
 </head>
@@ -14,6 +15,7 @@
 		<div class="grid-item1">
 			<jsp:include page="/WEB-INF/header.jsp" />
 		</div>
+		<br/>
 		<div class="grid-item2">
 			<img src="${pageContext.request.contextPath}/img/beach-1824855_1920.jpg" width="40%" alt="Beach" />
 		</div>

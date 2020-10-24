@@ -7,7 +7,7 @@
     <head>
     	<meta name="viewport" content="width=device-width ,initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/registercustomer.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     	<title>Registration form</title>
     </head>
     <body>
@@ -20,7 +20,7 @@
 		    <% } else if(success !=null && success.equals("false")){ %>
 					<script>alert("There was some unexpected issue. Please retry.");</script>
 		    <% } else {%>
-		    		<label for="registration_form">Register</label>
+		    		<h1>Register</h1>
 					<form class="registration_form" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">			
 						<div class="img_container">
 							<img src="${pageContext.request.contextPath}/img/user-3331257_1280.png" width="10%" alt="Avatar" class="avatar" />
@@ -39,13 +39,13 @@
 						
 						<label for="name"><b>First Name</b></label>
 		                <input type="text" placeholder="Enter Name" name="firstName" value="${form_results.firstName}" required>
-		
+						<br/>
 		                <label for="surname"><b>Last Name</b></label>
 		                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_results.lastName}" required>  
-		                
+		                <br/>
 		                <label for="email"><b>Email</b></label>
 		                <input type="email" placeholder="Enter Email" name="email" id="email" required>   
-		
+						<br/>
 		                <label for="password"><b>Password</b></label>
 		                <input type="password" placeholder="Enter Password" name="password" id="password" required>
 		                

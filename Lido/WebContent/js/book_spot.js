@@ -2,17 +2,13 @@
  * 
  */
 
+$.ajaxSetup({cache: false});
+
 $(document).ready(function(){
+	var date = new Date();
+	var time = (date.getHours()>=12?"PM":"AM");
 	
-	//This returns the current date
-	var current_date=new Date();
-	//This returns the current time
-	var current_time=(current_date.getHours() >=12? "Afternoon" : "Morning");
+	loadMap();
 	
-	var $inputDate=$("input[name='date']");
 	
-	//Sets the minimum date, which is obviousely the current date
-	$inputDate.attr("min",current_date.toISOString().split("T")[0]);
-	
-	console.log($inputDate);
 });

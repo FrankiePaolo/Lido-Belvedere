@@ -34,7 +34,7 @@ public class JSONConverter {
 				String label=resultSet.getMetaData().getColumnLabel(i);
 				object.put(label, resultSet.getObject(i));
 			}
-		}catch(JSONException e) { 
+		} catch(JSONException e) { 
 			e.printStackTrace();
 		}
 		return object;
