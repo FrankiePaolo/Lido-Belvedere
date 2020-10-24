@@ -5,58 +5,83 @@
 
 <html>
     <head>
-    	<meta name="viewport" content="width=device-width ,initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    	<title>Registration form</title>
+    	  <title>Registration</title>
+		  <meta charset="utf-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		  <link rel="stylesheet" type="text/css" href="././css/style.css">  
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
     <body>
+    
     	<jsp:include page="/WEB-INF/header.jsp"/>
-	    <div class="identity">
-			<% String success=request.getParameter("success"); 
+	    <div class="container pt-3">
+			<%  String success=request.getParameter("success"); 
+				String error = request.getParameter("error");
 		    	if(success !=null && success.equals("true")){ 
 		     %>
-		    		<a href="${pageContext.request.contextPath}/Login">Registration was successful. Please log in.</a>
+			     <div class="alert alert-success" role="alert">
+			        Registration was successful. Please <a  class="alert-heading" href="${pageContext.request.contextPath}/Login">log in</a>.
+				 </div>
 		    <% } else if(success !=null && success.equals("false")){ %>
-					<script>alert("There was some unexpected issue. Please retry.");</script>
+					<div class="alert alert-danger" role="alert">
+						There was an unexpected issue. Please try again.
+					</div>
+		    <% } else if (error !=null && error.equals("mailExists")){ %>
+		    		<div class="alert alert-danger" role="alert">
+						The email is already in use.
+					</div>
+		    <% } else if (error !=null && error.equals("noMatch")){ %>
+		    		<div class="alert alert-danger" role="alert">
+						The passwords do not match.
+					</div>
+			<% } else if (error !=null && error.equals("fields_missing")){ %>
+		    		<div class="alert alert-danger" role="alert">
+						There are some missing fields.
+					</div>		    
 		    <% } else {%>
-		    		<h1>Register</h1>
-					<form class="registration_form" action="${pageContext.request.contextPath}/CustomerRegistration" method="post">			
-						<div class="img_container">
-							<img src="${pageContext.request.contextPath}/img/user-3331257_1280.png" width="10%" alt="Avatar" class="avatar" />
-						</div>
-						<% String error = request.getParameter("error"); 
-						   if (error !=null && error.equals("mailExists")){ %>
-						  	<script>alert("Email already used!");</script>
-						<%} else if (error !=null && error.equals("noMatch")){ %>
-							<script>alert("The two passwords do not match!");</script>
-						<%} else if (error !=null && error.equals("fields_missing")){ %>
-							<script>alert("There are some missing fields!");</script>
-						<%}%>
-						<%if (success !=null && success.equals("false")){ %>
-							<script>alert("There was some unexpected issue. Please retry.");</script>
-						<%}%>
+		    		    	
+		    		<h2>Register</h2>
+					<form action="${pageContext.request.contextPath}/CustomerRegistration" method="post">	
+						<img src="${pageContext.request.contextPath}/img/user.png" alt="Avatar" class="img-thumbnail w-25">
+						 
+						 <div class="form-group">
+						    <label for="name">First name</label>
+						    <input type="text" class="form-control" name="firstName" placeholder="Enter Name" value="${form_results.firstName}" required>
+						 </div>
+						 						 
+						 <div class="form-group">
+						    <label for="name">Last name</label>
+						    <input type="text" class="form-control" name="lastName" placeholder="Enter Name" value="${form_results.lastName}" required>
+						 </div>
+						 
+						 <div class="form-group">
+						    <label for="email">Email address</label>
+						    <input type="email" class="form-control" name="email"  placeholder="Enter email" required>
+						  </div> 
 						
-						<label for="name"><b>First Name</b></label>
-		                <input type="text" placeholder="Enter Name" name="firstName" value="${form_results.firstName}" required>
-						<br/>
-		                <label for="surname"><b>Last Name</b></label>
-		                <input type="text" placeholder="Enter Surname" name="lastName" value="${form_results.lastName}" required>  
-		                <br/>
-		                <label for="email"><b>Email</b></label>
-		                <input type="email" placeholder="Enter Email" name="email" id="email" required>   
-						<br/>
-		                <label for="password"><b>Password</b></label>
-		                <input type="password" placeholder="Enter Password" name="password" id="password" required>
-		                
-		                <label for="password_repeat"><b>Repeat Password</b></label>
-		                <input type="password" placeholder="Repeat Password" name="password_repeat" id="password_repeat" required>	              
-		                
-		                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>			<!-- ADD LINK TO TERMS AND PRIVACY -->
-		                <button type="submit" value="Submit" class="registerbtn">Register</button>
+						  <div class="form-group">
+						    <label for="password">Password</label>
+						    <input type="password" class="form-control" name="password" id="password" placeholder="Enter password" required>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="password_repeat">Repeat password</label>
+						    <input type="password" class="form-control" name="password_repeat" id="password_repeat" placeholder="Repeat password" required>
+						    <small id="info" class="form-text text-muted">By creating an account you agree to our Terms & Privacy</small>		  
+						  </div>
+				
+					  	  <button type="submit" value="Submit" class="btn btn-primary">Register</button>
 					</form>
-				<%} %>
+					
+			<% } %>
 	    </div>
-	    <jsp:include page="/WEB-INF/footer.jsp" />
-    </body>
+	    
+		<div class="jumbotron mt-1 text-center" style="margin-bottom:0">
+			<jsp:include page="/WEB-INF/footer.jsp" />
+		</div>
+			    
+	</body>
 </html>

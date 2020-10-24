@@ -16,13 +16,12 @@
 
 		<jsp:include page="/WEB-INF/header.jsp" />
 		<%
-		String error =request.getParameter("error");
-		if(error != null && error.equals("login")){ %>
+		   String error =request.getParameter("error");
+		   if(error != null && error.equals("login")){ %>
 			<div class="alert alert-danger" role="alert">
-				Invalid user name or password. Please <a href="${pageContext.request.contextPath}/Login" class="alert-link">try again</a>.
+				Invalid user name or password. Please try again.
 			</div>
-		<% }%>
-		
+		<% } %>
 			
 		<div class="container pt-3">
 			<h2>Dear customer, please log in:</h2>

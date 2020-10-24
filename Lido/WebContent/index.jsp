@@ -18,7 +18,7 @@
 	  <div class="row">
 	    <div class="col-sm-8">
 	      <h2>Our beach</h2>
-	      <img src="${pageContext.request.contextPath}/img/beach-1824855_1920.jpg" class="img-fluid" alt="Beach">
+	      <img src="${pageContext.request.contextPath}/img/beach.jpg" class="img-fluid" alt="Beach">
 				<p>Our beach is one of the best in Europe.</p>     
 	      <br>
 	    </div>
