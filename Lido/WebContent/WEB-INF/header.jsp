@@ -12,8 +12,8 @@
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		    <ul class="navbar-nav ">
-			      <li class="nav-item active">
-			        <a class="nav-link" href="${pageContext.request.contextPath}/">Home<span class="sr-only">(current)</span></a>
+			      <li class="nav-item">
+			        <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
 			      </li>
 		      <% if(request.getRemoteUser()==null) {%>
 			      <li class="nav-item">

@@ -33,27 +33,16 @@ public class beachJson extends HttpServlet {
 		String op=request.getParameter("op");
 		response.setContentType("application/json");
 		PrintWriter out=response.getWriter();
-		if(op!=null) {
-			if(op.equals("list")) {
-				try {
-					out.println(DBMSHandler.getChairs());
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else if(op.equals("status")) {
-                String date = request.getParameter("Date");
-                String time = request.getParameter("Time");
-                if(date!=null && time!=null){
-                    try {
-						out.println(DBMSHandler.getFreeChairs(date,time));
-					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                }
-			}
+        String date = request.getParameter("Date");
+        String time = request.getParameter("Time");
+
+		try {
+			out.println(DBMSHandler.getFreeChairs(date,time));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 
 	/**

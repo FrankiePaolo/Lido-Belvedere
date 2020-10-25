@@ -2,14 +2,15 @@
  * 
  */
 
-var gridHeight = 2;
+//var gridHeight = 2;
 /* Loads the beach map from the server*/
-function loadMap () {
+function loadMap (inputDate,inputTime) {
     $.ajax({
         type: "GET",
-        url: './beachJson',
+        url: "./beachJson",
         data:{
-            op:'list'
+			"Date": inputDate,
+			"Time": inputTime
         },
         dataType: 'json',
         async: 'true',
@@ -24,6 +25,6 @@ function loadMap () {
 }
 
 function insertSlot(slot) {
-	$('.map').append('<td onclick="alert(\'clicked\');">'+slot.id+'</td>');
+	$('.map').append('<td onclick="alert(\'Clicked!\');">'+slot.id+'</td>');
 	$('.map').append('<br>')
 }

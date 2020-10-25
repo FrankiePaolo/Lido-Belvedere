@@ -49,12 +49,12 @@
 						 
 						 <div class="form-group">
 						    <label for="name">First name</label>
-						    <input type="text" class="form-control" name="firstName" placeholder="Enter Name" value="${form_results.firstName}" required>
+						    <input type="text" class="form-control" name="firstName" placeholder="Enter name" value="${form_results.firstName}" required>
 						 </div>
 						 						 
 						 <div class="form-group">
 						    <label for="name">Last name</label>
-						    <input type="text" class="form-control" name="lastName" placeholder="Enter Name" value="${form_results.lastName}" required>
+						    <input type="text" class="form-control" name="lastName" placeholder="Enter last name" value="${form_results.lastName}" required>
 						 </div>
 						 
 						 <div class="form-group">

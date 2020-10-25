@@ -15,52 +15,78 @@
   <script src="${pageContext.request.contextPath}/js/beach_spots.js"></script>
 </head>
 <body>
- 	<div class="w3-container">
-    	<jsp:include page="/WEB-INF/header.jsp" />
-    </div>
-    <br/>
-    <div class="booking_date">
-        <label for="date">Date:</label>
-    	<input type="date" id="date" name="date">
-    </div>
-    <br/>
-    <div class="booking_time">   
-    	 <label for="time">Time:</label>
-	    <select name="time" >
-	    	<option value="Morning">Morning</option>
-	        <option value="Afternoon">Afternoon</option>
-	        <option value="Entire day">Entire day</option>
-	    </select>
-	    <button id="search">Search</button>
-    </div> 
+    <jsp:include page="/WEB-INF/header.jsp" />
+    
+    <div class="container mt-5 p-3 my-3 border">
+		 <p>Our beach is open from 7 AM to 10 PM.<br/>
+        	You can book for the entire day or for just half a day.<br/>
+        	Each spot is equipped with two deckchairs and one beach umbrella.<br/>
+		 </p>
+		 <table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Time slot</th>
+		      <th scope="col">Price</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row">Morning</th>
+		      <td>20€</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">Afternoon</th>
+		      <td>25€</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">Entire day</th>
+		      <td>35€</td>
+		    </tr>
+		  </tbody>
+		 </table>	 
+	</div>
 
-    <div class="description">   
-        <br/>Our beach is open from 7 AM to 10 PM.<br />
-        You can book for the whole day or half a day.<br />
-        Each spot is equipped with two deckchairs and one beach umbrella.<br />
-        <br/>
-        <table>
-            <tr><th>Time slot</th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Price</th></tr>
-            <tr><td>Morning</td><td></td><td>20€</td></tr>
-            <tr><td>Afternoon</td><td></td><td>15€</td></tr>
-            <tr><td>Full day</td><td></td><td>35€</td></tr>
-        </table>
-    </div>
-    <br/>
-    <p>Seats:</p>
-    <br/>
-    <div class="map"></div>  
+
+	<div class="container mt-5 p-3 my-3 border">
+		 <div class="booking_date">
+	        <label for="date">Date:</label>
+	    	<input type="date" id="date" name="date">
+	    </div>
+	    <br/>
+	    <div class="booking_time">   
+	    	<label for="time">Time:</label>
+		    <select name="time" id="time">
+		    	<option value="Morning">Morning</option>
+		        <option value="Afternoon">Afternoon</option>
+		        <option value="Entire day">Entire day</option>
+		    </select>
+	    </div>
+		<button type="button" id="search" class="btn btn-primary mt-3" data-toggle="modal" data-target="#modalCenter">Search</button>
+	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="modalLongTitle">Available seats</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="map"></div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
     
-        <!-- Modal dialog -->
-    <div class = "modal">
-        <div class="modal-content">
-            <h3> Confirm your booking details </h3><hr />
-            	<div id="details"></div><hr/>
-            <button class="close-modal">Close</button>
-            <button class="submit">Submit</button>
-        </div>
-    </div>
-    
-    <jsp:include page="/WEB-INF/footer.jsp" />
+	<div class="jumbotron text-center mt-5" style="margin-bottom:0">
+			<jsp:include page="/WEB-INF/footer.jsp" />
+	</div>
+	
 </body>
 </html>

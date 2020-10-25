@@ -18,15 +18,17 @@
 	  <div class="row">
 	    <div class="col-sm-8">
 	      <h2>Our beach</h2>
-	      <img src="${pageContext.request.contextPath}/img/beach.jpg" class="img-fluid" alt="Beach">
-				<p>Our beach is one of the best in Europe.</p>     
-	      <br>
+	      <img src="${pageContext.request.contextPath}/img/beach.jpg" class="img-thumbnail img-fluid" alt="Beach">
+	    </div>
+	    <div class="col-sm-8">
+	    	<br/>
+			<p>Our beach is one of the best in Europe.</p>     
 	    </div>
 	  </div>
 	</div>
 	
-	<div class="jumbotron mt-5 text-center" style="margin-bottom:0">
-			<jsp:include page="/WEB-INF/footer.jsp" />
+	<div class="jumbotron text-center fixed-bottom" style="margin-bottom:0">
+		<jsp:include page="/WEB-INF/footer.jsp" />
 	</div>
 
 </body>

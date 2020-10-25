@@ -47,7 +47,6 @@ public class CustomerRegistration extends HttpServlet {
 		String lastName=request.getParameter("lastName");
 
 		//If there is some issue during the registration process, the user does not need to type the info again
-		customer_form.setEmail(email);
 		customer_form.setFirstName(firstName);
 		customer_form.setLastName(lastName);
 		

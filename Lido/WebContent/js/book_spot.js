@@ -2,13 +2,23 @@
  * 
  */
 
-$.ajaxSetup({cache: false});
-
 $(document).ready(function(){
-	var date = new Date();
-	var time = (date.getHours()>=12?"PM":"AM");
 	
-	loadMap();
 	
+	//var date = new Date();
+	//var $formattedDate = date.toISOString().split("T")[0];
+	
+	$("#search").click(function(){
+		var inputDate = $("#date").val();
+		var inputTime = $("#time").val();
+		
+		console.log(inputDate);
+		console.log(inputTime);
+		loadMap(inputDate,inputTime);
+	});
+
+
+		
 	
 });
+
