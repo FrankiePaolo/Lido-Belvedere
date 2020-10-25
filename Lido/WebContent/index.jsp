@@ -25,9 +25,9 @@
 	  </div>
 	</div>
 	
-	<div class="jumbotron text-center mt-5" style="margin-bottom:0">
-		<jsp:include page="/WEB-INF/footer.jsp" />
-	</div>	
+	<div class="jumbotron mt-5 text-center" style="margin-bottom:0">
+			<jsp:include page="/WEB-INF/footer.jsp" />
+	</div>
 
 </body>
 </html>
