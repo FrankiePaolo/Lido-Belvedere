@@ -35,7 +35,7 @@
              </div>
 	   
 	    
-		<div class="jumbotron text-center fixed-bottom" style="margin-bottom:0">
+		<div class="jumbotron text-center fixed-bottom mb-0">
 			<jsp:include page="/WEB-INF/footer.jsp" />
 		</div>
 			    

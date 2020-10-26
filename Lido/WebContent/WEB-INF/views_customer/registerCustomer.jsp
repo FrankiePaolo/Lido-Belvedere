@@ -79,7 +79,7 @@
 			<% } %>
 	    </div>
 	    
-		<div class="jumbotron mt-5 text-center" style="margin-bottom:0">
+		<div class="jumbotron mt-5 text-center mb-0">
 			<jsp:include page="/WEB-INF/footer.jsp" />
 		</div>
 			    
