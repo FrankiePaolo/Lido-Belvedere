@@ -4,7 +4,6 @@
 
 $(document).ready(function(){
 	
-	
 	//var date = new Date();
 	//var $formattedDate = date.toISOString().split("T")[0];
 	

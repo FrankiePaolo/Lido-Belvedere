@@ -74,8 +74,10 @@
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <div class="modal-body">
-		      	<div class="map"></div>
+		      <div class="modal-body">		     		      	
+		      	<div class="container">
+		      		<div class="map"></div>
+				</div>						      			      	
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
