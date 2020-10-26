@@ -30,7 +30,6 @@ public class beachJson extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String op=request.getParameter("op");
 		response.setContentType("application/json");
 		PrintWriter out=response.getWriter();
         String date = request.getParameter("Date");

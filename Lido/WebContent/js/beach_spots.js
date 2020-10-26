@@ -3,6 +3,7 @@
  */
 
 //var gridHeight = 2;
+
 /* Loads the beach map from the server*/
 function loadMap (inputDate,inputTime) {
     $.ajax({
