@@ -14,7 +14,7 @@
 		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
     
     	<jsp:include page="/WEB-INF/header.jsp"/>
 	    <div class="container pt-3">
@@ -79,9 +79,7 @@
 			<% } %>
 	    </div>
 	    
-		<div class="jumbotron mt-5 text-center mb-0">
-			<jsp:include page="/WEB-INF/footer.jsp" />
-		</div>
+		<jsp:include page="/WEB-INF/footer.jsp" />
 			    
 	</body>
 </html>
