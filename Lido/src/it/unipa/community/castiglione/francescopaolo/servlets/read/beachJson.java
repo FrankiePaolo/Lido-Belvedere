@@ -32,15 +32,25 @@ public class beachJson extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
 		PrintWriter out=response.getWriter();
-        String date = request.getParameter("Date");
-        String time = request.getParameter("Time");
+        String op = request.getParameter("op");
 
-		try {
-			out.println(DBMSHandler.getFreeChairs(date,time));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        if(op.equals("numberOfChairs")){
+        	try {
+				out.println(DBMSHandler.getNumberOfChairs());
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}      	
+        }else if(op.equals("map")){
+        	String date = request.getParameter("Date");
+            String time = request.getParameter("Time");
+			try {
+				out.println(DBMSHandler.getFreeChairs(date,time));
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
 		
 	}
 
