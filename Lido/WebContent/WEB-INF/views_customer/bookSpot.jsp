@@ -18,10 +18,10 @@
 	    <jsp:include page="/WEB-INF/header.jsp" />
 	    
 	    <div class="container mt-5 p-3 my-3 border">
-			 <p>Our beach is open from 7 AM to 10 PM.<br/>
+			 <p>You must book a day in advance.<br/>
+			    Our beach is open from 7 AM to 10 PM.<br/>
 	        	You can book for the entire day or for just half a day.<br/>
 	        	Each spot is equipped with two deckchairs and one beach umbrella.<br/>
-			 </p>
 			 <table class="table">
 			  <thead>
 			    <tr>
@@ -69,13 +69,13 @@
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="modalLongTitle">Available seats</h5>
+		        <div class="modal-title" id="modalSeatsTitle"></div>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      <div class="modal-body">		     		      	
-		      	<div class="container">
+		      	<div class="container" id="mapContainer">
 		      		<div class="map"></div>
 				</div>						      			      	
 		      </div>
