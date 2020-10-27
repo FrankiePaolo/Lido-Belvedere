@@ -38,7 +38,7 @@ function loadMap (inputDate,inputTime) {
 
 //We only wish to show the available chairs
 function insertSlot(slot) {
-	$("#"+slot.id).replaceWith("<div class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" onclick=\"confirmBeachSpot()\" src=\"/Lido/img/sunbed.png\" class=\"mapCol\"></div>");
+	$("#"+slot.id).replaceWith("<div class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" onclick=\"confirmBeachSpot("+slot.id+")\" src=\"/Lido/img/sunbed.png\" class=\"mapCol\"></div>");
 }
 
 //Ajax call to get the total number of chairs(even the ones not available)
@@ -60,11 +60,8 @@ function getNumberOfChairs(){
         });	
 }
 
-function confirmBeachSpot() {
+function confirmBeachSpot(i) {
+	$("#spotNumber").replaceWith("<div id=\"spotNumber\">"+i+"</div>");
 	$('#modalCenter').modal(focus);
 }
-
-
-
-
 

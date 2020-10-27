@@ -79,10 +79,15 @@
 		        </div>
 		      </div>
 		      <div class="modal-body">		     		      	
-			  	<div id="details"></div>    	
+			  	<div id="details">
+			  		Spot number: <div id="spotNumber"></div> <br/>
+			  		Date: <div id="dateBeachSpot"></div> <br/>
+			  		Time slot: <div id="timeBeachSpot"></div> <br/>
+			  	</div>    	
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" id="confirmSpotBtn" class="btn btn-primary">Confirm</button>
 		      </div>
 		    </div>
 		  </div>
