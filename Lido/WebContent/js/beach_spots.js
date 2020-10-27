@@ -5,7 +5,9 @@
 
 // Select the desired number of columns depending of the disposition of the chairs
 var numberOfColumns=3;
-var numberOfChairs=3;
+
+//The variable's value will be set by the ajax call
+var numberOfChairs;
 getNumberOfChairs();
 
 // Loads the beach map from the server
@@ -31,14 +33,15 @@ function loadMap (inputDate,inputTime) {
 			}
             json.forEach(insertSlot);
         },
-        error: $('.map').html('<h2>Error loading map from server, please try again later.</h2>')
     });
 }
 
+//We only wish to show the available chairs
 function insertSlot(slot) {
-	$("#"+slot.id).replaceWith("<div class=\"col d-flex justify-content-center\"><img src=\"/Lido/img/sunbed.png\" class=\"mapCol\"></div>");
+	$("#"+slot.id).replaceWith("<div class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" onclick=\"confirmBeachSpot()\" src=\"/Lido/img/sunbed.png\" class=\"mapCol\"></div>");
 }
 
+//Ajax call to get the total number of chairs(even the ones not available)
 function getNumberOfChairs(){
 	    $.ajax({
 	        type: "GET",
@@ -55,6 +58,10 @@ function getNumberOfChairs(){
 				}); 
 			}
         });	
+}
+
+function confirmBeachSpot() {
+	$('#modalCenter').modal(focus);
 }
 
 

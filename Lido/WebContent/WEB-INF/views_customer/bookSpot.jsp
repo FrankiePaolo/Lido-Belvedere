@@ -17,7 +17,7 @@
 	<body class="d-flex flex-column min-vh-100">
 	    <jsp:include page="/WEB-INF/header.jsp" />
 	    
-	    <div class="container mt-5 p-3 my-3 border">
+	    <div class="container mt-5 p-3 my-3 border" id="beachSpotInfo">
 			 <p>You must book a day in advance.<br/>
 			    Our beach is open from 7 AM to 10 PM.<br/>
 	        	You can book for the entire day or for just half a day.<br/>
@@ -47,7 +47,7 @@
 		</div>
 	
 	
-		<div class="container mt-5 p-3 my-3 border">
+		<div class="container mt-5 p-3 my-3 border" id="beachSpotSelection">
 			 <div class="booking_date">
 		        <label for="date">Date:</label>
 		    	<input type="date" id="date" name="date">
@@ -61,23 +61,25 @@
 			        <option value="Entire day">Entire day</option>
 			    </select>
 		    </div>
-			<button type="button" id="search" class="btn btn-primary mt-3" data-toggle="modal" data-target="#modalCenter">Search</button>
+			<button type="button" id="search" class="btn btn-primary mt-3" >Search</button>
+			<div class="container mt-5 p-3 my-3 border" id="beachSpotSelection">
+				<div class="container" id="mapContainer">
+		      		<div class="map"></div>
+				</div>	
+			</div>
 		</div>
-		
+				
 		<!-- Modal -->
-		<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+		<div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false"> 
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <div class="modal-title" id="modalSeatsTitle"></div>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
+		        <div class="modal-title" id="modalSeatsTitle">
+		        	<h4>Booking details:</h4>
+		        </div>
 		      </div>
 		      <div class="modal-body">		     		      	
-		      	<div class="container" id="mapContainer">
-		      		<div class="map"></div>
-				</div>						      			      	
+			  	<div id="details"></div>    	
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>

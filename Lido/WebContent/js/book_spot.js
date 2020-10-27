@@ -12,19 +12,18 @@ $(document).ready(function(){
 		
 		var inputDateFormatted=new Date(inputDate);
 		
-		if(inputDateFormatted>date){				
-			$('#modalSeatsTitle').replaceWith("<h5 class=\"modal-title\" id=\"modalSeatsTitle\">Available seats</h5>");
+		if(inputDateFormatted>date){
 			$('.map').show();
 			loadMap(inputDate,inputTime);
 		}else if(inputDateFormatted.getDate()==date.getDate()){
-			$('#modalSeatsTitle').replaceWith("<div class=\"alert alert-danger\" id=\"modalSeatsTitle\"><strong>Attention!</strong> You must book a day in advance.</div>");
-			$('.map').hide();
+			$('.map').hide();		
+			alert("Attention! You must book a day in advance");	
 		}else{
-			$('#modalSeatsTitle').replaceWith("<div class=\"alert alert-danger\" id=\"modalSeatsTitle\"><strong>Attention!</strong> The date provided has already past.</div>");
-			$('.map').hide();
+			$('.map').hide();		
+			alert("Attention! The date provided has already past");		
 		}
-		
 	});	
-	
+
+
 });
 
