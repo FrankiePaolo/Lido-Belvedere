@@ -42,6 +42,7 @@ public class beachJson extends HttpServlet {
 				e.printStackTrace();
 			}      	
         }else if(op.equals("map")){
+    		response.setContentType("application/json");
         	String date = request.getParameter("Date");
             String time = request.getParameter("Time");
 			try {

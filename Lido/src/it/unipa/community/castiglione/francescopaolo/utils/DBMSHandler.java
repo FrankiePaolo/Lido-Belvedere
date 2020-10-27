@@ -69,21 +69,22 @@ public class DBMSHandler {
         return JSON;
     }
     
-    public static String  getNumberOfChairs() throws ClassNotFoundException {
-        String JSON = "";
-        String sql_query;
+    public static Integer  getNumberOfChairs() throws ClassNotFoundException {
+    	int numberOfChairs = 0;
+    	String sql_query;
         sql_query = "SELECT COUNT(*) as count FROM Chair";        
         Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object  
                 PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
-        		ResultSet resultSet = preparedStatement.executeQuery();
-                JSON = JSONConverter.resultSetToArray(resultSet).toString();
-                resultSet.close();              
+        		ResultSet resultSet = preparedStatement.executeQuery();           
+        		 if(resultSet.next()){
+        			 numberOfChairs = resultSet.getInt(1);
+                 }           
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        return JSON;
+        return numberOfChairs;
     	
     }
 
