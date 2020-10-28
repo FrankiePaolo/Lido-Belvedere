@@ -12,11 +12,15 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>Customer</role-name>
+       	    <role-name>Cashier</role-name>
         </auth-constraint>
     </security-constraint>
 
     <security-role>
         <role-name>Customer</role-name>
+    </security-role>
+     <security-role>
+        <role-name>Cashier</role-name>
     </security-role>
     
     <login-config>

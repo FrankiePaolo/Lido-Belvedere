@@ -17,6 +17,10 @@
 	<body class="d-flex flex-column min-vh-100">
 	    <jsp:include page="/WEB-INF/header.jsp" />
 	    
+	    <div class="container mt-5" >
+	    	<div id="confirmationMessage"></div>
+	    </div>
+	    
 	    <div class="container mt-5 p-3 my-3 border" id="beachSpotInfo">
 			 <p>You must book a day in advance.<br/>
 			    Our beach is open from 7 AM to 10 PM.<br/>
@@ -48,6 +52,8 @@
 	
 	
 		<div class="container mt-5 p-3 my-3 border" id="beachSpotSelection">
+		 <div class="row">
+		  <div class="col-sm">
 			 <div class="booking_date">
 		        <label for="date">Date:</label>
 		    	<input type="date" id="date" name="date">
@@ -60,7 +66,17 @@
 			        <option value="Afternoon">Afternoon</option>
 			        <option value="Entire day">Entire day</option>
 			    </select>
+		     </div>
 		    </div>
+		    <% if(request.isUserInRole("Cashier")){ %>
+			    <div class="col-sm">
+			     <div class="user-email">
+			    	<label for="email">User email:</label>
+					<input type="email" class="user" id="email"  placeholder="Enter email" required>
+			     </div>	
+			    </div>
+			<% } %>		    
+		   </div>
 			<button type="button" id="search" class="btn btn-primary mt-3" >Search</button>
 			<div class="container mt-5 p-3 my-3 border" id="beachSpotSelection">
 				<div class="container" id="mapContainer">
@@ -80,6 +96,9 @@
 		      </div>
 		      <div class="modal-body">		     		      	
 			  	<div id="details">
+			  		<% if(request.isUserInRole("Cashier")){ %>
+			  			User email: <div id="userEmail"></div> <br/>
+			  		<% } %>
 			  		Spot number: <div id="spotNumber"></div> <br/>
 			  		Date: <div id="dateBeachSpot"></div> <br/>
 			  		Time slot: <div id="timeBeachSpot"></div> <br/>

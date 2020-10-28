@@ -114,8 +114,7 @@ public class DBMSHandler {
         Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object  
-                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
-        	
+                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setDate(1, Date.valueOf(date));
         		if(flag == false) {
             		preparedStatement.setString(2, time);
@@ -129,5 +128,26 @@ public class DBMSHandler {
             }
         return JSON;
 
+    }
+    
+    public static boolean addBooking(String user, String date, String time, int chair) throws ClassNotFoundException {
+        boolean success = false;
+        String sql_query =  "INSERT INTO Booking (Date, Time, Chair_ID, User_ID)" +
+                        "SELECT ?, ?, ?, ID from User where Email = ?";
+        Class.forName("com.mysql.jdbc.Driver");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+            // Creates a statement using connection object        	
+        	PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        	preparedStatement.setString(1, date);
+        	preparedStatement.setString(2, time);
+        	preparedStatement.setInt(3, chair);
+        	preparedStatement.setString(4, user);
+
+        	preparedStatement.executeUpdate();
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
     }
 }

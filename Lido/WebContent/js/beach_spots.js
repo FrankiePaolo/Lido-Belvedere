@@ -16,7 +16,6 @@ $(document).ready(function(){
 
 // Loads the beach map from the server
 function loadMap (inputDate,inputTime) {
-	console.log(numberOfChairs);
     $.ajax({
         type: "GET",
         url: "./beachJson",
