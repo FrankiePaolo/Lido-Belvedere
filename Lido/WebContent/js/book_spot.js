@@ -7,7 +7,6 @@ var numberOfColumns=3;
 //The variable's value will be set by the ajax call
 var numberOfChairs;
 
-
 $(document).ready(function(){
 	var inputDate ;
 	var inputTime ;
@@ -23,17 +22,13 @@ $(document).ready(function(){
             }); 
 	
 	$("#search").click(function(){
-		
-		//If we press search we do not want the user to be able to change the email address provided
-		$("#email").prop("readonly",true);
-	
 		inputDate = $("#date").val();
 		inputTime = $("#time").val();
 		inputMail=  $("#email").val();
 				
 		//We check if the user is a cashier by verifying that the appropriate class exists
 		var checkCashier = $(".user-email").length; 
-		
+
 		var inputDateFormatted=new Date(inputDate);
 		
 		if(checkCashier && !inputMail){
