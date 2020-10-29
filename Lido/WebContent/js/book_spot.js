@@ -13,7 +13,7 @@ $(document).ready(function(){
 	var inputMail ;
 	var date = new Date();	
 	
-	 $.get("./beachJson",
+	 $.get("./beachSpots.json",
             {
                 'op': "numberOfChairs"
             },
@@ -99,7 +99,7 @@ function hideAll(){
 function loadMap (inputDate,inputTime) {
     $.ajax({
         type: "GET",
-        url: "./beachJson",
+        url: "./beachSpots.json",
         data:{
 			op: 'map',
 			"Date": inputDate,

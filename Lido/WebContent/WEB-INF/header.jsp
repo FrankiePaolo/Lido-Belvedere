@@ -26,6 +26,9 @@
 			      <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/BookSpot">New booking</a>
 			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link"  href="${pageContext.request.contextPath}/Bookings">Manage bookings</a>
+			      </li>
 			       <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/Logout">Logout</a>	
 			      </li>
@@ -37,13 +40,14 @@
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <a class="dropdown-item" href="${pageContext.request.contextPath}/BookSpot">Book a spot</a>
 			        </div>
-			      </li>
+			      </li>			  
 			      <li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          Account
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Info">Info</a>
+			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Bookings">My bookings</a>			        
 			   	      <a class="dropdown-item" href="${pageContext.request.contextPath}/Logout">Logout</a>			       
 			        </div>
 			      </li>

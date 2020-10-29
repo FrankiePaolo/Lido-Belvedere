@@ -81,6 +81,7 @@ public class DBMSHandler {
          return registered;
     }
     
+    //Gets a JSON from the desired SQL query
     private static String getJsonFromQuery(String JSON, String sql_query) throws ClassNotFoundException{
         Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
@@ -95,6 +96,7 @@ public class DBMSHandler {
         return JSON;
     }
     
+    //Gets the total number of chairs
     public static Integer  getNumberOfChairs() throws ClassNotFoundException {
     	int numberOfChairs = 0;
     	String sql_query;
@@ -114,6 +116,7 @@ public class DBMSHandler {
     	
     }
 
+    //Gets the free chairs
     public static String getFreeChairs(String date, String time) throws ClassNotFoundException{
         String JSON = "";
         String sql_query;
@@ -156,6 +159,7 @@ public class DBMSHandler {
 
     }
     
+    //Adds the booking to the DB
     public static boolean addBooking(String user, String date, String time, int chair) throws ClassNotFoundException {
         boolean success = false;
         String sql_query =  "INSERT INTO Booking (Date, Time, Chair_ID, User_ID)" +
