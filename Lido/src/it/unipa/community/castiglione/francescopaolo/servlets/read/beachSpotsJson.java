@@ -37,7 +37,7 @@ public class beachSpotsJson extends HttpServlet {
         if(op.equals("numberOfChairs")){
         	try {
 				out.println(DBMSHandler.getNumberOfChairs());
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}      	
@@ -47,7 +47,7 @@ public class beachSpotsJson extends HttpServlet {
             String time = request.getParameter("Time");
 			try {
 				out.println(DBMSHandler.getFreeChairs(date,time));
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

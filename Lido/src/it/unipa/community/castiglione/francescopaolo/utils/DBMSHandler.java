@@ -13,7 +13,7 @@ import it.unipa.community.castiglione.francescopaolo.beans.Customer;
 public class DBMSHandler {
 
 	//This method registers the user into the database
-    public static int registerCustomer(String firstName,String lastName,String email,String password) throws ClassNotFoundException {
+    public static int registerCustomer(String firstName,String lastName,String email,String password) {
     	// This is the SQL query, we will use the preparedStatement for increased security
         String sql_query = "INSERT INTO User (Firstname,Lastname,Email,Password) SELECT ?, ?, ?, sha2(?,256)";
         int result = 0;
@@ -78,9 +78,8 @@ public class DBMSHandler {
          return registered;
     }
     
-    //Gets a JSON from the desired SQL query
-    private static String getJsonFromQuery(String JSON, String sql_query) throws ClassNotFoundException{
-        Class.forName("com.mysql.jdbc.Driver");
+    //Gets a Sstring of the JSON from the desired SQL query
+    private static String getJsonFromQuery(String JSON, String sql_query) {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object
                 PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
@@ -94,11 +93,10 @@ public class DBMSHandler {
     }
     
     //Gets the total number of chairs
-    public static Integer  getNumberOfChairs() throws ClassNotFoundException {
+    public static Integer  getNumberOfChairs() {
     	int numberOfChairs = 0;
     	String sql_query;
         sql_query = "SELECT COUNT(*) as count FROM Chair";        
-        Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object  
                 PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
@@ -109,12 +107,11 @@ public class DBMSHandler {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        return numberOfChairs;
-    	
+        return numberOfChairs;	
     }
 
-    //Gets the free chairs
-    public static String getFreeChairs(String date, String time) throws ClassNotFoundException{
+    //Gets the free chairs as String of JSON
+    public static String getFreeChairs(String date, String time) {
         String JSON = "";
         String sql_query;
         boolean flag=false;
@@ -136,8 +133,6 @@ public class DBMSHandler {
          		        "FROM Booking " +
          		        "WHERE Booking.Date = ? AND Booking.Time = ? )";
         }
-
-        Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object  
                 PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
@@ -157,7 +152,7 @@ public class DBMSHandler {
     }
     
     //Adds the booking to the DB
-    public static boolean addBooking(String user, String date, String time, int chair) throws ClassNotFoundException {
+    public static boolean addBooking(String user, String date, String time, int chair) {
         boolean success = false;
         String sql_query =  "INSERT INTO Booking (Date, Time, Chair_ID, User_ID)" +
                         "SELECT ?, ?, ?, ID from User where Email = ?";

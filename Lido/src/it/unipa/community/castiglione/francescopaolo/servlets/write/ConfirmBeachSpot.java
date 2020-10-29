@@ -57,7 +57,7 @@ public class ConfirmBeachSpot extends HttpServlet {
 			    out.println("ERROR");
 			    return;
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return;

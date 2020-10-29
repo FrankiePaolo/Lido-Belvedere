@@ -66,7 +66,7 @@ public class CustomerRegistration extends HttpServlet {
 					}else {
 						response.sendRedirect(request.getContextPath()+"/RegisterCustomer?success=true");
 					}
-				} catch (ClassNotFoundException e) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
