@@ -12,7 +12,6 @@
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	  <script src="${pageContext.request.contextPath}/js/book_spot.js"></script>
-	  <script src="${pageContext.request.contextPath}/js/beach_spots.js"></script>
 	</head>
 	<body class="d-flex flex-column min-vh-100">
 	    <jsp:include page="/WEB-INF/header.jsp" />
@@ -56,7 +55,7 @@
 		  <div class="col-sm">
 			 <div class="booking_date">
 		        <label for="date">Date:</label>
-		    	<input type="date" id="date" onchange="changed()" name="date">
+		    	<input type="date" id="date" name="date">
 		    </div>
 		    <br/>
 		    <div class="booking_time">   
