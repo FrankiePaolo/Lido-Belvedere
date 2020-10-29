@@ -8,7 +8,12 @@ $(document).ready(function(){
 	var inputMail ;
 		
 	var date = new Date();	
+	
 	$("#search").click(function(){
+		
+		//If we press search we do not want the user to be able to change the email address provided
+		$("#email").prop("readonly",true);
+	
 		inputDate = $("#date").val();
 		inputTime = $("#time").val();
 		inputMail=  $("#email").val();
@@ -46,6 +51,8 @@ $(document).ready(function(){
 	
 	$("#close").click(function(){
 		//We do not want the user to change email address now
+		
+		$("#email").prop("readonly",false);
 	});
 	
 	$("#confirmSpotBtn").click(function(){
@@ -64,6 +71,9 @@ $(document).ready(function(){
 				if(str=="OK"){
 					hideAll();
 					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully added.</div>");
+				}else if(str=="USER_NOT_CUSTOMER"){
+					hideAll();
+					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> The user is not a customer.</div>");			
 				}else if(str=="USER_NOT_REGISTERED"){
 					hideAll();
 					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> The user is not registered.</div>");			
@@ -77,6 +87,10 @@ $(document).ready(function(){
 	});
 
 });
+
+function changed(){
+		$("#email").prop("readonly",false);
+}
 
 function hideAll(){
 		$("#beachSpotInfo").hide();

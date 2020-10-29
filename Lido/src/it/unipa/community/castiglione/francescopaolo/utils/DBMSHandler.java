@@ -35,15 +35,41 @@ public class DBMSHandler {
         return result;
     }
     
-    //This method checks if the given email was already used by another user
-    public static boolean isRegistered(String email) {
-    	boolean registered=false;
-    	String sql_query="SELECT * FROM User WHERE Email=?";
+    //We check if the user with provided email is a Customer
+    public static boolean isCustomer(String email) {
+    	boolean isCustomer = false;
+    	String sql_query="SELECT Role FROM User WHERE Email=? ";
     	// Tries to connect to the mysql database
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
              // Creates a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
              preparedStatement.setString(1, email);
+             ResultSet resultSet=preparedStatement.executeQuery();
+             if(resultSet.next()) {
+            	 if(resultSet.getString("Role").equals("Customer")) {
+            		 isCustomer= true;
+            	 }else {
+            		 isCustomer= false;
+            	 }
+             }
+             resultSet.close();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+         return isCustomer;
+    }
+    
+    //This method checks if the given email was already used by another user
+    public static boolean isRegistered(String email) {
+    	boolean registered=false;
+    	String sql_query="SELECT * FROM User WHERE Email=? ";
+    	// Tries to connect to the mysql database
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+             // Creates a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+             preparedStatement.setString(1, email);
+             //We only allow registration of Customers
+             preparedStatement.setString(2, "Customer");
              ResultSet resultSet=preparedStatement.executeQuery();
              if(resultSet.next()) {
             	 registered=true;

@@ -56,7 +56,7 @@
 		  <div class="col-sm">
 			 <div class="booking_date">
 		        <label for="date">Date:</label>
-		    	<input type="date" id="date" name="date">
+		    	<input type="date" id="date" onchange="changed()" name="date">
 		    </div>
 		    <br/>
 		    <div class="booking_time">   
