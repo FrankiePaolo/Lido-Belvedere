@@ -26,9 +26,7 @@ $(document).ready(function(){
 				
 		//We check if the user is a cashier by verifying that the appropriate class exists
 		var checkCashier = $(".user-email").length; 
-
-		var inputDateFormatted=new Date(inputDate);
-		
+		var inputDateFormatted=new Date(inputDate);	
 		if(checkCashier && !inputMail){
 			$('.map').hide();		
 			alert("Attention! You must provide an email address.");				

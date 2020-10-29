@@ -52,13 +52,13 @@
 			    <div class="col-sm">
 			       <div class="container pt-3 pb-3 mb-3 border">
 			       	  <p>If you wish to see all the bookings</p>
-                      <button type="button" id="find_all" class="btn btn-primary mt-3" >Show all</button>                                	
+                      <button type="button" id="find_all" class="btn btn-primary mt-3" data-toggle="modal" data-target="#modalCenter">Show all</button>                                	
 			       </div> 
 			    </div>
 			    <div class="col-sm">
 			       <div class="container pt-3 pb-3 mb-3 border">
-			       	  <p>If you only wish to see future bookings</p>
-                      <button type="button" id="find_all" class="btn btn-primary mt-3" >Show all future bookings</button>                                	
+			       	  <p>If you only wish to see future bookings</p>			       	  
+                      <button type="button" id="find_all" class="btn btn-primary mt-3">Show all future bookings</button>                                	
 			       </div> 
 			    </div>
 			  </div>
@@ -75,7 +75,7 @@
 				  	    	
 			      </div>
 			      <div class="modal-footer">
-			        
+			      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
 			  </div>
