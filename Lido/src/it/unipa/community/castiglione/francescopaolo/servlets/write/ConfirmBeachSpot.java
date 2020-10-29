@@ -44,16 +44,16 @@ public class ConfirmBeachSpot extends HttpServlet {
 
         // Adds the reservation
         try {
-        	if (!DBMSHandler.isCustomer(user)) {
-				out.println("USER_NOT_CUSTOMER");
-				return;  	
-        	} else if (!DBMSHandler.isRegistered(user)) {
+        	if (!DBMSHandler.isRegistered(user)) {
 				out.println("USER_NOT_REGISTERED");
 				return;
+        	} else if (!DBMSHandler.isCustomer(user)) {
+				out.println("USER_NOT_CUSTOMER");
+				return;  	       	
 			} else if(DBMSHandler.addBooking(user, date, time, chairNum)) {
 			    out.println("OK");
-			    return;
-        	} else {
+			    return;       
+			} else {
 			    out.println("ERROR");
 			    return;
 			}

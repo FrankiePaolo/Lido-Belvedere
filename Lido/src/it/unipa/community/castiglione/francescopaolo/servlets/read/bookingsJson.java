@@ -27,9 +27,9 @@ public class bookingsJson extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String user;
-		response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
+        //String user;
+		//response.setContentType("application/json");
+        //PrintWriter out = response.getWriter();
         //out.println(DBMSInterface.getBookings(user));
     }
 

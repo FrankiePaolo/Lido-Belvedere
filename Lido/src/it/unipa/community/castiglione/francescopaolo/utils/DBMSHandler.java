@@ -18,7 +18,6 @@ public class DBMSHandler {
         String sql_query = "INSERT INTO User (Firstname,Lastname,Email,Password) SELECT ?, ?, ?, sha2(?,256)";
         int result = 0;
     	// Tries to connect to the mysql database
-        Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
             // Creates a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
@@ -68,8 +67,6 @@ public class DBMSHandler {
              // Creates a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
              preparedStatement.setString(1, email);
-             //We only allow registration of Customers
-             preparedStatement.setString(2, "Customer");
              ResultSet resultSet=preparedStatement.executeQuery();
              if(resultSet.next()) {
             	 registered=true;
@@ -164,7 +161,6 @@ public class DBMSHandler {
         boolean success = false;
         String sql_query =  "INSERT INTO Booking (Date, Time, Chair_ID, User_ID)" +
                         "SELECT ?, ?, ?, ID from User where Email = ?";
-        Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
             // Creates a statement using connection object        	
         	PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
