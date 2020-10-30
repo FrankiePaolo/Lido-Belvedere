@@ -6,8 +6,6 @@ import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
-import java.util.Set;
 
 public class JSONConverter {
 	

@@ -1,5 +1,7 @@
 package it.unipa.community.castiglione.francescopaolo.servlets.read;
 
+import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,7 +29,13 @@ public class bookingsJson extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+        String user=request.getRemoteUser();
+        boolean isCustomer=request.isUserInRole("Customer");
+        if(!isCustomer) {
+        	user=request.getParameter("user");
+        }
+		PrintWriter out = response.getWriter();
+        out.println(DBMSHandler.getBookings(user));
     }
 
 	/**

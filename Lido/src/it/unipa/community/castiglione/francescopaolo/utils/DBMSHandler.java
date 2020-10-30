@@ -6,9 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-
-import it.unipa.community.castiglione.francescopaolo.beans.Customer;
 
 public class DBMSHandler {
 
@@ -79,7 +76,8 @@ public class DBMSHandler {
     }
     
     //Gets a Sstring of the JSON from the desired SQL query
-    private static String getJsonFromQuery(String JSON, String sql_query) {
+    @SuppressWarnings("unused")
+	private static String getJsonFromQuery(String JSON, String sql_query) {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object
                 PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
@@ -144,6 +142,25 @@ public class DBMSHandler {
                 JSON = JSONConverter.resultSetToArray(resultSet).toString();
                 resultSet.close();
                 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return JSON;
+
+    }
+    
+    //Gets all the bookings for the Customer
+    public static String getBookings(String user) {
+        String JSON = "";
+        String sql_query;
+        sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? ORDER BY Booking.Date;";            
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+                // Creates a statement using connection object  
+                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
+        		preparedStatement.setString(1,user);
+        		ResultSet resultSet = preparedStatement.executeQuery();
+                JSON = JSONConverter.resultSetToArray(resultSet).toString();
+                resultSet.close();                
             } catch (SQLException e) {
                 e.printStackTrace();
             }
