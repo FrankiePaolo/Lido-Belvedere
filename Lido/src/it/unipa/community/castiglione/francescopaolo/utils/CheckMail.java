@@ -1,10 +1,7 @@
-package it.unipa.community.castiglione.francescopaolo.servlets.read;
-
-import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;
+package it.unipa.community.castiglione.francescopaolo.utils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class beachJson
+ * Servlet implementation class CheckMail
  */
-@WebServlet("/beachSpots.json")
-public class beachSpotsJson extends HttpServlet {
+@WebServlet("/CheckMail")
+public class CheckMail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public beachSpotsJson() {
+    public CheckMail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,29 +27,22 @@ public class beachSpotsJson extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("application/json");
-		PrintWriter out=response.getWriter();
-        String op = request.getParameter("op");
-
-        if(op.equals("numberOfChairs")){
-        	try {
-				out.println(DBMSHandler.getNumberOfChairs());
+		response.setContentType("text/plain;charset=UTF-8");
+		String user  = request.getParameter("user");
+		PrintWriter out = response.getWriter();
+		try {
+	        	if (!DBMSHandler.isRegistered(user)) {
+					out.println("USER_NOT_REGISTERED");
+					return;
+	        	} else if (!DBMSHandler.isCustomer(user)) {
+					out.println("USER_NOT_CUSTOMER");
+					return;  	       	
+				} 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}      	
-        }else if(op.equals("map")){
-    		response.setContentType("application/json");
-        	String date = request.getParameter("Date");
-            String time = request.getParameter("Time");
-			try {
-				out.println(DBMSHandler.getFreeChairs(date,time));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				return;
 			}
-        }
-		
 	}
 
 	/**

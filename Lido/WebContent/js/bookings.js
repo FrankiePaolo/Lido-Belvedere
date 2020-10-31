@@ -7,25 +7,36 @@ $(document).ready(function(){
 	date=new Date();
 
 	$("#find_all").click(function(){
+		checkMail($("#user_all").val());
+		$("#bookings").html("<div id=\"bookings\"></div>");
+	});
+	
+	$("#find_all_future").click(function(){
+		checkMail($("#user_future").val());
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	    $.ajax({
-	        type: "GET",
+	        type: "POST",
 	        url: "./bookings.json",
 	        data:{
-				user: $("#user_all").val()
+				future: "true",
+				user: $("#user_future").val()
 	        },
 	        dataType: 'json',
-	        async: 'false',
+			async: 'true',
 	        cache: 'true',
 	        success: function(json) {
 				json.forEach(insert);
 	        },
-	    });		
+	    });			
 	});
 });
 
 function insert(element){
 	var dateToCompare = new Date(element.date);	
+	console.log(element);
+	if(element.date=="USER_NOT_REGISTERED"){
+		alert("ERROR");
+	}
 
 	if(dateToCompare>date){
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
@@ -37,4 +48,48 @@ function insert(element){
 	}
 	 
 }
+
+function checkMail(mail){
+	if(!mail.match(mailformat)){
+		alert("Attention: email format not valid.")
+		return;
+	}else{
+		$.get({
+				url: "./CheckMail",
+				method: "get",
+	            data: {
+					'user': mail,
+	            },
+				dataType: "text",
+				success: function(data){
+					var str= data.trim();
+					if(str=="USER_NOT_CUSTOMER"){
+						alert("Attention: The user is not a customer.");
+						return;
+					}else if(str=="USER_NOT_REGISTERED"){
+						alert("Attention: The user is not registered.");
+						return;
+					}else{
+						
+						 $.ajax({
+					        type: "POST",
+					        url: "./bookings.json",
+					        data:{
+								future: "false",
+								user: $("#user_all").val()
+					        },
+					        dataType: 'json',
+							async: 'true',
+					        cache: 'true',
+					        success: function(json) {
+								json.forEach(insert);
+					        },
+					    });	
+						$('#modalCenter').modal("show")
+					}
+				}
+			})
+	}
+}
+
 

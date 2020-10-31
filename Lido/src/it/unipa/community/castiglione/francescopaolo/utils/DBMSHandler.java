@@ -150,14 +150,23 @@ public class DBMSHandler {
     }
     
     //Gets all the bookings for the Customer
-    public static String getBookings(String user) {
-        String JSON = "";
+    public static String getBookings(String user,String future) {
+    	Date date=new Date(System.currentTimeMillis());
+    	String JSON = "";
         String sql_query;
-        sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? ORDER BY Booking.Date;";            
+        sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? "; 
+        if(future.equals("false")) {
+            sql_query+="ORDER BY Booking.Date";
+        }else {
+            sql_query+="AND Booking.Date > ? ORDER BY Booking.Date";
+        }
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object  
                 PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setString(1,user);
+        		if(!future.equals("false")) {
+        			preparedStatement.setString(2,date.toString());
+        		}
         		ResultSet resultSet = preparedStatement.executeQuery();
                 JSON = JSONConverter.resultSetToArray(resultSet).toString();
                 resultSet.close();                

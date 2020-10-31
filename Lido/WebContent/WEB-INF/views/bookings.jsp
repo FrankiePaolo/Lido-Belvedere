@@ -60,7 +60,7 @@
 	                     		<input type="email" id="user_all">
                      		</div><br/>
              		  <%} %>
-                      <button type="button" id="find_all" class="btn btn-primary mt-3" data-toggle="modal" data-target="#modalCenter">Show all</button>                                	
+                      <button type="button" id="find_all" class="btn btn-primary mt-3" data-target="#modalCenter">Show all</button>                                	
 			       </div> 
 			    </div>
 			    <div class="col-sm">
@@ -72,7 +72,7 @@
 	                     		<input type="email" id="user_future">
                      		</div><br/>
              		  <%} %>
-                      <button type="button" id="find_all" class="btn btn-primary mt-3">Show all future bookings</button>                                	
+                      <button type="button" id="find_all_future" class="btn btn-primary mt-3" data-toggle="modal" data-target="#modalCenter">Show all future bookings</button>                                	
 			       </div> 
 			    </div>
 			  </div>
