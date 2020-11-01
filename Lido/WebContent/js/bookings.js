@@ -6,12 +6,12 @@ var date;
 $(document).ready(function(){
 	date=new Date();
 	$("#find_all").click(function(){
-		checkMail($("#user_all").val(),"false");
+		checkMail($("#user_all"),"false");
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
 	
 	$("#find_all_future").click(function(){
-		checkMail($("#user_future").val(),"true");
+		checkMail($("#user_future"),"true");
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
 });
@@ -30,10 +30,25 @@ function insert(element){
 }
 
 function checkMail(mail,futureString){
-	if(!mail){
+	if(!mail.length){
+		 $.ajax({
+					        type: "POST",
+					        url: "./bookings.json",
+					        data:{
+								future: futureString,
+					        },
+					        dataType: 'json',
+							async: 'true',
+					        cache: 'true',
+					        success: function(json) {
+								json.forEach(insert);
+					        },
+					    });	
+						$('#modalCenter').modal("show")
+	}else if(!mail.val()){
 		alert("Attention: please provide an email.")
 		return;
-	}else if(!mail.match(mailformat)){
+	}else if(!mail.val().match(mailformat)){
 		alert("Attention: email format not valid.")
 		return;
 	}else{
@@ -41,7 +56,7 @@ function checkMail(mail,futureString){
 				url: "./CheckMail",
 				method: "get",
 	            data: {
-					user: mail,
+					user: mail.val(),
 	            },
 				dataType: "text",
 				success: function(data){
@@ -59,7 +74,7 @@ function checkMail(mail,futureString){
 					        url: "./bookings.json",
 					        data:{
 								future: futureString,
-								user: mail
+								user: mail.val()
 					        },
 					        dataType: 'json',
 							async: 'true',
