@@ -151,21 +151,20 @@ public class DBMSHandler {
     
     //Gets all the bookings for the Customer
     public static String getBookings(String user,String future) {
-    	Date date=new Date(System.currentTimeMillis());
+    	Date currentDate=new Date(System.currentTimeMillis());
     	String JSON = "";
         String sql_query;
         sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? "; 
-        if(future.equals("false")) {
-            sql_query+="ORDER BY Booking.Date";
-        }else {
-            sql_query+="AND Booking.Date > ? ORDER BY Booking.Date";
+        if(future.equals("true")) {
+        	sql_query+="AND Booking.Date > ? ";
         }
+        sql_query+="ORDER BY Booking.Date";            
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
                 // Creates a statement using connection object  
                 PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setString(1,user);
         		if(!future.equals("false")) {
-        			preparedStatement.setString(2,date.toString());
+        			preparedStatement.setString(2,currentDate.toString());
         		}
         		ResultSet resultSet = preparedStatement.executeQuery();
                 JSON = JSONConverter.resultSetToArray(resultSet).toString();
@@ -174,7 +173,35 @@ public class DBMSHandler {
                 e.printStackTrace();
             }
         return JSON;
-
+    }
+    
+    //Returns only the desired bookings
+    public static String filterBookings(int chair,String date,String time,String user,String past) {
+    	Date currentDate=new Date(System.currentTimeMillis());
+    	String JSON = "";
+        String sql_query;
+        sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? AND Booking.Chair_ID=? AND Booking.Time=? AND Booking.Date=? "; 
+        if(past.equals("false")) {
+            sql_query+="AND Booking.Date > ? ";
+        }
+        sql_query+="ORDER BY Booking.Date";
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+                // Creates a statement using connection object  
+                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
+        		preparedStatement.setString(1,user);
+        		preparedStatement.setInt(2,chair);
+        		preparedStatement.setString(3,time);
+        		preparedStatement.setString(4,date);
+        		if(past.equals("false")) {
+        			preparedStatement.setString(5,currentDate.toString());
+        		}
+        		ResultSet resultSet = preparedStatement.executeQuery();
+                JSON = JSONConverter.resultSetToArray(resultSet).toString();
+                resultSet.close();                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return JSON;
     }
     
     //Adds the booking to the DB

@@ -14,10 +14,85 @@ $(document).ready(function(){
 		checkMail($("#user_future"),"true");
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
+	
+	$("#filter_bookings").click(function(){
+		if($("#user").length && !$("#user").val()){
+			alert("Attention: please provide an email.")
+			return;
+		}else if($("#user").length && !$("#user").val().match(mailformat)){
+			alert("Attention: email format not valid.")
+			return;
+		}else if(!$("#spot").val()){
+			alert("Attention: please provide a chair number.")
+			return;
+		}else if(!$("#date").val()){
+			alert("Attention: please provide a date.")
+			return;		
+		}else if($("#user").length && $("#spot").val() && $("#date").val()){
+			$.get({
+				url: "./CheckMail",
+				method: "get",
+	            data: {
+					user: $("#user").val(),
+	            },
+				dataType: "text",
+				success: function(data){
+					var str= data.trim();
+					if(str=="USER_NOT_CUSTOMER"){
+						alert("Attention: The user is not a customer.");
+						return;
+					}else if(str=="USER_NOT_REGISTERED"){
+						alert("Attention: The user is not registered.");
+						return;
+					}else{
+						$.ajax({
+					        type: "POST",
+					        url: "./FilterBookingsJson.json",
+					        data:{
+								chair: $("#spot").val(),
+								date: $("#date").val(),
+								time: $("#time").val(),
+								user: $("#user").val(),
+								past: String($("#past_bookings").is(":checked")),
+					        },
+					        dataType: 'json',
+							async: 'true',
+					        cache: 'true',
+					        success: function(json) {
+								json.forEach(insert);
+					        },
+					    });	
+						$('#modalCenter').modal("show")
+						$("#bookings").html("<div id=\"bookings\"></div>");
+					}	
+				}
+			})		
+		}else{
+			$.ajax({
+					        type: "POST",
+					        url: "./FilterBookingsJson.json",
+					        data:{
+								chair: $("#spot").val(),
+								date: $("#date").val(),
+								time: $("#time").val(),
+								user: $("#user").val(),
+								past: String($("#past_bookings").is(":checked")),
+					        },
+					        dataType: 'json',
+							async: 'true',
+					        cache: 'true',
+					        success: function(json) {
+								json.forEach(insert);
+					        },
+					    });	
+						$('#modalCenter').modal("show")
+						$("#bookings").html("<div id=\"bookings\"></div>");				
+		}
+						
+	});
 });
 
 function insert(element){
-	console.log(element);
 	var dateToCompare = new Date(element.date);	
 	if(dateToCompare>date){
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
@@ -32,13 +107,13 @@ function insert(element){
 function checkMail(mail,futureString){
 	if(!mail.length){
 		 $.ajax({
-					        type: "POST",
+					        type: "GET",
 					        url: "./bookings.json",
 					        data:{
 								future: futureString,
 					        },
 					        dataType: 'json',
-							async: 'true',
+							async: 'false',
 					        cache: 'true',
 					        success: function(json) {
 								json.forEach(insert);
@@ -67,8 +142,7 @@ function checkMail(mail,futureString){
 					}else if(str=="USER_NOT_REGISTERED"){
 						alert("Attention: The user is not registered.");
 						return;
-					}else{
-						
+					}else{						
 						 $.ajax({
 					        type: "POST",
 					        url: "./bookings.json",
