@@ -5,39 +5,20 @@ var date;
 
 $(document).ready(function(){
 	date=new Date();
-
 	$("#find_all").click(function(){
-		checkMail($("#user_all").val());
+		checkMail($("#user_all").val(),"false");
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
 	
 	$("#find_all_future").click(function(){
-		checkMail($("#user_future").val());
+		checkMail($("#user_future").val(),"true");
 		$("#bookings").html("<div id=\"bookings\"></div>");
-	    $.ajax({
-	        type: "POST",
-	        url: "./bookings.json",
-	        data:{
-				future: "true",
-				user: $("#user_future").val()
-	        },
-	        dataType: 'json',
-			async: 'true',
-	        cache: 'true',
-	        success: function(json) {
-				json.forEach(insert);
-	        },
-	    });			
 	});
 });
 
 function insert(element){
-	var dateToCompare = new Date(element.date);	
 	console.log(element);
-	if(element.date=="USER_NOT_REGISTERED"){
-		alert("ERROR");
-	}
-
+	var dateToCompare = new Date(element.date);	
 	if(dateToCompare>date){
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
 		"Seat number:</b> "+element.id+" <b>Date:</b> "+element.date+" <b>Time:</b> "+element.time+"</p>"+
@@ -45,12 +26,14 @@ function insert(element){
 	}else{
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
 		"Seat number:</b> "+element.id+" <b>Date:</b> "+element.date+" <b>Time:</b> "+element.time+"</p></div>");
-	}
-	 
+	}	 
 }
 
-function checkMail(mail){
-	if(!mail.match(mailformat)){
+function checkMail(mail,futureString){
+	if(!mail){
+		alert("Attention: please provide an email.")
+		return;
+	}else if(!mail.match(mailformat)){
 		alert("Attention: email format not valid.")
 		return;
 	}else{
@@ -58,7 +41,7 @@ function checkMail(mail){
 				url: "./CheckMail",
 				method: "get",
 	            data: {
-					'user': mail,
+					user: mail,
 	            },
 				dataType: "text",
 				success: function(data){
@@ -75,8 +58,8 @@ function checkMail(mail){
 					        type: "POST",
 					        url: "./bookings.json",
 					        data:{
-								future: "false",
-								user: $("#user_all").val()
+								future: futureString,
+								user: mail
 					        },
 					        dataType: 'json',
 							async: 'true',
