@@ -17,8 +17,12 @@
 	<body class="d-flex flex-column min-vh-100">
 	    	 
 	    	 <jsp:include page="/WEB-INF/header.jsp"/>
+	    	 
+	    	 <div class="container mt-5" >
+			    <div id="confirmationMessage1"></div>
+			 </div>
 
-	    	 <div class="container pt-3 ">
+	    	 <div class="container pt-3" id="container">
 			  <div class="row">
 			    <div class="col-sm">
 			       <div class="container pt-3 pb-3 mb-3 border">

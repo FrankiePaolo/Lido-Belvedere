@@ -149,6 +149,27 @@ public class DBMSHandler {
 
     }
     
+    //Removes the desired booking
+    public static boolean removeBooking(String date, String time, int chair) {
+        boolean success = false;
+        String sql_query;
+        sql_query="DELETE FROM lido.Booking WHERE Booking.Date = ? AND Booking.Time = ? AND Booking.Chair_ID = ? ;"; 
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+                // Creates a statement using connection object        	
+            	PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+            	preparedStatement.setString(1, date);
+            	preparedStatement.setString(2, time);
+            	preparedStatement.setInt(3, chair);
+            	preparedStatement.executeUpdate();
+            	success=true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return success;
+    }
+    
+
+    
     //Gets all the bookings for the Customer
     public static String getBookings(String user,String future) {
     	Date currentDate=new Date(System.currentTimeMillis());

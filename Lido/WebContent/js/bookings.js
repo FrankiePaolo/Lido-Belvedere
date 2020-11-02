@@ -17,16 +17,16 @@ $(document).ready(function(){
 	
 	$("#filter_bookings").click(function(){
 		if($("#user").length && !$("#user").val()){
-			alert("Attention: please provide an email.")
+			alert("Attention: please provide an email.");
 			return;
 		}else if($("#user").length && !$("#user").val().match(mailformat)){
-			alert("Attention: email format not valid.")
+			alert("Attention: email format not valid.");
 			return;
 		}else if(!$("#spot").val()){
-			alert("Attention: please provide a chair number.")
+			alert("Attention: please provide a chair number.");
 			return;
 		}else if(!$("#date").val()){
-			alert("Attention: please provide a date.")
+			alert("Attention: please provide a date.");
 			return;		
 		}else if($("#user").length && $("#spot").val() && $("#date").val()){
 			$.get({
@@ -36,6 +36,7 @@ $(document).ready(function(){
 					user: $("#user").val(),
 	            },
 				dataType: "text",
+				async: 'true',
 				success: function(data){
 					var str= data.trim();
 					if(str=="USER_NOT_CUSTOMER"){
@@ -92,16 +93,50 @@ $(document).ready(function(){
 	});
 });
 
+function removeElement(id,date,time){
+	$.get({
+				url: "./RemoveBooking",
+				method: "get",
+	            data: {
+					id: id,
+					date: date,
+					time: time,
+	            },
+				dataType: "text",
+				success: function(message){
+					var str= message.trim();
+					if(str=="ERROR"){
+						hideAll();
+						$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an unexpected issue.</div>");
+						return;
+					}else if(str=="OK"){						
+						hideAll();
+						$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully removed.</div>");
+						return;	
+					}
+				}
+			})
+}
+
 function insert(element){
 	var dateToCompare = new Date(element.date);	
+	
 	if(dateToCompare>date){
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
 		"Seat number:</b> "+element.id+" <b>Date:</b> "+element.date+" <b>Time:</b> "+element.time+"</p>"+
-		"<button class=\"btn btn-danger\"><i class=\"fa fa-trash\"></i></button></div>");
+		"<button class=\"btn btn-danger\" onclick=\"removeElement('"+element.id+"','"+element.date+"','"+element.time+"')\" data-dismiss=\"modal\" ><i class=\"fa fa-trash\" ></i></button></div>");
 	}else{
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
 		"Seat number:</b> "+element.id+" <b>Date:</b> "+element.date+" <b>Time:</b> "+element.time+"</p></div>");
 	}	 
+
+}
+
+
+
+function hideAll(){
+	$("#container").hide();
+	$("#modalCenter").hide();
 }
 
 function checkMail(mail,futureString){
@@ -119,12 +154,12 @@ function checkMail(mail,futureString){
 								json.forEach(insert);
 					        },
 					    });	
-						$('#modalCenter').modal("show")
+						$('#modalCenter').modal("show");
 	}else if(!mail.val()){
-		alert("Attention: please provide an email.")
+		alert("Attention: please provide an email.");
 		return;
 	}else if(!mail.val().match(mailformat)){
-		alert("Attention: email format not valid.")
+		alert("Attention: email format not valid.");
 		return;
 	}else{
 		$.get({
@@ -134,6 +169,7 @@ function checkMail(mail,futureString){
 					user: mail.val(),
 	            },
 				dataType: "text",
+				async: 'true',
 				success: function(data){
 					var str= data.trim();
 					if(str=="USER_NOT_CUSTOMER"){
@@ -157,7 +193,7 @@ function checkMail(mail,futureString){
 								json.forEach(insert);
 					        },
 					    });	
-						$('#modalCenter').modal("show")
+						$('#modalCenter').modal("show");
 					}
 				}
 			})
