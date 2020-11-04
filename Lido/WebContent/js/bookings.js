@@ -70,24 +70,24 @@ $(document).ready(function(){
 			})		
 		}else{
 			$.ajax({
-					        type: "POST",
-					        url: "./FilterBookingsJson.json",
-					        data:{
-								chair: $("#spot").val(),
-								date: $("#date").val(),
-								time: $("#time").val(),
-								user: $("#user").val(),
-								past: String($("#past_bookings").is(":checked")),
-					        },
-					        dataType: 'json',
-							async: 'true',
-					        cache: 'true',
-					        success: function(json) {
-								json.forEach(insert);
-					        },
-					    });	
-						$('#modalCenter').modal("show")
-						$("#bookings").html("<div id=\"bookings\"></div>");				
+				type: "POST",
+				url: "./FilterBookingsJson.json",
+				data:{
+					chair: $("#spot").val(),
+					date: $("#date").val(),
+					time: $("#time").val(),
+					user: $("#user").val(),
+					past: String($("#past_bookings").is(":checked")),
+				},
+					dataType: 'json',
+					async: 'true',
+					cache: 'true',
+					success: function(json) {
+					json.forEach(insert);
+					},
+				});	
+			$('#modalCenter').modal("show")
+			$("#bookings").html("<div id=\"bookings\"></div>");				
 		}
 						
 	});
@@ -95,27 +95,27 @@ $(document).ready(function(){
 
 function removeElement(id,date,time){
 	$.get({
-				url: "./RemoveBooking",
-				method: "get",
-	            data: {
-					id: id,
-					date: date,
-					time: time,
-	            },
-				dataType: "text",
-				success: function(message){
-					var str= message.trim();
-					if(str=="ERROR"){
-						hideAll();
-						$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an unexpected issue.</div>");
-						return;
-					}else if(str=="OK"){						
-						hideAll();
-						$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully removed.</div>");
-						return;	
-					}
+		url: "./RemoveBooking",
+		method: "get",
+	    data: {
+			id: id,
+			date: date,
+			time: time,
+	    },
+			dataType: "text",
+			success: function(message){
+				var str= message.trim();
+				if(str=="ERROR"){
+					hideAll();
+					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an unexpected issue.</div>");
+					return;
+				}else if(str=="OK"){						
+					hideAll();
+					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully removed.</div>");
+					return;	
 				}
-			})
+			}
+		})
 }
 
 function insert(element){
@@ -142,19 +142,19 @@ function hideAll(){
 function checkMail(mail,futureString){
 	if(!mail.length){
 		 $.ajax({
-					        type: "GET",
-					        url: "./bookings.json",
-					        data:{
-								future: futureString,
-					        },
-					        dataType: 'json',
-							async: 'false',
-					        cache: 'true',
-					        success: function(json) {
-								json.forEach(insert);
-					        },
-					    });	
-						$('#modalCenter').modal("show");
+				type: "GET",
+				url: "./bookings.json",
+				data:{
+					future: futureString,
+				},
+					dataType: 'json',
+					async: 'false',
+					cache: 'true',
+					success: function(json) {
+					json.forEach(insert);
+				},
+		  });	
+		  $('#modalCenter').modal("show");
 	}else if(!mail.val()){
 		alert("Attention: please provide an email.");
 		return;
@@ -163,11 +163,11 @@ function checkMail(mail,futureString){
 		return;
 	}else{
 		$.get({
-				url: "./CheckMail",
-				method: "get",
-	            data: {
-					user: mail.val(),
-	            },
+			url: "./CheckMail",
+			method: "get",
+	        data: {
+				user: mail.val(),
+	        },
 				dataType: "text",
 				async: 'true',
 				success: function(data){

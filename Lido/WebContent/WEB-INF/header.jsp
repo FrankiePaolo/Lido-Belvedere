@@ -34,7 +34,7 @@
 			      </li>
 			  <% } else if(request.isUserInRole("Lifeguard")) {%>
 			      <li class="nav-item">
-			        <a class="nav-link"  href="${pageContext.request.contextPath}/">Beach status</a>
+			        <a class="nav-link"  href="${pageContext.request.contextPath}/BeachStatus">Beach status</a>
 			      </li>
 			       <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/Logout">Logout</a>	

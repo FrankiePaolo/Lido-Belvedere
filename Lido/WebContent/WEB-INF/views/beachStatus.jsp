@@ -15,8 +15,18 @@
 	  <script src="${pageContext.request.contextPath}/js/becah_status.js"></script>	  
 	</head>
 	<body class="d-flex flex-column min-vh-100">
-
-	<jsp:include page="/WEB-INF/footer.jsp" />    
+	
+		<jsp:include page="/WEB-INF/header.jsp"/>
+		
+		<div class="container mt-5 p-3 my-3 border" id="beachSpot">
+				<div class="container" id="mapContainer">
+					<h4>Current beach map :</h4>
+		      		<div class="map"></div>
+				</div>	
+		</div>
+		
+	
+		<jsp:include page="/WEB-INF/footer.jsp" />    
 	
 	</body>
 </html>
