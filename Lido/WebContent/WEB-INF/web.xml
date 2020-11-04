@@ -13,6 +13,7 @@
         <auth-constraint>
             <role-name>Customer</role-name>
        	    <role-name>Cashier</role-name>
+       	    <role-name>Lifeguard</role-name>     	    
         </auth-constraint>
     </security-constraint>
 
@@ -21,6 +22,9 @@
     </security-role>
      <security-role>
         <role-name>Cashier</role-name>
+    </security-role>
+     <security-role>
+        <role-name>Lifeguard</role-name>
     </security-role>
     
     <login-config>

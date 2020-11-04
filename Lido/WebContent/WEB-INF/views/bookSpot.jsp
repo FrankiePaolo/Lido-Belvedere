@@ -96,11 +96,11 @@
 		      <div class="modal-body">		     		      	
 			  	<div id="details">
 			  		<% if(request.isUserInRole("Cashier")){ %>
-			  			User email: <div id="userEmail"></div> <br/>
+			  			<b>User email:</b> <div id="userEmail"></div> <br/>
 			  		<% } %>
-			  		Spot number: <div id="spotNumber"></div> <br/>
-			  		Date: <div id="dateBeachSpot"></div> <br/>
-			  		Time slot: <div id="timeBeachSpot"></div> <br/>
+			  		<b>Spot number:</b> <div id="spotNumber"></div> <br/>
+			  		<b>Date:</b> <div id="dateBeachSpot"></div> <br/>
+			  		<b>Time slot:</b> <div id="timeBeachSpot"></div> <br/>
 			  	</div>    	
 		      </div>
 		      <div class="modal-footer">
