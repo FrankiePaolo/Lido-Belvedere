@@ -28,8 +28,6 @@ $(document).ready(function(){
 		        async: 'false',
 				cache: 'true',
 		        success: function(json) {
-					console.log(json);
-					console.log(numberOfChairs);
 					$('.map').html("<div id=\"mapRow\"class=\"row\">");
 					for(var i=1;i<=numberOfChairs;i++){
 						$('#mapRow').append("<div id= \""+ i + "\" class=\"col\"><div>");
@@ -47,7 +45,6 @@ $(document).ready(function(){
 
 //This method replaces only the booked spots so that the Lifeguard only sees spots that have been booked at the time the request is made
 function insertSlot(slot){
-	console.log(slot.FirstName);
 	$("#"+slot.Chair_ID).replaceWith("<div class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" onclick=\"spotInfo('"+slot.FirstName+"','"+slot.LastName+"','"+slot.Email+"','"+slot.Chair_ID +"')\" src=\"/Lido/img/sunbed.png\" class=\"mapCol\"></div>");
 }
 
@@ -56,7 +53,7 @@ function spotInfo(FirstName,LastName,Email,Chair_ID){
 		$("#userFirstName").replaceWith("<div id=\"userFirstName\"><p>"+FirstName+"</p></div>");
 		$("#userLastName").replaceWith("<div id=\"userLastName\"><p>"+LastName+"</p></div>");
 		$("#userEmail").replaceWith("<div id=\"userEmail\"><p>"+Email+"</p></div>");
-		$("#spotNumber").replaceWith("<div id=\"userEmail\"><p>"+Chair_ID+"</p></div>");
+		$("#spotNumber").replaceWith("<div id=\"spotNumber\"><p>"+Chair_ID+"</p></div>");
 		//Focuses on the modal
 		$('#modalCenter').modal(focus);
 }
