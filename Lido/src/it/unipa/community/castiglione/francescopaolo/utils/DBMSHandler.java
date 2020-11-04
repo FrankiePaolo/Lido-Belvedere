@@ -149,6 +149,25 @@ public class DBMSHandler {
 
     }
     
+    //Gets the booked chairs at the desired time
+    public static String getBookedChairs(String date,String time) {
+    	String JSON = "";
+        String sql_query;
+        sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido.Booking,lido.User WHERE Booking.User_ID=User.ID AND Date=? AND Time=? ;";
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+                // Creates a statement using connection object  
+                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
+        		preparedStatement.setDate(1, Date.valueOf(date));
+            	preparedStatement.setString(2, time);
+        		ResultSet resultSet = preparedStatement.executeQuery();
+                JSON = JSONConverter.resultSetToArray(resultSet).toString();
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return JSON;
+    }
+    
     //Removes the desired booking
     public static boolean removeBooking(String date, String time, int chair) {
         boolean success = false;

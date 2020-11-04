@@ -1,20 +1,62 @@
 // Select the desired number of columns depending of the disposition of the chairs
 var numberOfColumns=3;
-//The variable's value will be set by the ajax call
-var numberOfChairs;
-
-
 
 $(document).ready(function(){
-	$.get("./beachSpots.json",
-		{
-			'op': "numberOfChairs"
-		},
-		function (data) {
-			numberOfChairs=parseInt(data);  
-		}); 
+	var numberOfChairs;
+	var date=new Date();
+	var day=date.toISOString().split("T")[0];
+	var time=(date.getHours()>=12?"Afternoon":"Morning");
 	
-
-
-
+	//The first ajax call will set the numberOfChairs, the second ajax call will populate the map
+	$.ajax({
+        type: "GET",
+        url: "./beachSpots.json",
+        data:{
+			op: 'numberOfChairs',
+        },
+        async: 'false',
+		success: function(data){
+			numberOfChairs=parseInt(data);  
+			$.ajax({
+		        type: "GET",
+		        url: "./beachSpots.json",
+		        data:{
+					Date: day,
+					Time: time,
+					op: 'beachStatus',
+		        },
+		        async: 'false',
+				cache: 'true',
+		        success: function(json) {
+					console.log(json);
+					console.log(numberOfChairs);
+					$('.map').html("<div id=\"mapRow\"class=\"row\">");
+					for(var i=1;i<=numberOfChairs;i++){
+						$('#mapRow').append("<div id= \""+ i + "\" class=\"col\"><div>");
+						if(i % numberOfColumns == 0){
+							$('#mapRow').append("<div class=\"w-100\">");
+						}
+					}
+		            json.forEach(insertSlot);        
+				},
+			})
+		}
+	})
+	
 })
+
+//This method replaces only the booked spots so that the Lifeguard only sees spots that have been booked at the time the request is made
+function insertSlot(slot){
+	console.log(slot.FirstName);
+	$("#"+slot.Chair_ID).replaceWith("<div class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" onclick=\"spotInfo('"+slot.FirstName+"','"+slot.LastName+"','"+slot.Email+"','"+slot.Chair_ID +"')\" src=\"/Lido/img/sunbed.png\" class=\"mapCol\"></div>");
+}
+
+//This methods shows info related to a beach spot in a Modal
+function spotInfo(FirstName,LastName,Email,Chair_ID){
+		$("#userFirstName").replaceWith("<div id=\"userFirstName\"><p>"+FirstName+"</p></div>");
+		$("#userLastName").replaceWith("<div id=\"userLastName\"><p>"+LastName+"</p></div>");
+		$("#userEmail").replaceWith("<div id=\"userEmail\"><p>"+Email+"</p></div>");
+		$("#spotNumber").replaceWith("<div id=\"userEmail\"><p>"+Chair_ID+"</p></div>");
+		//Focuses on the modal
+		$('#modalCenter').modal(focus);
+}

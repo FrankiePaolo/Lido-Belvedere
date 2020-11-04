@@ -51,6 +51,16 @@ public class BeachSpotsJson extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        }else if(op.equals("beachStatus")){
+    		response.setContentType("application/json");
+        	String date = request.getParameter("Date");
+            String time = request.getParameter("Time");
+			try {
+				out.println(DBMSHandler.getBookedChairs(date,time));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 		
 	}
