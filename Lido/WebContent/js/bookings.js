@@ -163,10 +163,10 @@ function checkMail(mail,futureString){
 					},
 		  });	
 		  $('#modalCenter').modal("show");
-	}else if(!mail.val()){
+	}else if(mail.length && !mail.val()){
 		alert("Attention: please provide an email.");
 		return;
-	}else if(!mail.val().match(mailformat)){
+	}else if(mail.length && !mail.val().match(mailformat)){
 		alert("Attention: email format not valid.");
 		return;
 	}else{
