@@ -5,16 +5,20 @@ var date;
 
 $(document).ready(function(){
 	date=new Date();
+	
+	//The user wants to see all the bookings
 	$("#find_all").click(function(){
 		checkMail($("#user_all"),"false");
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
 	
+	//The user only wants to see future bookings
 	$("#find_all_future").click(function(){
 		checkMail($("#user_future"),"true");
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
 	
+	//When we filter bookings we need to check that the email,the chair and the date are valid
 	$("#filter_bookings").click(function(){
 		if($("#user").length && !$("#user").val()){
 			alert("Attention: please provide an email.");
@@ -38,6 +42,7 @@ $(document).ready(function(){
 				dataType: "text",
 				async: 'true',
 				success: function(data){
+					//The servlet checks wheather the user is registered and is a Customer 
 					var str= data.trim();
 					if(str=="USER_NOT_CUSTOMER"){
 						alert("Attention: The user is not a customer.");
@@ -47,6 +52,7 @@ $(document).ready(function(){
 						return;
 					}else{
 						$.ajax({
+							//We send a POST request to hide the user data from the URL
 					        type: "POST",
 					        url: "./FilterBookingsJson.json",
 					        data:{
@@ -70,6 +76,7 @@ $(document).ready(function(){
 			})		
 		}else{
 			$.ajax({
+				//We send a POST request to hide the user data from the URL
 				type: "POST",
 				url: "./FilterBookingsJson.json",
 				data:{
@@ -83,7 +90,7 @@ $(document).ready(function(){
 					async: 'true',
 					cache: 'true',
 					success: function(json) {
-					json.forEach(insert);
+						json.forEach(insert);
 					},
 				});	
 			$('#modalCenter').modal("show")
@@ -93,6 +100,7 @@ $(document).ready(function(){
 	});
 });
 
+//This method removes a booking
 function removeElement(id,date,time){
 	$.get({
 		url: "./RemoveBooking",
@@ -102,25 +110,25 @@ function removeElement(id,date,time){
 			date: date,
 			time: time,
 	    },
-			dataType: "text",
-			success: function(message){
-				var str= message.trim();
-				if(str=="ERROR"){
-					hideAll();
-					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an unexpected issue.</div>");
-					return;
-				}else if(str=="OK"){						
-					hideAll();
-					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully removed.</div>");
-					return;	
-				}
+		dataType: "text",
+		success: function(message){
+			var str= message.trim();
+			if(str=="ERROR"){
+				hideAll();
+				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an unexpected issue.</div>");
+				return;
+			}else if(str=="OK"){						
+				hideAll();
+				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully removed.</div>");					return;	
 			}
-		})
+		}
+	})
 }
 
 function insert(element){
 	var dateToCompare = new Date(element.date);	
 	
+	//We can only remove future bookings so we need to check first
 	if(dateToCompare>date){
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
 		"Seat number:</b> "+element.id+" <b>Date:</b> "+element.date+" <b>Time:</b> "+element.time+"</p>"+
@@ -132,14 +140,14 @@ function insert(element){
 
 }
 
-
-
+//This method hides the page
 function hideAll(){
 	$("#container").hide();
 	$("#modalCenter").hide();
 }
 
 function checkMail(mail,futureString){
+	//If user is a Customer there is no input mail
 	if(!mail.length){
 		 $.ajax({
 				type: "GET",
@@ -151,8 +159,8 @@ function checkMail(mail,futureString){
 					async: 'false',
 					cache: 'true',
 					success: function(json) {
-					json.forEach(insert);
-				},
+						json.forEach(insert);
+					},
 		  });	
 		  $('#modalCenter').modal("show");
 	}else if(!mail.val()){
@@ -171,6 +179,7 @@ function checkMail(mail,futureString){
 				dataType: "text",
 				async: 'true',
 				success: function(data){
+					//If user is a Cashier we need to check if the email provided is registered and belongs to a Customer
 					var str= data.trim();
 					if(str=="USER_NOT_CUSTOMER"){
 						alert("Attention: The user is not a customer.");
@@ -180,7 +189,7 @@ function checkMail(mail,futureString){
 						return;
 					}else{						
 						 $.ajax({
-					        type: "POST",
+					        type: "GET",
 					        url: "./bookings.json",
 					        data:{
 								future: futureString,

@@ -17,31 +17,42 @@ $(document).ready(function(){
         async: 'false',
 		success: function(data){
 			numberOfChairs=parseInt(data);  
-			$.ajax({
-		        type: "GET",
-		        url: "./beachSpots.json",
-		        data:{
-					Date: day,
-					Time: time,
-					op: 'beachStatus',
-		        },
-		        async: 'false',
-				cache: 'true',
-		        success: function(json) {
-					$('.map').html("<div id=\"mapRow\"class=\"row\">");
-					for(var i=1;i<=numberOfChairs;i++){
-						$('#mapRow').append("<div id= \""+ i + "\" class=\"col\"><div>");
-						if(i % numberOfColumns == 0){
-							$('#mapRow').append("<div class=\"w-100\">");
-						}
-					}
-		            json.forEach(insertSlot);        
-				},
-			})
+			populateMap(numberOfChairs,day,time);
+
 		}
 	})
-	
 })
+
+//We wish to update the map of the beach every 10 seconds
+function updateCall(numberOfChairs,day,time){
+	setTimeout(function(){populateMap(numberOfChairs,day,time)}, 10000);
+}
+
+//The ajax call to populate the beach map
+function populateMap(numberOfChairs,day,time){
+	$.ajax({
+		type: "GET",
+	    url: "./beachSpots.json",
+	    data:{
+			Date: day,
+			Time: time,
+			op: 'beachStatus',
+		},
+		async: 'true',
+		cache: 'true',
+		success: function(json) {
+			$('.map').html("<div id=\"mapRow\"class=\"row\">");
+			for(var i=1;i<=numberOfChairs;i++){
+				$('#mapRow').append("<div id= \""+ i + "\" class=\"col\"><div>");
+				if(i % numberOfColumns == 0){
+					$('#mapRow').append("<div class=\"w-100\">");
+				}
+			}	
+			json.forEach(insertSlot);        
+		},
+	})
+	updateCall(numberOfChairs,day,time);
+}
 
 //This method replaces only the booked spots so that the Lifeguard only sees spots that have been booked at the time the request is made
 function insertSlot(slot){
