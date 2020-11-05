@@ -64,19 +64,11 @@
 	                     		<input type="email" id="user_all">
                      		</div><br/>
              		  <%} %>
+             		  <div class="future_bookings">
+             		      <input type="checkbox" id="future_bookings">
+ 						  <label for="future_bookings">Only show future bookings</label><br>             		    
+             		   </div>
                       <button type="button" id="find_all" class="btn btn-primary mt-3" data-target="#modalCenter">Show all</button>                                	
-			       </div> 
-			    </div>
-			    <div class="col-sm">
-			       <div class="container pt-3 pb-3 mb-3 border">
-			       		<p>If you only wish to see future bookings</p>			       	  			       
-			        <% if(request.isUserInRole("Cashier")){ %>
-             		    	<div class="user">
-	                     		<label for="user">User email:</label>
-	                     		<input type="email" id="user_future">
-                     		</div><br/>
-             		  <%} %>
-                      <button type="button" id="find_all_future" class="btn btn-primary mt-3" data-target="#modalCenter">Show all future bookings</button>                                	
 			       </div> 
 			    </div>
 			  </div>

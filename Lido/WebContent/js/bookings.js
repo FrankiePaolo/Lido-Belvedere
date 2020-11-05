@@ -5,16 +5,17 @@ var date;
 
 $(document).ready(function(){
 	date=new Date();
+	//We need to check whether the user only wants to see future bookings or not
+	var futureBookings=document.getElementById('future_bookings');
 	
-	//The user wants to see all the bookings
 	$("#find_all").click(function(){
-		checkMail($("#user_all"),"false");
-		$("#bookings").html("<div id=\"bookings\"></div>");
-	});
-	
-	//The user only wants to see future bookings
-	$("#find_all_future").click(function(){
-		checkMail($("#user_future"),"true");
+		if(futureBookings.checked==true){
+			//The user only wants to see future bookings
+			checkMail($("#user_all").val(),"true");
+		}else{
+			//The user wants to see all the bookings
+			checkMail($("#user_all").val(),"false");
+		}
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
 	
@@ -148,6 +149,7 @@ function hideAll(){
 
 function checkMail(mail,futureString){
 	//If user is a Customer there is no input mail
+	console.log(mail.val());
 	if(!mail.length){
 		 $.ajax({
 				type: "GET",
@@ -172,12 +174,11 @@ function checkMail(mail,futureString){
 	}else{
 		$.get({
 			url: "./CheckMail",
-			method: "get",
 	        data: {
 				user: mail.val(),
 	        },
 				dataType: "text",
-				async: 'true',
+				async: 'false',
 				success: function(data){
 					//If user is a Cashier we need to check if the email provided is registered and belongs to a Customer
 					var str= data.trim();
@@ -196,7 +197,7 @@ function checkMail(mail,futureString){
 								user: mail.val()
 					        },
 					        dataType: 'json',
-							async: 'true',
+							async: 'false',
 					        cache: 'true',
 					        success: function(json) {
 								json.forEach(insert);
