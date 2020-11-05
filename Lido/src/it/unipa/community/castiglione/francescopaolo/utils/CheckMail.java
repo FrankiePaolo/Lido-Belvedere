@@ -37,6 +37,9 @@ public class CheckMail extends HttpServlet {
 	        	} else if (!DBMSHandler.isCustomer(user)) {
 					out.println("USER_NOT_CUSTOMER");
 					return;  	       	
+				} else {
+					out.println("OK");
+					return;  	       	
 				} 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

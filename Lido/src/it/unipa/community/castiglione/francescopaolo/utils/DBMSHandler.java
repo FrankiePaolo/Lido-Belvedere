@@ -57,16 +57,16 @@ public class DBMSHandler {
     
     //This method checks if the given email was already used by another user
     public static boolean isRegistered(String email) {
-    	boolean registered=false;
-    	String sql_query="SELECT * FROM User WHERE Email=? ";
+    	boolean registered=true;
+    	String sql_query="SELECT * FROM User WHERE Email=? ;";
     	// Tries to connect to the mysql database
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
              // Creates a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
              preparedStatement.setString(1, email);
              ResultSet resultSet=preparedStatement.executeQuery();
-             if(resultSet.next()) {
-            	 registered=true;
+             if(!resultSet.next()) {
+            	 registered=false;
              }
              resultSet.close();
          } catch (SQLException e) {

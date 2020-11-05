@@ -148,8 +148,8 @@ function hideAll(){
 }
 
 function checkMail(mail,futureString){
+	
 	//If user is a Customer there is no input mail
-	console.log(mail.val());
 	if(!mail.length){
 		 $.ajax({
 				type: "GET",
@@ -165,17 +165,17 @@ function checkMail(mail,futureString){
 					},
 		  });	
 		  $('#modalCenter').modal("show");
-	}else if(mail.length && !mail.val()){
+	}else if(mail.length && !mail){
 		alert("Attention: please provide an email.");
 		return;
-	}else if(mail.length && !mail.val().match(mailformat)){
+	}else if(mail.length && !mail.match(mailformat)){
 		alert("Attention: email format not valid.");
 		return;
 	}else{
 		$.get({
 			url: "./CheckMail",
 	        data: {
-				user: mail.val(),
+				user: mail
 	        },
 				dataType: "text",
 				async: 'false',
@@ -188,13 +188,13 @@ function checkMail(mail,futureString){
 					}else if(str=="USER_NOT_REGISTERED"){
 						alert("Attention: The user is not registered.");
 						return;
-					}else{						
+					}else if(str=="OK"){						
 						 $.ajax({
 					        type: "GET",
 					        url: "./bookings.json",
 					        data:{
 								future: futureString,
-								user: mail.val()
+								user: mail
 					        },
 					        dataType: 'json',
 							async: 'false',
