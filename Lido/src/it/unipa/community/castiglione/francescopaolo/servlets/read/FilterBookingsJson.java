@@ -33,6 +33,8 @@ public class FilterBookingsJson extends HttpServlet {
 		response.setContentType("application/json");
         String user=request.getRemoteUser();
         boolean isCustomer=request.isUserInRole("Customer");
+       
+        //If the user is not a Customer then we need to get the user email from the Request parameter (i.e. user is a Cashier)
         if(!isCustomer) {
         	user=request.getParameter("user");
         }

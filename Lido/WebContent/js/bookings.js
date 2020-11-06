@@ -2,7 +2,6 @@
 var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 var date;	
 
-
 $(document).ready(function(){
 	date=new Date();
 	//We need to check whether the user only wants to see future bookings or not
@@ -123,7 +122,7 @@ function removeElement(id,date,time){
 function insert(element){
 	var dateToCompare = new Date(element.date);	
 	
-	//We can only remove future bookings so we need to check first
+	//We can only remove future bookings so we need to check the date first
 	if(dateToCompare>date){
 		$("#bookings").append(" <div id=\"bookingContainer\" class=\"container p-3 my-3 border\"><p><b>"+
 		"Seat number:</b> "+element.id+" <b>Date:</b> "+element.date+" <b>Time:</b> "+element.time+"</p>"+
@@ -143,7 +142,7 @@ function hideAll(){
 
 function checkMail(inputMail,mailValue,futureString){
 
-	//If user is a Customer there is no input mail field
+	//If user is a Customer then there is no input mail field
 	if(!inputMail){
 		 $.ajax({
 				type: "GET",
