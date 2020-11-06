@@ -7,24 +7,39 @@ $(document).ready(function(){
 	date=new Date();
 	//We need to check whether the user only wants to see future bookings or not
 	var futureBookings=document.getElementById('future_bookings');
-	
+	//We need to check if we have the mail input field
+	var inputMail=false;
 	$("#find_all").click(function(){
+		
+		//The user is a Cashier so there is an input mail field for Customer email
+		if($("#user_all").length){
+			inputMail=true;
+		}
+		
 		if(futureBookings.checked==true){
 			//The user only wants to see future bookings
-			checkMail($("#user_all").val(),"true");
+			checkMail(inputMail,$("#user_all").val(),"true");
 		}else{
 			//The user wants to see all the bookings
-			checkMail($("#user_all").val(),"false");
+			checkMail(inputMail,$("#user_all").val(),"false");
 		}
 		$("#bookings").html("<div id=\"bookings\"></div>");
 	});
 	
 	//When we filter bookings we need to check that the email,the chair and the date are valid
-	$("#filter_bookings").click(function(){
-		if($("#user").length && !$("#user").val()){
+	$("#filter_bookings").click(function(){	
+		
+		//The user is a Cashier so there is an input mail field for Customer email
+		if($("#user").length){
+			inputMail=true;
+		}
+		//The email value
+		mailValue=$("#user").val();
+			
+		if(inputMail && !mailValue){
 			alert("Attention: please provide an email.");
 			return;
-		}else if($("#user").length && !$("#user").val().match(mailformat)){
+		}else if(inputMail && !mailValue.match(mailformat)){
 			alert("Attention: email format not valid.");
 			return;
 		}else if(!$("#spot").val()){
@@ -51,55 +66,34 @@ $(document).ready(function(){
 					}else if(str=="USER_NOT_REGISTERED"){
 						alert("Attention: The user is not registered.");
 						return;
-					}else{
-						$.ajax({
-							//We send a POST request to hide the user data from the URL
-					        type: "POST",
-					        url: "./FilterBookingsJson.json",
-					        data:{
-								chair: $("#spot").val(),
-								date: $("#date").val(),
-								time: $("#time").val(),
-								user: $("#user").val(),
-								past: String($("#past_bookings").is(":checked")),
-					        },
-					        dataType: 'json',
-							async: 'true',
-					        cache: 'true',
-					        success: function(json) {
-								json.forEach(insert);
-					        },
-					    });	
-						$('#modalCenter').modal("show")
-						$("#bookings").html("<div id=\"bookings\"></div>");
-					}	
+					}
 				}
-			})		
-		}else{
-			$.ajax({
-				//We send a POST request to hide the user data from the URL
-				type: "POST",
-				url: "./FilterBookingsJson.json",
-				data:{
-					chair: $("#spot").val(),
-					date: $("#date").val(),
-					time: $("#time").val(),
-					user: $("#user").val(),
-					past: String($("#past_bookings").is(":checked")),
+			})
+		}	
+		
+		$.ajax({
+			//We send a POST request to hide the user data from the URL
+			type: "POST",
+			url: "./FilterBookingsJson.json",
+			data:{
+				chair: $("#spot").val(),
+				date: $("#date").val(),
+				time: $("#time").val(),
+				user: $("#user").val(),	
+				past: String($("#past_bookings").is(":checked")),
 				},
-					dataType: 'json',
-					async: 'true',
-					cache: 'true',
-					success: function(json) {
-						json.forEach(insert);
-					},
-				});	
-			$('#modalCenter').modal("show")
-			$("#bookings").html("<div id=\"bookings\"></div>");				
-		}
-						
-	});
-});
+			dataType: 'json',
+			async: 'true',
+			cache: 'true',
+			success: function(json) {
+				json.forEach(insert);
+			},
+		})
+			$('#modalCenter').modal("show");
+			$("#bookings").html("<div id=\"bookings\"></div>");		
+	})					
+})
+
 
 //This method removes a booking
 function removeElement(id,date,time){
@@ -147,10 +141,10 @@ function hideAll(){
 	$("#modalCenter").hide();
 }
 
-function checkMail(mail,futureString){
-	
-	//If user is a Customer there is no input mail
-	if(!mail.length){
+function checkMail(inputMail,mailValue,futureString){
+
+	//If user is a Customer there is no input mail field
+	if(!inputMail){
 		 $.ajax({
 				type: "GET",
 				url: "./bookings.json",
@@ -165,17 +159,17 @@ function checkMail(mail,futureString){
 					},
 		  });	
 		  $('#modalCenter').modal("show");
-	}else if(mail.length && !mail){
+	}else if(inputMail && !mailValue){
 		alert("Attention: please provide an email.");
 		return;
-	}else if(mail.length && !mail.match(mailformat)){
+	}else if(inputMail && !mailValue.match(mailformat)){
 		alert("Attention: email format not valid.");
 		return;
 	}else{
 		$.get({
 			url: "./CheckMail",
 	        data: {
-				user: mail
+				user: mailValue
 	        },
 				dataType: "text",
 				async: 'false',
@@ -194,7 +188,7 @@ function checkMail(mail,futureString){
 					        url: "./bookings.json",
 					        data:{
 								future: futureString,
-								user: mail
+								user: mailValue
 					        },
 					        dataType: 'json',
 							async: 'false',
@@ -206,7 +200,7 @@ function checkMail(mail,futureString){
 						$('#modalCenter').modal("show");
 					}
 				}
-			})
+		})
 	}
 }
 

@@ -58,12 +58,12 @@
 			    <div class="col-sm">
 			       <div class="container pt-3 pb-3 mb-3 border">
 			       	   <p>If you wish to see all the bookings</p>			       
-			       <% if(request.isUserInRole("Cashier")){ %>
+			         <% if(request.isUserInRole("Cashier")){ %>
              		    	<div class="user">
 	                     		<label for="user">User email:</label>
 	                     		<input type="email" id="user_all">
                      		</div><br/>
-             		  <%} %>
+             		 <% } %>
              		  <div class="future_bookings">
              		      <input type="checkbox" id="future_bookings">
  						  <label for="future_bookings">Only show future bookings</label><br>             		    
