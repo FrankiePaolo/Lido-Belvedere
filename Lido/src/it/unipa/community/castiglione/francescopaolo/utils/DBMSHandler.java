@@ -1,5 +1,9 @@
 package it.unipa.community.castiglione.francescopaolo.utils;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -8,6 +12,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBMSHandler {
+    private static DataSource dataSource = null;
+	
+	static {
+        try {
+            Context context = new InitialContext();
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/lido");
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	private static Connection connect() throws SQLException {
+        return dataSource.getConnection();
+    }
+
 
 	//This method registers the user into the database
     public static int registerCustomer(String firstName,String lastName,String email,String password) {
@@ -199,9 +218,8 @@ public class DBMSHandler {
         	sql_query+="AND Booking.Date > ? ";
         }
         sql_query+="ORDER BY Booking.Date";            
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)){
                 // Creates a statement using connection object  
-                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setString(1,user);
         		if(!future.equals("false")) {
         			preparedStatement.setString(2,currentDate.toString());
