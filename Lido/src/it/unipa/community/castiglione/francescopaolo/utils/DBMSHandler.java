@@ -6,7 +6,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,9 +33,7 @@ public class DBMSHandler {
         String sql_query = "INSERT INTO User (Firstname,Lastname,Email,Password) SELECT ?, ?, ?, sha2(?,256)";
         int result = 0;
     	// Tries to connect to the mysql database
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-            // Creates a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, email);
@@ -55,9 +52,7 @@ public class DBMSHandler {
     	boolean isCustomer = false;
     	String sql_query="SELECT Role FROM User WHERE Email=? ";
     	// Tries to connect to the mysql database
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-             // Creates a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
              preparedStatement.setString(1, email);
              ResultSet resultSet=preparedStatement.executeQuery();
              if(resultSet.next()) {
@@ -79,9 +74,7 @@ public class DBMSHandler {
     	boolean registered=true;
     	String sql_query="SELECT * FROM User WHERE Email=? ;";
     	// Tries to connect to the mysql database
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-             // Creates a statement using connection object
-             PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
              preparedStatement.setString(1, email);
              ResultSet resultSet=preparedStatement.executeQuery();
              if(!resultSet.next()) {
@@ -97,9 +90,7 @@ public class DBMSHandler {
     //Gets a Sstring of the JSON from the desired SQL query
     @SuppressWarnings("unused")
 	private static String getJsonFromQuery(String JSON, String sql_query) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-                // Creates a statement using connection object
-                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
         		ResultSet resultSet = preparedStatement.executeQuery();
                 JSON = JSONConverter.resultSetToArray(resultSet).toString();
                 resultSet.close();
@@ -114,9 +105,7 @@ public class DBMSHandler {
     	int numberOfChairs = 0;
     	String sql_query;
         sql_query = "SELECT COUNT(*) as count FROM Chair";        
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-                // Creates a statement using connection object  
-                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
         		ResultSet resultSet = preparedStatement.executeQuery();           
         		 if(resultSet.next()){
         			 numberOfChairs = resultSet.getInt(1);
@@ -150,9 +139,7 @@ public class DBMSHandler {
          		        "FROM Booking " +
          		        "WHERE Booking.Date = ? AND Booking.Time = ? )";
         }
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-                // Creates a statement using connection object  
-                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setDate(1, Date.valueOf(date));
         		if(flag == false) {
             		preparedStatement.setString(2, time);
@@ -173,9 +160,7 @@ public class DBMSHandler {
     	String JSON = "";
         String sql_query;
         sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido.Booking,lido.User WHERE Booking.User_ID=User.ID AND Date=? AND Time=? ;";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-                // Creates a statement using connection object  
-                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setDate(1, Date.valueOf(date));
             	preparedStatement.setString(2, time);
         		ResultSet resultSet = preparedStatement.executeQuery();
@@ -192,9 +177,7 @@ public class DBMSHandler {
         boolean success = false;
         String sql_query;
         sql_query="DELETE FROM lido.Booking WHERE Booking.Date = ? AND Booking.Time = ? AND Booking.Chair_ID = ? ;"; 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-                // Creates a statement using connection object        	
-            	PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
             	preparedStatement.setString(1, date);
             	preparedStatement.setString(2, time);
             	preparedStatement.setInt(3, chair);
@@ -247,9 +230,7 @@ public class DBMSHandler {
             sql_query+="AND Booking.Date > ? ";
         }
         sql_query+="ORDER BY Booking.Date";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-                // Creates a statement using connection object  
-                PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setString(1,user);
         		preparedStatement.setInt(2,chair);
         		//In this case we don't need to specify the time in the SQL query
@@ -279,9 +260,7 @@ public class DBMSHandler {
         boolean success = false;
         String sql_query =  "INSERT INTO Booking (Date, Time, Chair_ID, User_ID)" +
                         "SELECT ?, ?, ?, ID from User where Email = ?";
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lido?serverTimezone=Europe/Rome", "root", "password");
-            // Creates a statement using connection object        	
-        	PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
         	preparedStatement.setString(1, date);
         	preparedStatement.setString(2, time);
         	preparedStatement.setInt(3, chair);
