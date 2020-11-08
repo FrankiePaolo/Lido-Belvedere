@@ -72,7 +72,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			//We send a POST request to hide the user data from the URL
-			type: "POST",
+			type: "post",
 			url: "./FilterBookingsJson.json",
 			data:{
 				chair: $("#spot").val(),
@@ -145,7 +145,7 @@ function checkMail(inputMail,mailValue,futureString){
 	//If user is a Customer then there is no input mail field
 	if(!inputMail){
 		 $.ajax({
-				type: "GET",
+				type: "get",
 				url: "./bookings.json",
 				data:{
 					future: futureString,
@@ -170,35 +170,35 @@ function checkMail(inputMail,mailValue,futureString){
 	        data: {
 				user: mailValue
 	        },
-				dataType: "text",
-				async: 'false',
-				success: function(data){
-					//If user is a Cashier we need to check if the email provided is registered and belongs to a Customer
-					var str= data.trim();
-					if(str=="USER_NOT_CUSTOMER"){
-						alert("Attention: The user is not a customer.");
-						return;
-					}else if(str=="USER_NOT_REGISTERED"){
-						alert("Attention: The user is not registered.");
-						return;
-					}else if(str=="OK"){						
-						 $.ajax({
-					        type: "GET",
-					        url: "./bookings.json",
-					        data:{
-								future: futureString,
-								user: mailValue
-					        },
-					        dataType: 'json',
-							async: 'false',
-					        cache: 'true',
-					        success: function(json) {
-								json.forEach(insert);
-					        },
-					    });	
-						$('#modalCenter').modal("show");
-					}
+			dataType: "text",
+			async: 'false',
+			success: function(data){
+				//If user is a Cashier we need to check if the email provided is registered and belongs to a Customer
+				var str= data.trim();
+				if(str=="USER_NOT_CUSTOMER"){
+					alert("Attention: The user is not a customer.");
+					return;
+				}else if(str=="USER_NOT_REGISTERED"){
+					alert("Attention: The user is not registered.");
+					return;
+				}else if(str=="OK"){						
+					 $.ajax({
+				        type: "GET",
+				        url: "./bookings.json",
+				        data:{
+							future: futureString,
+							user: mailValue
+				        },
+				        dataType: 'json',
+						async: 'false',
+				        cache: 'true',
+				        success: function(json) {
+							json.forEach(insert);
+				        },
+				    });	
+					$('#modalCenter').modal("show");
 				}
+			}
 		})
 	}
 }
