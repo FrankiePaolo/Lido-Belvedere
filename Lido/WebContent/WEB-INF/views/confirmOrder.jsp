@@ -1,8 +1,9 @@
+<jsp:useBean id="cart" class="it.unipa.community.castiglione.francescopaolo.beans.Cart" scope="session" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
     	  <title>Confirm order</title>
 		  <meta charset="utf-8">
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +20,23 @@
               <div class="card mb-3">
                 <div class="card-body">
                   
-                  <div class="row">
-                      <p>Confirm order</p>      
-                  </div>
+                  <table class="table">
+				   <tr><th>Item</th><th>Price</th><th>Amount</th></tr>
+			        <% for(int i : cart.getItemsAmount().keySet()){ %>
+			        <tr>
+			            <td><%= cart.getItems_names().get(i)%></td>
+			            <td><%= cart.getItems_prices().get(i)%>€</td>
+			            <td>&times;<%= cart.getItemAmount(i)%></td>
+			        </tr>
+			        <% }%>
+			        <tr>
+			            <td><b>Tot.</b></td>
+			            <td><b><%=cart.getTotal()%>€</b></td>
+			            <td></td>
+			        </tr>
+				   </table>
+                   <button id="confirmButton" type="button" class="btn btn-primary">Confirm order</button>
+                   <button onclick="location.href='./Menu'" type="button" class="ml-3 btn btn-secondary">Edit order</button>
                 
                 </div>
               </div>

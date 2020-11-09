@@ -13,12 +13,11 @@ $(document).ready(function () {
             var menu = $('#menu');
             menu.html('<h2 class="mb-5">Menu</h2>');
             makeMenu(json);
-            menu.append('<div id="summary"></div> <br/> <div class="row"><div class="col-sm"> <button type="button" class="btn btn-primary mb-3" '+
-				'id="submit_order">Confirm</button> </div> <div class="col-sm"><button type="button" class="btn btn-secondary mb-3" id="cancel_order">Clear</button></div></div>');
+            menu.append('<div id="summary"></div>  <button type="button" class="btn btn-primary mb-3 mt-3" '+
+				'id="submit_order">Confirm</button> <button type="button" class="btn btn-secondary ml-3 mb-3 mt-3" id="cancel_order">Clear</button>');
             $('#submit_order').click(function(){
                 if(cart.length>0){
                     window.location.replace("./ConfirmOrder");
-					console.log(cart);
                 } else {
                     alert("No items selected");
                 }
