@@ -103,7 +103,7 @@ function loadMap (inputDate,inputTime) {
         },
         dataType: 'json',
         async: 'true',
-        cache: 'true',
+        cache: 'false',
         success: function(json) {
 			$('.map').html("<div id=\"mapRow\"class=\"row\">");
 			for(var i=1;i<=numberOfChairs;i++){

@@ -16,25 +16,20 @@
 			        <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
 			      </li>
 		      <% if(request.getRemoteUser()==null) {%>
+		      	  <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Food
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Menu">Menu</a>
+			        </div>
+			      </li>	
 			      <li class="nav-item">
 			        <a class="nav-link" href="${pageContext.request.contextPath}/Login">Login</a>
 			      </li>
 			       <li class="nav-item">
 			        <a class="nav-link" href="${pageContext.request.contextPath}/RegisterCustomer">Register</a>
 			      </li>
-			      <li class="nav-item dropdown">
-			        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			          Food
-			        </a>
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          <a class="dropdown-item" href="${pageContext.request.contextPath}/">Menu</a>
-			        </div>
-			        <% if(request.isUserInRole("Customer")) {%> 
-			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          <a class="dropdown-item" href="${pageContext.request.contextPath}/">My orders</a>
-			        </div>
-			        <% } %>
-			      </li>	
 			  <% } else if(request.isUserInRole("Cashier")) {%>
 			      <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/BookSpot">New booking</a>
@@ -53,6 +48,15 @@
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/Logout">Logout</a>	
 			      </li>
 		      <% }else if(request.isUserInRole("Customer")){ %>
+		      	   <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Food
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Menu">Menu</a>
+			          <a class="dropdown-item" href="${pageContext.request.contextPath}/">My orders</a>
+			        </div>
+			      </li>	
 			      <li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          Beach

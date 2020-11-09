@@ -1,11 +1,14 @@
 package it.unipa.community.castiglione.francescopaolo.utils;
 
+import it.unipa.community.castiglione.francescopaolo.beans.Cart;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.Set;
 
 public class JSONConverter {
 	
@@ -38,7 +41,28 @@ public class JSONConverter {
 		return object;
 	}
 	
-	
+	//This method converts a Cart into a JSONArray
+	public static JSONArray cartToArray(Cart cart){
+        JSONArray arr = new JSONArray();
+        Map<Integer, Integer> items_amount = cart.getItemsAmount();
+        Map<Integer, String> items_names = cart.getItems_names();
+        Map<Integer, Float> items_prices = cart.getItems_prices();
+        Set<Integer> ids = items_amount.keySet();
+        try {
+            for (int id: ids  ) {
+                JSONObject obj = new JSONObject();
+                obj.put("id",id);
+                obj.put("amount",items_amount.get(id));
+                obj.put("name",items_names.get(id));
+                obj.put("price",items_prices.get(id));
+
+                arr.put(obj);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return arr;
+    }
 	
 }
 

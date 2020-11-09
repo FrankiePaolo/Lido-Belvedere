@@ -28,7 +28,7 @@
 			       <div class="container pt-3 pb-3 mb-3 border">
                      	<div class="spot">
                      		<label for="spot">Spot number:</label>
-                     		<input type="number" id="spot" min=0>
+                     		<input type="number" id="spot" min=1>
                      	</div><br/>
                      	<div class="date">
                      		<label for="date">Date:</label>

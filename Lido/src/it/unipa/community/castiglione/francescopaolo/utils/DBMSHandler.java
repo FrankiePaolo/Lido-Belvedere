@@ -87,8 +87,7 @@ public class DBMSHandler {
          return registered;
     }
     
-    //Gets a Sstring of the JSON from the desired SQL query
-    @SuppressWarnings("unused")
+    //Gets a String of the JSON from the desired SQL query
 	private static String getJsonFromQuery(String JSON, String sql_query) {
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
         		ResultSet resultSet = preparedStatement.executeQuery();
@@ -272,5 +271,46 @@ public class DBMSHandler {
             e.printStackTrace();
         }
         return success;
+    }
+    
+    //item is the menu item id, returns the specified item's price
+    public static Float getItemPrice(Integer item) {
+        float price = -1;
+        String sql_query = "SELECT Food_Item.Price FROM Food_Item WHERE ID = ? ;";
+        try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
+            statement.setInt(1, item);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                price = resultSet.getFloat(1);
+            }
+            resultSet.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return price;
+    }
+    
+    //item is a menu item , returns a string containing the item's name
+    public static String getItemName(Integer item) {
+        String name = "";
+        String sql_query = "SELECT Food_Item.Name FROM Food_Item WHERE ID = ? ;";
+        try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
+            statement.setInt(1, item);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                name = resultSet.getString(1);
+            }
+            resultSet.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return name;
+    }
+    
+    // returns a JSON document with the entire menu  
+    public static String getItems() {
+        String JSON = "";
+        String sql_query = "SELECT  ID as id, Name as name, Price as price, Description as description, Category as category FROM Food_Item ORDER BY category, name ;";
+        return getJsonFromQuery(JSON, sql_query);
     }
 }
