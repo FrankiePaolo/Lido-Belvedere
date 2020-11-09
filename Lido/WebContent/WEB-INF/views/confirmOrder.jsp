@@ -12,11 +12,14 @@
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		  <script src="${pageContext.request.contextPath}/js/confirm_order.js"></script>		  
     </head>
   <body class="d-flex flex-column min-vh-100">
     	    <jsp:include page="/WEB-INF/header.jsp"/>
+    	    
+    	    <div id="message"></div>
 	   
-	         <div class="col-md-8 mt-3 mx-auto ">
+	         <div id="choices" class="col-md-8 mt-3 mx-auto ">
               <div class="card mb-3">
                 <div class="card-body">
                   
@@ -41,7 +44,6 @@
                 </div>
               </div>
              </div>
-	   
 	    
 		    <jsp:include page="/WEB-INF/footer.jsp" />    
 	</body>
