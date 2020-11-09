@@ -17,7 +17,7 @@ $(document).ready(function () {
 				'id="submit_order">Confirm</button> </div> <div class="col-sm"><button type="button" class="btn btn-secondary mb-3" id="cancel_order">Clear</button></div></div>');
             $('#submit_order').click(function(){
                 if(cart.length>0){
-                    //window.location.replace("./confirm_order");
+                    window.location.replace("./ConfirmOrder");
 					console.log(cart);
                 } else {
                     alert("No items selected");
@@ -47,14 +47,14 @@ $(document).ready(function () {
  */
 
 $(document).ajaxStop(function () {
-	//So that when we Clear we clear the values for the input fields
+	//So that when we Clear we reset the values for the input fields
     $("input").val("0");
     var total=0;
     for(var i = 0; i < cart.length; i++){
         $("input[name='"+cart[i].id+"']").val(cart[i].amount);
         total+=cart[i].amount*cart[i].price;
     }
-    $('#summary').html("<b>Tot. <span class='r_float'>"+total.toFixed(2)+"€</span> </b>")
+    $('#summary').html("<b>Tot. <span class='ml-2'>"+total.toFixed(2)+"€</span> </b>")
 });
 
 function getCart() {
@@ -112,7 +112,7 @@ function insertCategory(category) {
 function insertItem(item) {
     $('#'+item.category).append("<div" +
         "<b>" + item.name + "</b><span style='float: right'>" + item.price + "&euro;</span><br />" +
-        "<em>" + item.description + " " + "</em> "+ 
+        "<em>" + item.description + "</em> "+ 
 		"<input class=\"ml-5 item_amount\" style='float: right; width: 6ch' type='number' min='0' max='20' name="+item.id+" />" +
-        "<hr style='border-width: 0' /></div>&nbsp;");
+        "<hr style='border-width: 0' /></div>");
 }
