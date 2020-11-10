@@ -75,8 +75,7 @@
 			     </div>	
 			    </div>
 			<% } %>		    
-		   </div>
-			<button type="button" id="search" class="btn btn-primary mt-3" >Search</button>
+		    </div>
 			<div class="container mt-5 p-3 my-3 border" id="beachSpotSelection">
 				<div class="container" id="mapContainer">
 		      		<div class="map"></div>

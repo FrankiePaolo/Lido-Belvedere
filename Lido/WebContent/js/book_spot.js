@@ -18,8 +18,8 @@ $(document).ready(function(){
             function (data) {
             	numberOfChairs=parseInt(data);  
             }); 
-	
-	$("#search").click(function(){
+
+	function updateMap(){
 		inputDate = $("#date").val();
 		inputTime = $("#time").val();
 		inputMail=  $("#email").val();
@@ -51,6 +51,14 @@ $(document).ready(function(){
 			$('.map').hide();		
 			alert("Please provide a date!");		
 		}
+	}
+	
+	$("#date").change(function(){
+		updateMap();
+	});	
+
+	$("#time").change(function(){
+		updateMap();
 	});	
 	
 	$("#confirmSpotBtn").click(function(){
