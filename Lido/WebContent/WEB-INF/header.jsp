@@ -40,6 +40,10 @@
 			       <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/Logout">Logout</a>	
 			      </li>
+			  <% } else if(request.isUserInRole("Chef")) {%>
+			   	  <li class="nav-item">
+			        <a class="nav-link"  href="${pageContext.request.contextPath}/Orders">Orders</a>	
+			      </li>
 			  <% } else if(request.isUserInRole("Lifeguard")) {%>
 			      <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/BeachStatus">Beach status</a>
@@ -54,7 +58,7 @@
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Menu">Menu</a>
-			          <a class="dropdown-item" href="${pageContext.request.contextPath}/">My orders</a>
+			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Orders">My orders</a>
 			        </div>
 			      </li>	
 			      <li class="nav-item dropdown">

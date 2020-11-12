@@ -1,6 +1,7 @@
 package it.unipa.community.castiglione.francescopaolo.utils;
 
 import it.unipa.community.castiglione.francescopaolo.beans.*;
+import it.unipa.community.castiglione.francescopaolo.utils.JSONConverter;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -319,22 +320,20 @@ public class DBMSHandler {
     public static boolean addOrder(String user, Cart cart) {
         boolean success = false;
         int orderID;
-        String query1 = "INSERT INTO `Order` (`User_ID`) SELECT ID FROM User where User.Email = ? ;";
+        String sql_query1 = "INSERT INTO `Order` (`User_ID`) SELECT ID FROM User where User.Email = ? ;";
         //Return the AUTO_INCREMENT id of the last row that has been inserted or updated in a table:
-        String query2 = "SELECT LAST_INSERT_ID() ";
-        String query3 = "INSERT INTO Order_has_Food_Item(Order_ID, Food_Item_ID, Amount) VALUES(?,?,?) ;";
+        String sql_query2 = "SELECT LAST_INSERT_ID() ";
+        String sql_query3 = "INSERT INTO Order_has_Food_Item(Order_ID, Food_Item_ID, Amount) VALUES(?,?,?) ;";
         try(Connection connection = connect();
-            PreparedStatement statement1 = connection.prepareStatement(query1);
-            PreparedStatement statement2 = connection.prepareStatement(query2);
-            PreparedStatement statement3 = connection.prepareStatement(query3);
+            PreparedStatement statement1 = connection.prepareStatement(sql_query1);
+            PreparedStatement statement2 = connection.prepareStatement(sql_query2);
+            PreparedStatement statement3 = connection.prepareStatement(sql_query3);
         ){
         	/* By default a Connection object is in auto-commit mode, which means that it automatically 
         	 * commits changes after executing each statement. If auto-commit mode has been disabled, 
         	 * the method commit must be called explicitly in order to commit changes; otherwise, database 
         	 * changes will not be saved.
-        	 */
-        	
-        	
+        	 */       	
             connection.setAutoCommit(false);
             statement1.setString(1, user);
             statement1.executeUpdate();
@@ -348,7 +347,6 @@ public class DBMSHandler {
                 return false;
             }
             resultSet.close();
-            
 
             for(int itemID : cart.getItemsAmount().keySet()){
                 statement3.setInt(1, orderID);
@@ -367,5 +365,63 @@ public class DBMSHandler {
         return success;
     }
     
+    //Returns a JSON String with the orders 
+    public static String getOrders() {
+        String JSON = "";
+        String sql_query = "SELECT ID as id, State as status, `Date` as 'date' FROM `Order` WHERE NOT `Order`.State = 'delivered' order by `status` DESC,`date` DESC ";
+        return getJsonFromQuery(JSON, sql_query);
+    }
+    
+     //Returns a JSON String with the orders for the specified user
+    public static String getOrders(String mail){
+        String JSON = "";
+        String sql_query = "SELECT ID as id, State as status, `Date` as 'date' FROM `Order`, User WHERE User.Email = ? AND User.ID = `Order`.User_ID order by `date` DESC ;";
+        try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
+            statement.setString(1, mail);
+            ResultSet resultSet = statement.executeQuery();
+            JSON = String.valueOf(JSONConverter.resultSetToArray(resultSet));
+            resultSet.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return JSON;
+    }
+    
+    //Returns the information related to the specified id order
+    public static String getOrderInfo(int id) {
+        String JSON = "";
+        String sql_query = "SELECT Food_Item.Name as name, Order_has_Food_Item.Amount as amount, Food_Item.Price as price " +
+                "FROM `Order_has_Food_Item`, Food_Item " +
+                "WHERE Order_has_Food_Item.Order_ID = ? AND Food_Item.ID = Order_has_Food_Item.Food_Item_ID";
+        try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            JSON = String.valueOf(JSONConverter.resultSetToArray(resultSet));
+            resultSet.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return JSON;
+    }
+    
+    //Returns the information related to the specified id order and user
+    public static String getOrderInfo(String user, int id) {
+        String JSON = "";
+        String sql_query = "SELECT Food_Item.ID as id, Food_Item.Name as name, Order_has_Food_Item.Amount as amount, Food_Item.Price as price " +
+                "FROM `Order_has_Food_Item`, Food_Item, User, `Order` " +
+                "WHERE Order_has_Food_Item.Order_ID = ? AND Order_has_Food_Item.Order_ID = `Order`.ID " +
+                    "AND User.Mail = ? AND `User`.ID = `Order`.User_ID "+
+                    "AND Food_Item.ID = Order_has_Food_Item.Food_Item_ID ;";
+        try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
+            statement.setInt(1, id);
+            statement.setString(2, user);
+            ResultSet resultSet = statement.executeQuery();
+            JSON = String.valueOf(JSONConverter.resultSetToArray(resultSet));
+            resultSet.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return JSON;
+    }
     
 }
