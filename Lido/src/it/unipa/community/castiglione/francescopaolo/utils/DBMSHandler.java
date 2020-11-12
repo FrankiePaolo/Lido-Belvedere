@@ -1,5 +1,6 @@
 package it.unipa.community.castiglione.francescopaolo.utils;
 
+import it.unipa.community.castiglione.francescopaolo.beans.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -273,7 +274,7 @@ public class DBMSHandler {
         return success;
     }
     
-    //item is the menu item id, returns the specified item's price
+    //Item is the menu item id, returns the specified item's price
     public static Float getItemPrice(Integer item) {
         float price = -1;
         String sql_query = "SELECT Food_Item.Price FROM Food_Item WHERE ID = ? ;";
@@ -290,7 +291,7 @@ public class DBMSHandler {
         return price;
     }
     
-    //item is a menu item , returns a string containing the item's name
+    //Item is a menu item , returns a string containing the item's name
     public static String getItemName(Integer item) {
         String name = "";
         String sql_query = "SELECT Food_Item.Name FROM Food_Item WHERE ID = ? ;";
@@ -307,10 +308,64 @@ public class DBMSHandler {
         return name;
     }
     
-    // returns a JSON document with the entire menu  
+    //Returns a JSON document with the entire menu  
     public static String getItems() {
         String JSON = "";
         String sql_query = "SELECT  ID as id, Name as name, Price as price, Description as description, Category as category FROM Food_Item ORDER BY category, name ;";
         return getJsonFromQuery(JSON, sql_query);
     }
+    
+    //Adds an order
+    public static boolean addOrder(String user, Cart cart) {
+        boolean success = false;
+        int orderID;
+        String query1 = "INSERT INTO `Order` (`User_ID`) SELECT ID FROM User where User.Email = ? ;";
+        //Return the AUTO_INCREMENT id of the last row that has been inserted or updated in a table:
+        String query2 = "SELECT LAST_INSERT_ID() ";
+        String query3 = "INSERT INTO Order_has_Food_Item(Order_ID, Food_Item_ID, Amount) VALUES(?,?,?) ;";
+        try(Connection connection = connect();
+            PreparedStatement statement1 = connection.prepareStatement(query1);
+            PreparedStatement statement2 = connection.prepareStatement(query2);
+            PreparedStatement statement3 = connection.prepareStatement(query3);
+        ){
+        	/* By default a Connection object is in auto-commit mode, which means that it automatically 
+        	 * commits changes after executing each statement. If auto-commit mode has been disabled, 
+        	 * the method commit must be called explicitly in order to commit changes; otherwise, database 
+        	 * changes will not be saved.
+        	 */
+        	
+        	
+            connection.setAutoCommit(false);
+            statement1.setString(1, user);
+            statement1.executeUpdate();
+
+            ResultSet resultSet = statement2.executeQuery();
+
+            if(resultSet.next()){
+                orderID = resultSet.getInt(1);
+            } else {
+                connection.rollback();
+                return false;
+            }
+            resultSet.close();
+            
+
+            for(int itemID : cart.getItemsAmount().keySet()){
+                statement3.setInt(1, orderID);
+                statement3.setInt(2, itemID);
+                statement3.setInt(3, cart.getItemAmount(itemID));
+                if(statement3.executeUpdate()==0){
+                    connection.rollback();
+                    throw new SQLException("No data inserted");
+                }
+            }
+            connection.commit();
+            success = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
+    }
+    
+    
 }

@@ -89,7 +89,7 @@ function makeMenu(menuJson) {
                 switch (retMsg.trim()) {
                     case "OK":
                         break;
-                    case "ILLEGAL_DATA":
+                    case "UNEXPECTED_DATA":
                         alert("Invalid data detected");
                         break;
                     default:

@@ -1,7 +1,6 @@
 package it.unipa.community.castiglione.francescopaolo.servlets.write;
 
 import it.unipa.community.castiglione.francescopaolo.beans.Cart;
-import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;
 import it.unipa.community.castiglione.francescopaolo.utils.JSONConverter;
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -56,15 +55,15 @@ public class CartController extends HttpServlet {
 	            case "set": {
 	                response.setContentType("text/plain;charset=UTF-8");
 
-	                String id_s = request.getParameter("id");
-	                String amount_s = request.getParameter("amount");
+	                String id_set = request.getParameter("id");
+	                String amount_set = request.getParameter("amount");
 	                int id, amount;
 
 	                try {
-	                    id = Integer.parseInt(id_s);
-	                    amount = Integer.parseInt(amount_s);
+	                    id = Integer.parseInt(id_set);
+	                    amount = Integer.parseInt(amount_set);
 	                } catch (NumberFormatException e) {
-	                    out.println("ILLEGAL_DATA");
+	                    out.println("UNEXPECTED_DATA");
 	                    return;
 	                }
 

@@ -15,6 +15,8 @@
 		  <script src="${pageContext.request.contextPath}/js/confirm_order.js"></script>		  
     </head>
   <body class="d-flex flex-column min-vh-100">
+  			<%System.out.println(request.isUserInRole("Customer")); %>
+  
     	    <jsp:include page="/WEB-INF/header.jsp"/>
     	    
     	    <div id="message"></div>
@@ -22,7 +24,6 @@
 	         <div id="choices" class="col-md-8 mt-3 mx-auto ">
               <div class="card mb-3">
                 <div class="card-body">
-                  
                   <table class="table">
 				   <tr><th>Item</th><th>Price</th><th>Amount</th></tr>
 			        <% for(int i : cart.getItemsAmount().keySet()){ %>
@@ -39,8 +40,7 @@
 			        </tr>
 				   </table>
                    <button id="confirmButton" type="button" class="btn btn-primary">Confirm order</button>
-                   <button onclick="location.href='./Menu'" type="button" class="ml-3 btn btn-secondary">Edit order</button>
-                
+                   <button onclick="location.href='./Menu'" type="button" class="ml-3 btn btn-secondary">Edit order</button>              
                 </div>
               </div>
              </div>
