@@ -1,11 +1,3 @@
-SELECT * FROM Booking;
-
-SELECT * FROM User;
-
-SELECT * FROM Food_Item;
-
-SELECT * FROM Booking where User_ID='7';
-
 create table `Order`
 (
     ID     int auto_increment
