@@ -1,11 +1,14 @@
 package it.unipa.community.castiglione.francescopaolo.servlets.redirection;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Login
@@ -27,7 +30,15 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        response.sendRedirect(request.getContextPath()+"/");	
+        HttpSession session = request.getSession();
+        //It checks if the user has logged in after making an order from the menu 
+		if(session.getAttribute("logged")=="false"){
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/confirmOrder.jsp");
+			requestDispatcher.forward(request, response);
+		}else {
+			session.setAttribute("firstLogin", "true");
+			response.sendRedirect(request.getContextPath()+"/");
+		}
     }
 
 	/**

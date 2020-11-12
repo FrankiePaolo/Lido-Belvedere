@@ -43,7 +43,8 @@ public class CompleteOrder extends HttpServlet {
 	            out.println("OK");
 	            cart.emptyCart();
 	        } else if(!request.isUserInRole("Customer")) {
-		        out.println("USER_NOT_LOGGED");
+	        	session.setAttribute("logged", "false");
+		        out.println("USER_NOT_LOGGED");		 
 	        } else {
 	            out.println("ERROR");
 	        }

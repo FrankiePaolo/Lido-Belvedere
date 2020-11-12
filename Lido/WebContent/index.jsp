@@ -15,6 +15,11 @@
 			
 		<jsp:include page="/WEB-INF/header.jsp" />
 		
+		 <% if(session.getAttribute("firstLogin")=="true"){ %>
+			 <div class="alert alert-success" role="alert">Welcome back <% out.println(request.getRemoteUser()); %> !</div>
+			 <% 	session.setAttribute("firstLogin", "false");
+			 	} %>
+			 	
 		<div class="container pt-3">
 			 <div class="row">
 			   <div class="col-sm-8">
