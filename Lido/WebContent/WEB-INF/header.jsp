@@ -44,6 +44,9 @@
 			   	  <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/Orders">Orders</a>	
 			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link"  href="${pageContext.request.contextPath}/Logout">Logout</a>	
+			      </li>
 			  <% } else if(request.isUserInRole("Lifeguard")) {%>
 			      <li class="nav-item">
 			        <a class="nav-link"  href="${pageContext.request.contextPath}/BeachStatus">Beach status</a>

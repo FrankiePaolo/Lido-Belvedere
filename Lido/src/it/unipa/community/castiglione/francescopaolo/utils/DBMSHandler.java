@@ -375,7 +375,7 @@ public class DBMSHandler {
      //Returns a JSON String with the orders for the specified user
     public static String getOrders(String mail){
         String JSON = "";
-        String sql_query = "SELECT ID as id, State as status, `Date` as 'date' FROM `Order`, User WHERE User.Email = ? AND User.ID = `Order`.User_ID order by `date` DESC ;";
+        String sql_query = "SELECT Order.ID as id, State as status, `Date` as 'date' FROM `Order`, User WHERE User.Email = ? AND User.ID = `Order`.User_ID order by `date` DESC ;";
         try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
             statement.setString(1, mail);
             ResultSet resultSet = statement.executeQuery();

@@ -28,12 +28,13 @@ public class OrdersJson extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String user = (request.isUserInRole("Cook")?null:request.getRemoteUser());
+		String user = request.getRemoteUser();
+		Boolean isChef=request.isUserInRole("Chef");
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         String op = request.getParameter("op");
         if(op!=null && op.equals("list")) {
-            if (user == null) {
+            if (isChef) {
                 out.println(DBMSHandler.getOrders());
             } else {
                 out.println(DBMSHandler.getOrders(user));
@@ -47,7 +48,7 @@ public class OrdersJson extends HttpServlet {
                 out.println("");
                 return;
             }
-            if (user == null) {
+            if (isChef) {
                 out.println(DBMSHandler.getOrderInfo(id));
             } else {
                 out.println(DBMSHandler.getOrderInfo(user, id));
