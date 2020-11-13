@@ -12,6 +12,7 @@
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		  <script src="${pageContext.request.contextPath}/js/orders.js"></script>
 		   <% if(request.isUserInRole("Chef")){ %>
 		        <script src="${pageContext.request.contextPath}/js/orders_chef.js"></script>
 		   <% }else {%>
@@ -30,7 +31,26 @@
                 </div>
               </div>
           </div>
-			
+          
+          <!-- Modal -->
+		  <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false"> 
+		   <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <div class="modal-title" id="modalSeatsTitle">
+		        	<h4>Order details:</h4>
+		        </div>
+		      </div>
+		      <div class="modal-body">		     		      	
+			  	<div id="details"></div>    	
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		   </div>
+		  </div>
+					
 	      <jsp:include page="/WEB-INF/footer.jsp" />    
   </body>
 </html>

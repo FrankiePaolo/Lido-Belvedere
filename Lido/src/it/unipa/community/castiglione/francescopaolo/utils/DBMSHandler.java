@@ -410,7 +410,7 @@ public class DBMSHandler {
         String sql_query = "SELECT Food_Item.ID as id, Food_Item.Name as name, Order_has_Food_Item.Amount as amount, Food_Item.Price as price " +
                 "FROM `Order_has_Food_Item`, Food_Item, User, `Order` " +
                 "WHERE Order_has_Food_Item.Order_ID = ? AND Order_has_Food_Item.Order_ID = `Order`.ID " +
-                    "AND User.Mail = ? AND `User`.ID = `Order`.User_ID "+
+                    "AND User.Email = ? AND `User`.ID = `Order`.User_ID "+
                     "AND Food_Item.ID = Order_has_Food_Item.Food_Item_ID ;";
         try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
             statement.setInt(1, id);

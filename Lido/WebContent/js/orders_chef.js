@@ -1,17 +1,5 @@
 $("#document").ready(function(){
-	$.ajax({
-			type: "get",
-			url: "./OrdersJson",
-			data:{
-				op:'list'
-				},
-			dataType: 'json',
-			async: 'true',
-			cache: 'false',
-			success: function(json) {
-				json.forEach(insert);
-			},
-	})	
+	getOrders(insert);	
 })
 
 function insert(data){
