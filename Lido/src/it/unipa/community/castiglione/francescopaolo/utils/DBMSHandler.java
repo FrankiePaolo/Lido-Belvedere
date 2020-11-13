@@ -424,4 +424,18 @@ public class DBMSHandler {
         return JSON;
     }
     
+    //Sets the order state, returns a boolean value
+    public static boolean setOrderState(int id, String state) {
+        boolean success = false;
+        String query = "UPDATE `Order` SET `State` = ? WHERE `ID` = ?";
+        try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, state);
+            statement.setInt(2,id);
+            success = statement.executeUpdate()!=0;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return success;
+    }
+    
 }
