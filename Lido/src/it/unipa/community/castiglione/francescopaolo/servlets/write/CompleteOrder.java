@@ -38,7 +38,13 @@ public class CompleteOrder extends HttpServlet {
 	            out.println("UNEXPECTED_ACCESS");
 	            return;
 	        }
-	        if(DBMSHandler.addOrder(user, cart) && request.isUserInRole("Customer")){
+	        if(request.isUserInRole("Customer")){
+	        	try {
+	        		DBMSHandler.addOrder(user, cart);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	            out.println("OK");
 	            cart.emptyCart();
 	        } else if(!request.isUserInRole("Customer")) {

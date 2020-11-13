@@ -31,8 +31,8 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
         HttpSession session = request.getSession();
-        //It checks if the user has logged in after making an order from the menu 
-		if(session.getAttribute("logged")=="false"){
+        //It checks if the user has logged in after making an order from the menu , NOTE: only a Customer can access the Order page
+		if(session.getAttribute("logged")=="false" && request.isUserInRole("Customer")){
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/confirmOrder.jsp");
 			requestDispatcher.forward(request, response);
 		}else {
