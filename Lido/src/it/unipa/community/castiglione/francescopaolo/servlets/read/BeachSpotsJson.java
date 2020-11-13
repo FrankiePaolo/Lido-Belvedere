@@ -61,6 +61,14 @@ public class BeachSpotsJson extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        }else if(op.equals("getEmails")){
+    		response.setContentType("application/json");			
+    		try {
+				out.println(DBMSHandler.getEmails());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
 		
 	}

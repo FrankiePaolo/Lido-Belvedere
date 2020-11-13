@@ -72,7 +72,7 @@
 			    <div class="col-sm">
 			     <div class="user-email">
 			    	<label for="email">User email:</label>
-					<input type="email" class="user" id="email"  placeholder="Enter email" required>
+					<select id="email"></select>				
 			     </div>	
 			    </div>
 			<% } %>		    

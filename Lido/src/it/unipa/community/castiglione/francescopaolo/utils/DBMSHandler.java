@@ -28,6 +28,21 @@ public class DBMSHandler {
         return dataSource.getConnection();
     }
 
+	//Gets the emails of all Customers
+    public static String getEmails() {
+    	String JSON = "";
+        String sql_query;
+        sql_query ="SELECT Email FROM User WHERE User.Role='Customer';";
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
+        		ResultSet resultSet = preparedStatement.executeQuery();
+                JSON = JSONConverter.resultSetToArray(resultSet).toString();
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return JSON;
+    }
+	
 
 	//This method registers the user into the database
     public static int registerCustomer(String firstName,String lastName,String email,String password) {
@@ -190,8 +205,6 @@ public class DBMSHandler {
         return success;
     }
     
-
-    
     //Gets all the bookings for the Customer
     public static String getBookings(String user,String future) {
     	Date currentDate=new Date(System.currentTimeMillis());
@@ -225,7 +238,7 @@ public class DBMSHandler {
         if(time.equals("Entire day")) {
             sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? AND Booking.Chair_ID=? AND Booking.Date=? "; 
         }else {
-        	sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? AND Booking.Chair_ID=? AND Booking.Time=? AND Booking.Date=? "; 
+        	sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? AND Booking.Chair_ID=? AND (Booking.Time=? OR Booking.TIme='Entire day') AND Booking.Date=? "; 
         }
         if(past.equals("false")) {
             sql_query+="AND Booking.Date > ? ";

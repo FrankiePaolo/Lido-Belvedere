@@ -35,6 +35,6 @@ function info(id){
 function insertModal(data){
 	$("#details").html("<div class=\"col mt-1 mb-5\"><br/><p><b>Name</b>: "+
 	data.name+"<br/><b>Amount</b>: "+data.amount+"</br><b>Price</b>: "+
-	data.price+"&euro;" +"<hr/>");
+	data.price*data.amount+"&euro;" +"<hr/>");
 	$('#modalCenter').modal(focus);
 }

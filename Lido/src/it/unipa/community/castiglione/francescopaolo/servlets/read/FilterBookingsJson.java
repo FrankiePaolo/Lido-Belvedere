@@ -14,7 +14,7 @@ import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;
 /**
  * Servlet implementation class FilterBookingsJson
  */
-@WebServlet("/FilterBookingsJson.json")
+@WebServlet("/FilterBookingsJson")
 public class FilterBookingsJson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,13 +43,23 @@ public class FilterBookingsJson extends HttpServlet {
 		String time=request.getParameter("time");
 		String past=request.getParameter("past");
 		PrintWriter out = response.getWriter();
-		try {
-			out.println(DBMSHandler.filterBookings(chair, date, time, user, past));
-			return;    
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		//We check the validity of provided data
+		if (!DBMSHandler.isRegistered(user)) {
+			out.println("USER_NOT_REGISTERED");
 			return;
+    	} else if (!DBMSHandler.isCustomer(user)) {
+			out.println("USER_NOT_CUSTOMER");
+			return;  	       	
+		} else {
+			try {
+				out.println(DBMSHandler.filterBookings(chair, date, time, user, past));
+				return;    
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return;
+			}
 		}
 		
 	}

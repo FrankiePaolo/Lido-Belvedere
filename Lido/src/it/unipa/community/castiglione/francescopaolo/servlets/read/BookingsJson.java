@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class bookingsJson
  */
-@WebServlet("/bookings.json")
+@WebServlet("/BookingsJson")
 public class BookingsJson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,14 +36,25 @@ public class BookingsJson extends HttpServlet {
         	user=request.getParameter("user");
         }
 		PrintWriter out = response.getWriter();
-		try {
-			out.println(DBMSHandler.getBookings(user,future));
-			return;    
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		//We check the validity of provided data
+		if (!DBMSHandler.isRegistered(user)) {
+			out.println("USER_NOT_REGISTERED");
 			return;
+    	} else if (!DBMSHandler.isCustomer(user)) {
+			out.println("USER_NOT_CUSTOMER");
+			return;  	       	
+		} else {
+			try {
+				out.println(DBMSHandler.getBookings(user,future));
+				return;    
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return;
+			}			
 		}
+		
     }
 
 	/**

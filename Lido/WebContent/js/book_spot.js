@@ -1,5 +1,3 @@
-// Mail format regex
-var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 // Select the desired number of columns depending of the disposition of the chairs
 var numberOfColumns=3;
 //The variable's value will be set by the ajax call
@@ -10,7 +8,17 @@ $(document).ready(function(){
 	var inputTime ;
 	var inputMail ;
 	var date = new Date();	
+	
+	//We get the users emails so the Cashier does not need to type them
+	$.get("./beachSpots.json",
+            {
+                'op': "getEmails"
+            },
+            function (json) {
+            	json.forEach(insertEmail);
+            }); 
 	 	
+	//We get the total number of chairs
 	$.get("./beachSpots.json",
             {
                 'op': "numberOfChairs"
@@ -24,23 +32,13 @@ $(document).ready(function(){
 		inputTime = $("#time").val();
 		inputMail=  $("#email").val();
 				
-		//We check if the user is a cashier by verifying that the appropriate class exists
-		var checkCashier = $(".user-email").length; 
 		var inputDateFormatted=new Date(inputDate);	
-		if(checkCashier && !inputMail){
-			$('.map').hide();		
-			alert("Attention! You must provide an email address.");				
-		}else if(checkCashier && !inputMail.match(mailformat)){
-			$('.map').hide();		
-			alert("You have entered an invalid email address!");
-		}else if(inputDateFormatted>date){
-			if(checkCashier){
-				$("#userEmail").replaceWith("<div id=\"userEmail\">"+inputMail+"</div>")
-			}
+		if(inputDateFormatted>date){
+			$("#userEmail").replaceWith("<div id=\"userEmail\">"+inputMail+"</div>")
 			$("#dateBeachSpot").replaceWith("<div id=\"dateBeachSpot\">"+inputDate+"</div>");
 			$("#timeBeachSpot").replaceWith("<div id=\"timeBeachSpot\">"+inputTime+"</div>");
 			$('.map').show();
-			loadMap(inputDate,inputTime);			
+			loadMap(inputDate,inputTime);	
 		}else if(inputDateFormatted.getDate()==date.getDate()){
 			$('.map').hide();		
 			alert("Attention! You must book a day in advance");	
@@ -60,6 +58,10 @@ $(document).ready(function(){
 		updateMap();
 	});	
 	
+	$('#email').change(function(){
+		updateMap();
+	});
+
 	$("#confirmSpotBtn").click(function(){
 		$.get({
 			url: "./ConfirmBeachSpot",
@@ -127,6 +129,10 @@ function loadMap (inputDate,inputTime) {
 //We only wish to show the available chairs
 function insertSlot(slot) {
 	$("#"+slot.id).replaceWith("<div class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" onclick=\"confirmBeachSpot("+slot.id+")\" src=\"/Lido/img/sunbed.png\" class=\"mapCol\"></div>");
+}
+
+function insertEmail(row){
+	$("#email").append("<option value="+row.Email+">"+row.Email+"</option>");
 }
 
 function confirmBeachSpot(i) {
