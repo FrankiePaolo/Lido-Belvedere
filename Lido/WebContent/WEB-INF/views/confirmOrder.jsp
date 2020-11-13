@@ -15,8 +15,7 @@
 		  <script src="${pageContext.request.contextPath}/js/confirm_order.js"></script>		  
     </head>
   <body class="d-flex flex-column min-vh-100">
-  			<%System.out.println(request.isUserInRole("Customer")); %>
-  
+    
     	    <jsp:include page="/WEB-INF/header.jsp"/>
     	    
     	    <div id="message"></div>

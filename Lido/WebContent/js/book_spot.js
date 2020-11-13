@@ -10,8 +10,8 @@ $(document).ready(function(){
 	var inputTime ;
 	var inputMail ;
 	var date = new Date();	
-	
-	 $.get("./beachSpots.json",
+	 	
+	$.get("./beachSpots.json",
             {
                 'op': "numberOfChairs"
             },
@@ -49,7 +49,6 @@ $(document).ready(function(){
 			alert("Attention! The date provided has already past");		
 		}else{
 			$('.map').hide();		
-			alert("Please provide a date!");		
 		}
 	}
 	
