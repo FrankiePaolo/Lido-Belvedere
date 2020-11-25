@@ -43,7 +43,7 @@ function populateMap(numberOfChairs,day,time){
 		success: function(json) {
 			$('.map').html("<div id=\"mapRow\"class=\"row\">");
 			for(var i=1;i<=numberOfChairs;i++){
-				$('#mapRow').append("<div id= \""+ i + "\" class=\"col d-flex justify-content-center\"><i title=\"This place is not booked\" class=\"fa fa-ban\" style=\"font-size:36px;\"></i><div>");
+				$('#mapRow').append("<div id= \""+ i + "\" class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" src=\"/Lido/img/sunbedRed.png\" class=\"mapCol\" title=\"This place is not booked\"><div>");
 				if(i % numberOfColumns == 0){
 					$('#mapRow').append("<div class=\"w-100\">");
 				}

@@ -175,7 +175,7 @@ public class DBMSHandler {
     public static String getBookedChairs(String date,String time) {
     	String JSON = "";
         String sql_query;
-        sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido.Booking,lido.User WHERE Booking.User_ID=User.ID AND Date=? AND Time=? ;";
+        sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido.Booking,lido.User WHERE Booking.User_ID=User.ID AND Date=? AND (Time=? OR Time='Entire day');";
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setDate(1, Date.valueOf(date));
             	preparedStatement.setString(2, time);

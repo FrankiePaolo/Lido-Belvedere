@@ -102,7 +102,6 @@ function hideAll(){
 
 // Loads the beach map from the server
 function loadMap (inputDate,inputTime) {
-	console.log(inputDate,inputTime);
     $.ajax({
         type: "GET",
         url: "./beachSpots.json",
