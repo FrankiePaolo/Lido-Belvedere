@@ -24,12 +24,12 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <table class="table">
-				   <tr><th>Item</th><th>Price</th><th>Amount</th></tr>
-			        <% for(int i : cart.getItemsAmount().keySet()){ %>
+				   <tr><th>Item</th><th>Price</th><th>Quantity</th></tr>
+			        <% for(int i : cart.getItems_quantity().keySet()){ %>
 			        <tr>
 			            <td><%= cart.getItems_names().get(i)%></td>
 			            <td><%= cart.getItems_prices().get(i)%>€</td>
-			            <td>&times;<%= cart.getItemAmount(i)%></td>
+			            <td>&times;<%= cart.getItem_quantity(i)%></td>
 			        </tr>
 			        <% }%>
 			        <tr>

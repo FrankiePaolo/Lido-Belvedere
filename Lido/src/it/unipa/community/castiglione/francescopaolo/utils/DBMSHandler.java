@@ -361,10 +361,10 @@ public class DBMSHandler {
             }
             resultSet.close();
 
-            for(int itemID : cart.getItemsAmount().keySet()){
+            for(int itemID : cart.getItems_quantity().keySet()){
                 statement3.setInt(1, orderID);
                 statement3.setInt(2, itemID);
-                statement3.setInt(3, cart.getItemAmount(itemID));
+                statement3.setInt(3, cart.getItem_quantity(itemID));
                 if(statement3.executeUpdate()==0){
                     connection.rollback();
                     throw new SQLException("No data inserted");
@@ -403,7 +403,7 @@ public class DBMSHandler {
     //Returns the information related to the specified id order
     public static String getOrderInfo(int id) {
         String JSON = "";
-        String sql_query = "SELECT Food_Item.Name as name, Order_has_Food_Item.Amount as amount, Food_Item.Price as price " +
+        String sql_query = "SELECT Food_Item.Name as name, Order_has_Food_Item.Amount as quantity, Food_Item.Price as price " +
                 "FROM `Order_has_Food_Item`, Food_Item " +
                 "WHERE Order_has_Food_Item.Order_ID = ? AND Food_Item.ID = Order_has_Food_Item.Food_Item_ID";
         try(Connection connection = connect(); PreparedStatement statement = connection.prepareStatement(sql_query)){
@@ -420,7 +420,7 @@ public class DBMSHandler {
     //Returns the information related to the specified id order and user
     public static String getOrderInfo(String user, int id) {
         String JSON = "";
-        String sql_query = "SELECT Food_Item.ID as id, Food_Item.Name as name, Order_has_Food_Item.Amount as amount, Food_Item.Price as price " +
+        String sql_query = "SELECT Food_Item.ID as id, Food_Item.Name as name, Order_has_Food_Item.Amount as quantity, Food_Item.Price as price " +
                 "FROM `Order_has_Food_Item`, Food_Item, User, `Order` " +
                 "WHERE Order_has_Food_Item.Order_ID = ? AND Order_has_Food_Item.Order_ID = `Order`.ID " +
                     "AND User.Email = ? AND `User`.ID = `Order`.User_ID "+

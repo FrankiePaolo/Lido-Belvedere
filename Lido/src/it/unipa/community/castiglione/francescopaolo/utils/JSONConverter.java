@@ -44,15 +44,15 @@ public class JSONConverter {
 	//This method converts a Cart into a JSONArray
 	public static JSONArray cartToArray(Cart cart){
         JSONArray arr = new JSONArray();
-        Map<Integer, Integer> items_amount = cart.getItemsAmount();
+        Map<Integer, Integer> items_quantity = cart.getItems_quantity();
         Map<Integer, String> items_names = cart.getItems_names();
         Map<Integer, Float> items_prices = cart.getItems_prices();
-        Set<Integer> ids = items_amount.keySet();
+        Set<Integer> ids = items_quantity.keySet();
         try {
             for (int id: ids  ) {
                 JSONObject obj = new JSONObject();
                 obj.put("id",id);
-                obj.put("amount",items_amount.get(id));
+                obj.put("amount",items_quantity.get(id));
                 obj.put("name",items_names.get(id));
                 obj.put("price",items_prices.get(id));
 

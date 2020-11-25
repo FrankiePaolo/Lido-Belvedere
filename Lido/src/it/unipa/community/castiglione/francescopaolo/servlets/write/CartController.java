@@ -57,17 +57,17 @@ public class CartController extends HttpServlet {
 
 	                String id_set = request.getParameter("id");
 	                String amount_set = request.getParameter("amount");
-	                int id, amount;
+	                int id, quantity;
 
 	                try {
 	                    id = Integer.parseInt(id_set);
-	                    amount = Integer.parseInt(amount_set);
+	                    quantity = Integer.parseInt(amount_set);
 	                } catch (NumberFormatException e) {
 	                    out.println("UNEXPECTED_DATA");
 	                    return;
 	                }
 
-	                cart.setItemAmount(id, amount);
+	                cart.setItem_quantity(id, quantity);
 	                out.println("OK");
 	                break;
 	            }

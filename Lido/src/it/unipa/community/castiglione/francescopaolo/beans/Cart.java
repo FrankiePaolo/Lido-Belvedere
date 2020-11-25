@@ -9,27 +9,27 @@ public class Cart implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	/* LinkedHashMap is a Hash table and linked list implementation of the Map interface 
-	 * with predictable iteration order
-	 */
-	private Map<Integer, Integer> itemsAmount;
+	private Map<Integer, Integer> items_quantity;
     private Map<Integer, String > items_names;
     private Map<Integer, Float> items_prices;
 
+    /* LinkedHashMap is a Hash table and linked list implementation of the Map interface 
+	 * with predictable iteration order
+	 */
     public Cart(){
-        this.itemsAmount = new LinkedHashMap<>();
+        this.items_quantity = new LinkedHashMap<>();
         this.items_names = new LinkedHashMap<>();
         this.items_prices = new LinkedHashMap<>();
     }
 
-    public Cart(Map<Integer, Integer> itemsAmount){
-        for (int i : itemsAmount.keySet()){
-            setItemAmount(i, itemsAmount.get(i));
+    public Cart(Map<Integer, Integer> items_quantity){
+        for (int i : items_quantity.keySet()){
+            setItem_quantity(i, items_quantity.get(i));
         }
     }
 
-    public Map<Integer, Integer> getItemsAmount() {
-        return itemsAmount;
+    public Map<Integer, Integer> getItems_quantity() {
+        return items_quantity;
     }
 
     public Map<Integer, String> getItems_names() {
@@ -56,27 +56,28 @@ public class Cart implements Serializable{
      * item is the id of the product to be added to the cart
      * param is the amount The selected amount to put in the cart
      */
-    public void setItemAmount(Integer item, Integer amount){
+    public void setItem_quantity(Integer item, Integer amount){
         if(amount > 0){
             if(items_names.containsKey(item) && items_prices.containsKey(item)){
-                itemsAmount.put(item, amount);
+            	items_quantity.put(item, amount);
             } else {
                 float price = DBMSHandler.getItemPrice(item);
                 String name = DBMSHandler.getItemName(item);
 
                 if (price > 0 && !name.equals("")) {
-                    itemsAmount.put(item, amount);
+                	items_quantity.put(item, amount);
                     items_prices.put(item, price);
                     items_names.put(item, name);
                 }
             }
         } else {
-            itemsAmount.remove(item);
+        	items_quantity.remove(item);
         }
     }
 
-    public int getItemAmount(Integer item){
-        return itemsAmount.get(item);
+    // Gets the quantity of the specified item
+    public int getItem_quantity(Integer item){
+        return items_quantity.get(item);
     }
 
     /* Sums the prices times the quantity of each product in the cart , returns 
@@ -84,8 +85,8 @@ public class Cart implements Serializable{
      */
     public float getTotal(){
         float total = 0;
-        for(int i: getItemsAmount().keySet()){
-            total+= getItemAmount(i)*getItems_prices().get(i);
+        for(int i: getItems_quantity().keySet()){
+            total+= getItem_quantity(i)*getItems_prices().get(i);
         }
         return (float) (Math.round(total*100.0)/100.0);
     }
@@ -94,7 +95,7 @@ public class Cart implements Serializable{
      * Clears all the data in the cart
      */
     public void emptyCart(){
-        itemsAmount.clear();
+    	items_quantity.clear();
         items_prices.clear();
         items_names.clear();
     }
