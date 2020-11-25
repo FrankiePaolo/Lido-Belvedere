@@ -56,16 +56,16 @@ public class Cart implements Serializable{
      * item is the id of the product to be added to the cart
      * param is the amount The selected amount to put in the cart
      */
-    public void setItem_quantity(Integer item, Integer amount){
-        if(amount > 0){
+    public void setItem_quantity(Integer item, Integer quantity){
+        if(quantity > 0){
             if(items_names.containsKey(item) && items_prices.containsKey(item)){
-            	items_quantity.put(item, amount);
+            	items_quantity.put(item, quantity);
             } else {
                 float price = DBMSHandler.getItemPrice(item);
                 String name = DBMSHandler.getItemName(item);
 
                 if (price > 0 && !name.equals("")) {
-                	items_quantity.put(item, amount);
+                	items_quantity.put(item, quantity);
                     items_prices.put(item, price);
                     items_names.put(item, name);
                 }
