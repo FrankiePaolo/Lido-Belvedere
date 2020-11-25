@@ -72,6 +72,7 @@ public class CustomerRegistration extends HttpServlet {
 				}
 			}
 		}else {
+			//If there are any missing fields
 			response.sendRedirect(request.getContextPath()+"RegisterCustomer?error=fields_missing");
 		}	
 	}

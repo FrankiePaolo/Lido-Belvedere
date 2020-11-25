@@ -34,6 +34,7 @@ public class BeachSpotsJson extends HttpServlet {
 		PrintWriter out=response.getWriter();
         String op = request.getParameter("op");
 
+        //Gets the total number of chairs
         if(op.equals("numberOfChairs")){
         	try {
 				out.println(DBMSHandler.getNumberOfChairs());
@@ -46,6 +47,7 @@ public class BeachSpotsJson extends HttpServlet {
         	String date = request.getParameter("Date");
             String time = request.getParameter("Time");
 			try {
+				//Gets the free chairs in JSON format
 				out.println(DBMSHandler.getFreeChairs(date,time));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -56,6 +58,7 @@ public class BeachSpotsJson extends HttpServlet {
         	String date = request.getParameter("Date");
             String time = request.getParameter("Time");
 			try {
+				//Gets the booked spots in JSON format
 				out.println(DBMSHandler.getBookedChairs(date,time));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -64,6 +67,7 @@ public class BeachSpotsJson extends HttpServlet {
         }else if(op.equals("getEmails")){
     		response.setContentType("application/json");			
     		try {
+    			//Gets all the emails for all the Customers
 				out.println(DBMSHandler.getEmails());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

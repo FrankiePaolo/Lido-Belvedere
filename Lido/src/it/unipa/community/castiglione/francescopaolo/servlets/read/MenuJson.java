@@ -30,6 +30,8 @@ public class MenuJson extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
+        
+        //We get the Menu items from the DBMS
         out.println(DBMSHandler.getItems());		
 	}
 

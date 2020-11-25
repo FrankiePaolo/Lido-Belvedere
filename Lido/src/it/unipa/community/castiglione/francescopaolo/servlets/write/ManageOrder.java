@@ -40,6 +40,7 @@ public class ManageOrder extends HttpServlet {
             out.println("WRONG_ID");
             return;
         }
+        //If we successfully parsed the id_parameter we wish to set the corresponding order state
         if(DBMSHandler.setOrderState(id,state)){
             out.println("OK");
         } else {

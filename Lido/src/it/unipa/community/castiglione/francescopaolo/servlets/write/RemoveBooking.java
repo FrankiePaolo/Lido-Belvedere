@@ -36,9 +36,15 @@ public class RemoveBooking extends HttpServlet {
         int chairNum;    
         PrintWriter out = response.getWriter();
         response.setContentType("text/plain;charset=UTF-8");
-        chairNum = Integer.parseInt(id);
+        
+        try {
+        	chairNum = Integer.parseInt(id);
+        } catch (NumberFormatException e){
+            out.println("WRONG_ID");
+            return;
+        }        
 
-        // Adds the reservation
+        // If the id is successfully parsed, tries to remove the booking
         try {
         	if(DBMSHandler.removeBooking(date,  time,  chairNum)) {
 			    out.println("OK");

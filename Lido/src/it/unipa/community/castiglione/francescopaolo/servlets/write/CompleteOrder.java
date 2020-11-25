@@ -38,6 +38,7 @@ public class CompleteOrder extends HttpServlet {
 	            out.println("UNEXPECTED_ACCESS");
 	            return;
 	        }
+	        //If the user is a Customer we try to add the order
 	        if(request.isUserInRole("Customer")){
 	        	try {
 	        		DBMSHandler.addOrder(user, cart);
