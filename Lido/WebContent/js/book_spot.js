@@ -102,6 +102,7 @@ function hideAll(){
 
 // Loads the beach map from the server
 function loadMap (inputDate,inputTime) {
+	console.log(inputDate,inputTime);
     $.ajax({
         type: "GET",
         url: "./beachSpots.json",
@@ -116,7 +117,7 @@ function loadMap (inputDate,inputTime) {
         success: function(json) {
 			$('.map').html("<div id=\"mapRow\"class=\"row\">");
 			for(var i=1;i<=numberOfChairs;i++){
-				$('#mapRow').append("<div id= \""+ i + "\" class=\"col d-flex justify-content-center\"><i title=\"This place is already booked\" class=\"fa fa-ban\" style=\"font-size:36px;\"></i><div>");
+				$('#mapRow').append("<div id= \""+ i + "\" class=\"col d-flex justify-content-center\"><img style=\"cursor:pointer\" title=\"This place is already booked\" src=\"/Lido/img/sunbedRed.png\" class=\"mapCol\"></div>");
 				if(i % numberOfColumns == 0){
 					$('#mapRow').append("<div class=\"w-100\">");
 				}

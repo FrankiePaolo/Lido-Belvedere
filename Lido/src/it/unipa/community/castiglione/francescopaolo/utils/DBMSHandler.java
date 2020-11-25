@@ -145,7 +145,7 @@ public class DBMSHandler {
         	        "WHERE Chair.ID NOT IN ( " +
         		        "SELECT Chair_ID " +
         		        "FROM Booking " +
-        		        "WHERE Booking.Date = ? )";
+        		        "WHERE Booking.Date = ? );";
         } else {
         	 sql_query =
          	        "SELECT Chair.ID as id " +
@@ -153,7 +153,7 @@ public class DBMSHandler {
          	        "WHERE Chair.ID NOT IN ( " +
          		        "SELECT Chair_ID " +
          		        "FROM Booking " +
-         		        "WHERE Booking.Date = ? AND Booking.Time = ? )";
+         		        "WHERE Booking.Date = ? AND ( Booking.Time = 'Entire day' OR Booking.Time = ? ) );";
         }
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setDate(1, Date.valueOf(date));
