@@ -131,9 +131,9 @@ INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(2,2,'delivered','2021-
 INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(3,3,'delivered','2021-01-03 15:15:17');
 INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(4,4,'delivered','2021-01-04 16:15:17');
 INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(5,5,'ready','2021-01-20 15:15:17');
-INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(6,6,'ready','2021-01-20 16:15:17');
-INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(7,7,'waiting','2021-01-20 16:15:17');
-INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(8,8,'waiting','2021-01-20 15:15:17');
+INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(6,1,'ready','2021-01-20 16:15:17');
+INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(7,2,'waiting','2021-01-20 16:15:17');
+INSERT INTO lido_test.Order(ID,User_ID,State,Date) VALUES(8,3,'waiting','2021-01-20 15:15:17');
 
 # Specify the necessary order details
 INSERT INTO lido_test.Order_has_Food_Item(Order_ID,Food_Item_ID,Amount) VALUES(1,1,1);
