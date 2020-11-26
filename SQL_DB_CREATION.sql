@@ -67,3 +67,36 @@ create table Order_has_Food_Item
     constraint fk_Order_has_Food_Item2
         foreign key (Order_ID) references `Order` (ID)
 );
+
+
+# Populate tables
+
+# Populate User table
+
+# Customers
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES ('TestName1','TestLastName1','test1@test.it','test1','Customer');
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES ('TestName2','TestLastName2','test2@test.it','test2','Customer');
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES ('TestName3','TestLastName3','test3@test.it','test3','Customer');
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES ('TestName4','TestLastName4','test4@test.it','test4','Customer');
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES
+ ('TestName5','TestLastName5','test5@test.it','test5','Customer');
+ 
+# Cashier
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES ('TestNameCashier','TestLastNameCashier','testCashier@test.it','testCashier','Cashier');
+
+# Lifeguard
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES ('TestNameLifeguard','TestLastNameLifeguard','testLifeguard@test.it','testLifeguard','Lifeguard');
+
+# Chef
+INSERT INTO lido_test.User (FirstName,LastName,Email,Password,Role) VALUES ('TestNameChef','TestLastNameChef','testChef@test.it','testChef','Chef');
+
+# Populate menu
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Pasta bolognese',12,'Delicious pasta with fresh bolognese sauce','Pasta');
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Pasta carbonara',15,'Pasta made with egg, hard cheese, cured pork, and black pepper','Pasta');
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Pasta con pesto',8,'Pasta made with fresh homemade pesto','Pasta');
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Chicken breasts',8,'Baked chicken breasts','Chicken');
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Fresh lettuce',5,'Fresh lettuce from our trusted farms','Vegetables');
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Tequila Sunrise',15,'Made with tequila, orange juice, and grenadine syrup','Cocktails');
+
+# Populate beach
+
