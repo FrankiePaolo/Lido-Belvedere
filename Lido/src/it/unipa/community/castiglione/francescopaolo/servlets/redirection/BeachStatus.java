@@ -28,7 +28,7 @@ public class BeachStatus extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/beachStatus.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/Lifeguard/beachStatus.jsp");
 		requestDispatcher.forward(request, response);	
 	}
 

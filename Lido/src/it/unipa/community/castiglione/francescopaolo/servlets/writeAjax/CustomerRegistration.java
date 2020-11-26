@@ -1,4 +1,4 @@
-package it.unipa.community.castiglione.francescopaolo.servlets.write;
+package it.unipa.community.castiglione.francescopaolo.servlets.writeAjax;
 
 import it.unipa.community.castiglione.francescopaolo.beans.Customer;
 import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;

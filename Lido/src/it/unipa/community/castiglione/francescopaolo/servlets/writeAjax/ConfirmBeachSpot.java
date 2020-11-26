@@ -1,4 +1,4 @@
-package it.unipa.community.castiglione.francescopaolo.servlets.write;
+package it.unipa.community.castiglione.francescopaolo.servlets.writeAjax;
 
 import java.io.IOException;
 import java.io.PrintWriter;

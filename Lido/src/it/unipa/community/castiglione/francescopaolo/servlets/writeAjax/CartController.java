@@ -1,4 +1,4 @@
-package it.unipa.community.castiglione.francescopaolo.servlets.write;
+package it.unipa.community.castiglione.francescopaolo.servlets.writeAjax;
 
 import it.unipa.community.castiglione.francescopaolo.beans.Cart;
 import it.unipa.community.castiglione.francescopaolo.utils.JSONConverter;

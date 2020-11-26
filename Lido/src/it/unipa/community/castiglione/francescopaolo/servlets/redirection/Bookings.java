@@ -28,7 +28,7 @@ public class Bookings extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/bookings.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/User_centered/bookings.jsp");
 		requestDispatcher.forward(request, response);	
 	}
 

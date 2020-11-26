@@ -1,27 +1,25 @@
-package it.unipa.community.castiglione.francescopaolo.servlets.read;
+package it.unipa.community.castiglione.francescopaolo.servlets.readAjax;
 
+import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;
-
 /**
- * Servlet implementation class FilterBookingsJson
+ * Servlet implementation class bookingsJson
  */
-@WebServlet("/FilterBookingsJson")
-public class FilterBookingsJson extends HttpServlet {
+@WebServlet("/BookingsJson")
+public class BookingsJson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FilterBookingsJson() {
+    public BookingsJson() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +31,10 @@ public class FilterBookingsJson extends HttpServlet {
 		response.setContentType("application/json");
         String user=request.getRemoteUser();
         boolean isCustomer=request.isUserInRole("Customer");
-       
-        //If the user is not a Customer then we need to get the user email from the Request parameter (i.e. user is a Cashier)
+        String future=request.getParameter("future");
         if(!isCustomer) {
         	user=request.getParameter("user");
         }
-		int chair=Integer.parseInt(request.getParameter("chair"));
-		String date=request.getParameter("date");
-		String time=request.getParameter("time");
-		String past=request.getParameter("past");
 		PrintWriter out = response.getWriter();
 		
 		//We check the validity of provided data
@@ -53,16 +46,16 @@ public class FilterBookingsJson extends HttpServlet {
 			return;  	       	
 		} else {
 			try {
-				out.println(DBMSHandler.filterBookings(chair, date, time, user, past));
+				out.println(DBMSHandler.getBookings(user,future));
 				return;    
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return;
-			}
+			}			
 		}
 		
-	}
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

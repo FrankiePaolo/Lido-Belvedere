@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
         //It checks if the user has logged in after making an order from the menu , NOTE: only a Customer can access the Order page
 		if(session.getAttribute("logged")=="false" && request.isUserInRole("Customer")){
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/confirmOrder.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/User_centered/confirmOrder.jsp");
 			requestDispatcher.forward(request, response);
 		}else {
 			session.setAttribute("firstLogin", "true");

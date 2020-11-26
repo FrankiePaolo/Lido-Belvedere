@@ -28,7 +28,7 @@ public class Info extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/infoCustomer.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/User_centered/infoCustomer.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

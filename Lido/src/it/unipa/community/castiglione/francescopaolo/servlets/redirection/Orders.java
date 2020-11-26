@@ -28,7 +28,7 @@ public class Orders extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/orders.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/User_centered/orders.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

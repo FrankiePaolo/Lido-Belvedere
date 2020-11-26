@@ -1,4 +1,4 @@
-package it.unipa.community.castiglione.francescopaolo.servlets.read;
+package it.unipa.community.castiglione.francescopaolo.servlets.readAjax;
 
 import it.unipa.community.castiglione.francescopaolo.utils.DBMSHandler;
 import java.io.PrintWriter;

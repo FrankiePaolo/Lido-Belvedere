@@ -28,7 +28,7 @@ public class BookSpot extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/views/bookSpot.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/User_centered/bookSpot.jsp");
 		requestDispatcher.forward(request, response);	}
 
 	/**
