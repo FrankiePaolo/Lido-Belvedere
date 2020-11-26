@@ -95,8 +95,19 @@ INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Pasta 
 INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Pasta carbonara',15,'Pasta made with egg, hard cheese, cured pork, and black pepper','Pasta');
 INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Pasta con pesto',8,'Pasta made with fresh homemade pesto','Pasta');
 INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Chicken breasts',8,'Baked chicken breasts','Chicken');
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Chicken wings',10,'Fried chicken wings with BBC sauce','Chicken');
 INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Fresh lettuce',5,'Fresh lettuce from our trusted farms','Vegetables');
 INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Tequila Sunrise',15,'Made with tequila, orange juice, and grenadine syrup','Cocktails');
+INSERT INTO lido_test.Food_Item(Name,Price,Description,Category) VALUES ('Gin lemon',15,'Made with gin, fresh lemon tonic, and ice','Cocktails');
 
-# Populate beach
+# Populate beach with 9 chairs
+INSERT INTO lido_test.Chair(ID) VALUES(1);
+INSERT INTO lido_test.Chair(ID) VALUES(2);
+INSERT INTO lido_test.Chair(ID) VALUES(3);
+INSERT INTO lido_test.Chair(ID) VALUES(4);
+INSERT INTO lido_test.Chair(ID) VALUES(5);
+INSERT INTO lido_test.Chair(ID) VALUES(6);
+INSERT INTO lido_test.Chair(ID) VALUES(7);
+INSERT INTO lido_test.Chair(ID) VALUES(8);
+INSERT INTO lido_test.Chair(ID) VALUES(9);
 
