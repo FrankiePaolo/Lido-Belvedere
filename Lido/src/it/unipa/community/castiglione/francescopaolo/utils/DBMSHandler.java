@@ -18,7 +18,7 @@ public class DBMSHandler {
 	static {
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/lido");
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/lido_test");
         } catch (NamingException e) {
             e.printStackTrace();
         }
