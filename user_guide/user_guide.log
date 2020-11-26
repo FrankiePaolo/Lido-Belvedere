@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.19)  26 NOV 2020 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.19)  26 NOV 2020 20:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**manuale.tex
-(./manuale.tex
+**user_guide.tex
+(./user_guide.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -28,8 +28,8 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count175
 \l__pdf_internal_box=\box45
 )
-(./manuale.aux)
-\openout1 = `manuale.aux'.
+(./user_guide.aux)
+\openout1 = `user_guide.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
@@ -51,29 +51,29 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 7.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 7.
- (./manuale.toc)
+ (./user_guide.toc)
 \tf@toc=\write3
-\openout3 = `manuale.toc'.
+\openout3 = `user_guide.toc'.
 
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./manuale.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./user_guide.aux) ) 
 Here is how much of TeX's memory you used:
  398 strings out of 483183
- 6556 string characters out of 5966291
+ 6595 string characters out of 5966291
  232602 words of memory out of 5000000
  15482 multiletter control sequences out of 15000+600000
  536621 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 25i,6n,19p,147b,187s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/f
-rank/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on manuale.pdf (1 page, 57074 bytes).
+ 25i,6n,19p,150b,187s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </hom
+e/frank/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on user_guide.pdf (1 page, 57074 bytes).
 PDF statistics:
  33 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream
