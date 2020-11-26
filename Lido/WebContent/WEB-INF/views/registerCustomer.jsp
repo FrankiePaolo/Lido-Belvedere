@@ -23,7 +23,7 @@
 		    	if(success !=null && success.equals("true")){ 
 		     %>
 			     <div class="alert alert-success" role="alert">
-			        Registration was successful. Please <a  class="alert-heading" href="${pageContext.request.contextPath}/Login">log in</a>.
+			        Registration was successful. Please <a  class="alert-heading" href="${pageContext.request.contextPath}/Login">login</a>.
 				 </div>
 		    <% } else if(success !=null && success.equals("false")){ %>
 					<div class="alert alert-danger" role="alert">
