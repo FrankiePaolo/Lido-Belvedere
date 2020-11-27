@@ -1,9 +1,32 @@
 $("#document").ready(function(){
 	getOrders(insert);
-	//The orders list is updated every 10 seconds
-	setTimeout(function(){getOrders(insert);}, 10000);
 })
 
+//We wish to update the orders list of the beach every 10 seconds
+function updateCall(){
+	setTimeout(function(){getOrders()}, 10000);
+}
+
+//Ajax call to get the orders
+function getOrders(){
+	$.ajax({
+			type: "get",
+			url: "./OrdersJson",
+			data:{
+				op:'list'
+				},
+			dataType: 'json',
+			async: 'true',
+			cache: 'true',
+			success: function(json) {
+				$("#orders").html("<div id=\"orders\"></div>");
+				json.forEach(insert);
+			},
+	})
+	updateCall();
+}
+
+//This method adds the orders 
 function insert(data){
 	
 	//We wish to color the status text
@@ -25,6 +48,7 @@ function insert(data){
 	"<hr/></div>");
 }
 
+//Sets the order with the gived id as ready
 function setReady(id){
 	$.ajax({
 			type: "get",
@@ -36,11 +60,12 @@ function setReady(id){
 			async: 'true',
 			cache: 'false',
 			success: function() {
-				location.reload();
+				getOrders();
 			},
 	})
 }
 
+//Sets the order with the gived id as delivered
 function setDelivered(id){
 	$.ajax({
 			type: "get",
@@ -52,8 +77,7 @@ function setDelivered(id){
 			async: 'true',
 			cache: 'false',
 			success: function() {
-				location.reload();
+				getOrders();
 			},
 	})
 }	
-	

@@ -1,20 +1,3 @@
-function getOrders(insert){
-	$("#orders").html("<div id=\"orders\"></div>");
-	$.ajax({
-			type: "get",
-			url: "./OrdersJson",
-			data:{
-				op:'list'
-				},
-			dataType: 'json',
-			async: 'true',
-			cache: 'false',
-			success: function(json) {
-				json.forEach(insert);
-			},
-	})
-}
-
 function info(id){
 	$.ajax({
 			type: "get",

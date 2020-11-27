@@ -2,6 +2,25 @@ $("#document").ready(function(){
 	getOrders(insert);	
 })
 
+//Ajax call to get the orders
+function getOrders(insert){
+	$.ajax({
+			type: "get",
+			url: "./OrdersJson",
+			data:{
+				op:'list'
+				},
+			dataType: 'json',
+			async: 'true',
+			cache: 'true',
+			success: function(json) {
+				$("#orders").html("<div id=\"orders\"></div>");
+				json.forEach(insert);
+			},
+	})
+}
+
+//This method adds the orders
 function insert(data){
 	
 	//We wish to color the status text
