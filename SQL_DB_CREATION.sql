@@ -85,10 +85,10 @@ INSERT INTO lido_test.User (ID,FirstName,LastName,Email,Password,Role) VALUES
 INSERT INTO lido_test.User (ID,FirstName,LastName,Email,Password,Role) VALUES (6,'TestNameCashier','TestLastNameCashier','testCashier@test.it','d6dabe26df5441d331ec7d68b6f03bdea17ad32f30e557c9464d062890218526','Cashier');
 
 # Lifeguard
-INSERT INTO lido_test.User (ID,FirstName,LastName,Email,Password,Role) VALUES (7,'TestNameLifeguard','TestLastNameLifeguard','testLifeguard@test.it','testLifeguard','Lifeguard');
+INSERT INTO lido_test.User (ID,FirstName,LastName,Email,Password,Role) VALUES (7,'TestNameLifeguard','TestLastNameLifeguard','testLifeguard@test.it','bf89346577b93ee2fb9e2b89d9bcad4b6707283fc06721796ce7e103b982e67a','Lifeguard');
 
 # Chef
-INSERT INTO lido_test.User (ID,FirstName,LastName,Email,Password,Role) VALUES (8,'TestNameChef','TestLastNameChef','testChef@test.it','bf89346577b93ee2fb9e2b89d9bcad4b6707283fc06721796ce7e103b982e67a','Chef');
+INSERT INTO lido_test.User (ID,FirstName,LastName,Email,Password,Role) VALUES (8,'TestNameChef','TestLastNameChef','testChef@test.it','9c2aecaa75f67c43f8ffc61afae96f4bb7f53d61e802110de4293854aa6b528d','Chef');
 
 # Populate menu
 INSERT INTO lido_test.Food_Item(ID,Name,Price,Description,Category) VALUES (1,'Pasta bolognese',12,'Delicious pasta with fresh bolognese sauce','Pasta');
