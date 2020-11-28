@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Servlet implementation class CustomerRegistration
@@ -50,11 +52,21 @@ public class CustomerRegistration extends HttpServlet {
 		customer_form.setFirstName(firstName);
 		customer_form.setLastName(lastName);
 		
+		//We need to make sure the user does not give us unwanted characters
+		String regex="[a-zA-Z]+";
+		Pattern pattern = Pattern.compile(regex);
+		
 		//We need to check for missing fields
 		if(email != null && password != null && password_repeat !=null && firstName != null && lastName != null ) {
+			Matcher matcher=pattern.matcher(firstName);
+			Matcher matcher2=pattern.matcher(lastName);
 			//We check if the two passwords match
 			if(!password.equals(password_repeat)) {
 				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=noMatch");
+			}else if(password.length()<4) {
+				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=shortPassword");
+			}else if((!matcher.matches()) | (!matcher2.matches())) {
+				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=unexpectedCharacters");
 			}else if(DBMSHandler.isRegistered(email)) {
 				//There already is a customer with given email
 				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=mailExists");

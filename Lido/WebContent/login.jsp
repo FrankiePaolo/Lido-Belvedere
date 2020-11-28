@@ -25,16 +25,16 @@
 				
 			<div class="container pt-3">
 				<h2>Dear customer, please log in:</h2>
-				<img src="${pageContext.request.contextPath}/img/user.png" alt="Avatar" class="img-thumbnail w-25">
+				<img src="${pageContext.request.contextPath}/img/user.png" alt="Avatar" class="img-thumbnail w-25 mt-3">
 				
 				<form action="j_security_check" method=post>
-					<div class="form-group">
-					  <label for="exampleInputEmail1">Email address</label>
+					<div class="form-group mt-4">
+					  <label for="exampleInputEmail1"><b>Email address</b></label>
 					  <input type="email" class="form-control" name="j_username" aria-describedby="emailHelp" placeholder="Enter email">
 					  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
-					  <label for="exampleInputPassword1">Password</label>
+					  <label for="exampleInputPassword1"><b>Password</b></label>
 					  <input type="password" class="form-control" name="j_password" placeholder="Password">
 					</div>
 		  			<button type="submit" class="btn btn-primary">Submit</button>
