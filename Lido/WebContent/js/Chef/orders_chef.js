@@ -33,9 +33,9 @@ function insert(data){
 	var status;
 	if(data.status=="waiting"){
 		status="<p class=\"text-danger\">waiting</p>";
-	}else if(data.status="ready"){
+	}else if(data.status=="ready"){
 		status="<p class=\"text-success\">ready</p>";
-	}else if(data.status="delivered"){
+	}else if(data.status=="delivered"){
 		status="<p class=\"text-primary\">delivered</p>";
 	}
 	

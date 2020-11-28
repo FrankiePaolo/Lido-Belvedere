@@ -175,7 +175,7 @@ public class DBMSHandler {
     public static String getBookedChairs(String date,String time) {
     	String JSON = "";
         String sql_query;
-        sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido.Booking,lido.User WHERE Booking.User_ID=User.ID AND Date=? AND (Time=? OR Time='Entire day');";
+        sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido_test.Booking,lido_test.User WHERE Booking.User_ID=User.ID AND Date=? AND (Time=? OR Time='Entire day');";
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setDate(1, Date.valueOf(date));
             	preparedStatement.setString(2, time);
@@ -189,14 +189,14 @@ public class DBMSHandler {
     }
     
     //Removes the desired booking
-    public static boolean removeBooking(String date, String time, int chair) {
+    public static boolean removeBooking(String date, String time, int chairNum) {
         boolean success = false;
         String sql_query;
-        sql_query="DELETE FROM lido.Booking WHERE Booking.Date = ? AND Booking.Time = ? AND Booking.Chair_ID = ? ;"; 
+        sql_query="DELETE FROM lido_test.Booking WHERE Booking.Date = ? AND Booking.Time = ? AND Booking.Chair_ID = ? ;"; 
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
             	preparedStatement.setString(1, date);
             	preparedStatement.setString(2, time);
-            	preparedStatement.setInt(3, chair);
+            	preparedStatement.setInt(3, chairNum);
             	preparedStatement.executeUpdate();
             	success=true;
             } catch (SQLException e) {

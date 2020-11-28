@@ -35,7 +35,7 @@ public class ConfirmBeachSpot extends HttpServlet {
         String chair = request.getParameter("chair");
         int chairNum;                   
         PrintWriter out = response.getWriter();
-        response.setContentType("text");
+        response.setContentType("text/plain;charset=UTF-8");
         chairNum = Integer.parseInt(chair);
         
         if(request.isUserInRole("Customer")) {

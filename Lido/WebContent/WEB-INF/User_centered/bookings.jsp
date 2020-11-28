@@ -66,7 +66,7 @@
              		      <input type="checkbox" id="future_bookings">
  						  <label for="future_bookings">Only show future bookings</label><br>             		    
              		   </div>
-                      <button type="button" id="find_all" class="btn btn-primary mt-3" data-target="#modalCenter">Show all</button>                                	
+                      <button type="button" id="find_all" class="btn btn-primary mt-3" >Show all</button>                                	
 			       </div> 
 			    </div>
 			  </div>

@@ -29,7 +29,7 @@ public class ManageOrder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-        response.setContentType("text");
+        response.setContentType("text/plain;charset=UTF-8");
 
         String state = request.getParameter("state");
         String id_parameter = request.getParameter("id");

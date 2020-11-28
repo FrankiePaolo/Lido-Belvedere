@@ -100,6 +100,11 @@ function hideAll(){
 		$("#beachSpotSelection").hide();
 }
 
+//We wish to update the map of the beach every 10 seconds
+function updateCall(inputDate,inputTime){
+	setTimeout(function(){loadMap(inputDate,inputTime)}, 10000);
+}
+
 // Loads the beach map from the server
 function loadMap (inputDate,inputTime) {
     $.ajax({
@@ -122,6 +127,8 @@ function loadMap (inputDate,inputTime) {
 				}
 			}
             json.forEach(insertSlot);
+			//We wish to update the map of the beach every 10 seconds
+			updateCall(inputDate,inputTime);
         },
     });
 }

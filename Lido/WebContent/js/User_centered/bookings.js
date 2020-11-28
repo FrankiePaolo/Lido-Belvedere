@@ -1,5 +1,8 @@
+loopAll = false;
+loopFiltered = false;
+
 $(document).ready(function(){
-	//We get the users emails so the Cashier does not need to type them
+	//We get the Users emails so the Cashier does not need to type them
 	$.get("./beachSpots.json",
             {
                 'op': "getEmails"
@@ -9,23 +12,12 @@ $(document).ready(function(){
             }); 
 	
 	$("#find_all").click(function(){
-		$.ajax({
-				type: "get",
-				url: "./BookingsJson",
-				data:{
-					user:$("#email").val(),
-					future: $('#future_bookings').is(":checked")
-				},
-					dataType: 'json',
-					async: 'false',
-					cache: 'false',
-					success: function(json) {
-						//We first clear the modal
-						$("#bookings").html("<div id=\"bookings\"></div>");
-						json.forEach(insert);
-					},
-		  });	
-		  $('#modalCenter').modal("show");	
+		//This boolean variable allows the looping calls to update the list of all the bookings 
+		loopAll = true;
+		//Ajax call to gather all the bookings
+		findAll();
+		//Shows the modal
+		$('#modalCenter').modal("show");	
 	});
 	
 	$("#filter_bookings").click(function(){	
@@ -37,7 +29,46 @@ $(document).ready(function(){
 			alert("Attention: please provide a date.");
 			return;		
 		}else{
-			$.ajax({
+			loopFiltered=true;
+			filter();
+			$('#modalCenter').modal("show");
+		}
+	});
+	
+	//When we close the modal we wish to stop the Ajax requests
+	$("#close").click(function(){
+		loopAll=false;
+		loopFiltered=false;
+	})
+});
+
+//Ajax call to gather all the bookings
+function findAll(){
+	if(loopAll){
+		$.ajax({
+				type: "get",
+				url: "./BookingsJson",
+				data:{
+					user:$("#email").val(),
+					future: $('#future_bookings').is(":checked")
+				},
+					dataType: 'json',
+					async: 'true',
+					cache: 'true',
+					success: function(json) {
+						//We first clear the modal
+						$("#bookings").html("<div id=\"bookings\"></div>");
+						json.forEach(insert);
+						updateCall();
+					},
+		  });	
+	}
+}
+
+//Ajax call to gather the filtered bookings
+function filter(){
+	if(loopFiltered){
+		$.ajax({
 				//We send a POST request to hide the user data from the URL
 				type: "post",
 				url: "./FilterBookingsJson",
@@ -55,18 +86,32 @@ $(document).ready(function(){
 					//We first clear the modal
 					$("#bookings").html("<div id=\"bookings\"></div>");
 					json.forEach(insert);
+					updateFilterCall();
 				},
-			})
-			$('#modalCenter').modal("show");
-		}
-	});
-	
-});
+			})	
+	}
+}
 
+//We wish to update the list of all the bookings every 10 seconds
+function updateCall(){
+	if(loopAll){
+		setTimeout(function(){findAll()}, 10000);
+	}
+}
+
+//We wish to update the list of the filtered bookings every 10 seconds
+function updateFilterCall(){
+	if(loopFiltered){
+		setTimeout(function(){filter()}, 10000);
+	}
+}
+
+//This methods inserts all the emails for the Users so that the Cashier does not need to type them
 function insertEmail(row){
 	$("#email").append("<option value="+row.Email+">"+row.Email+"</option>")
 }
 
+//This methods inserts the bookings
 function insert(element){
 	date=new Date();
 	var dateToCompare = new Date(element.date);	
