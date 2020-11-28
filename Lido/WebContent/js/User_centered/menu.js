@@ -19,7 +19,7 @@ $(document).ready(function () {
                 if(cart.length>0){
                     window.location.replace("./ConfirmOrder");
                 } else {
-                    alert("No items selected");
+					$("#message").append("<div class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention! </strong>No items selected.</div>");
                 }
             });
 
@@ -90,10 +90,10 @@ function makeMenu(menuJson) {
                     case "OK":
                         break;
                     case "UNEXPECTED_DATA":
-                        alert("Invalid data detected");
+						$("#message").append("<div class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention! </strong>Invalid data detected.</div>");
                         break;
                     default:
-                        alert("Something went wrong, please try again later");
+						$("#message").append("<div class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention! </strong>Something went wrong, please try again later.</div>");
                   }
                 getCart();
         });

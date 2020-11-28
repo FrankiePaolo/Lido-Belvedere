@@ -15,6 +15,8 @@
   </head>
   <body class="d-flex flex-column min-vh-100">
     	  <jsp:include page="/WEB-INF/header.jsp"/>
+    	    
+    	    <div id="message"></div>    	   
 
 			<div class="col-md-8 mt-3 mx-auto ">
               <div class="card mb-3">

@@ -16,7 +16,9 @@
 		<jsp:include page="/WEB-INF/header.jsp" />
 		
 		 <% if(session.getAttribute("firstLogin")=="true"){ %>
-			 <div class="alert alert-success" role="alert">Welcome back <% out.println(request.getRemoteUser()); %> !</div>
+			 <div class="alert alert-success alert-dismissible">
+			 <button type="button" class="close" data-dismiss="alert">&times;</button>
+			 Welcome back <% out.println(request.getRemoteUser()); %> !</div>
 			 <% 	session.setAttribute("firstLogin", "false");
 			} %>
 			 	

@@ -38,8 +38,9 @@
 			            <td></td>
 			        </tr>
 				   </table>
-                   <button id="confirmButton" type="button" class="btn btn-primary">Confirm order</button>
-                   <button onclick="location.href='./Menu'" type="button" class="ml-3 btn btn-secondary">Edit order</button>              
+                   <button id="confirmButton" class="btn btn-primary">Confirm order</button>
+                   <button onclick="location.href='./Menu'" type="button" class="ml-3 btn btn-secondary">Edit order</button>  
+                   <button type="button" id="cancel_order" class="ml-3 btn btn-danger">Cancel order</button>                            
                 </div>
               </div>
              </div>

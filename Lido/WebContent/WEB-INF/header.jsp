@@ -70,6 +70,7 @@
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <a class="dropdown-item" href="${pageContext.request.contextPath}/BookSpot">Book a spot</a>
+			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Bookings">My bookings</a>			        			          
 			        </div>
 			      </li>			  
 			      <li class="nav-item dropdown">
@@ -78,7 +79,6 @@
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Info">Info</a>
-			          <a class="dropdown-item" href="${pageContext.request.contextPath}/Bookings">My bookings</a>			        
 			   	      <a class="dropdown-item" href="${pageContext.request.contextPath}/Logout">Logout</a>			       
 			        </div>
 			      </li>
