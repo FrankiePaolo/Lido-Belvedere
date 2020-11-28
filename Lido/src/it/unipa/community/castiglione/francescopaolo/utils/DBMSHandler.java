@@ -232,7 +232,6 @@ public class DBMSHandler {
     
     //Returns only the desired bookings
     public static String filterBookings(int chair,String date,String time,String user) {
-    	System.out.println(date);
     	String JSON = "";
         String sql_query;
         if(time.equals("Entire day")) {

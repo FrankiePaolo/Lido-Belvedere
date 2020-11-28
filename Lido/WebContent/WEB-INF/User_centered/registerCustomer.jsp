@@ -19,36 +19,42 @@
     	<jsp:include page="/WEB-INF/header.jsp"/>
 			<%  String success=request.getParameter("success"); 
 				String error = request.getParameter("error");
-		    	if(success !=null && success.equals("true")){ 
-		     %>
-			     <div class="alert alert-success" role="alert">
-			        Registration was successful. Please <a  class="alert-heading" href="${pageContext.request.contextPath}/Login">login</a>.
-				 </div>
-		    <% } else if(success !=null && success.equals("false")){ %>
-					<div class="alert alert-danger" role="alert">
-						There was an unexpected issue. Please try again.
+			  if(success !=null && success.equals("false")){ %>
+					<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Attention! </strong>There was an unexpected issue. Please try again.
 					</div>
 		    <% } else if (error !=null && error.equals("mailExists")){ %>
-		    		<div class="alert alert-danger" role="alert">
-						The email is already in use.
+		    		<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Attention! </strong>The email is already in use.
 					</div>
 		    <% } else if (error !=null && error.equals("noMatch")){ %>
-		    		<div class="alert alert-danger" role="alert">
-						The passwords do not match.
+		    		<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Attention! </strong>The passwords do not match.
 					</div>
 			 <% } else if (error !=null && error.equals("shortPassword")){ %>
-		    		<div class="alert alert-danger" role="alert">
-						The password is too short.
+		    		<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Attention! </strong>The password is too short.
 					</div>
 			<% } else if (error !=null && error.equals("unexpectedCharacters")){ %>
-		    		<div class="alert alert-danger" role="alert">
-						Please only use standard characters for First Name and Last Name.
+		    		<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Attention! </strong>Please only use standard characters for First Name and Last Name.
 					</div>
 			<% } else if (error !=null && error.equals("fields_missing")){ %>
-		    		<div class="alert alert-danger" role="alert">
-						There are some missing fields.
+		    		<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<strong>Attention! </strong>There are some missing fields.
 					</div>		    
-		    <% } %>
+		    <% }
+		    	if(success !=null && success.equals("true")){ %>
+		    	 <div class="alert alert-success">
+			        <strong>Success! </strong>Registration was successful. Please <a style="cursor:pointer"  href="${pageContext.request.contextPath}/Login"><ins>login</ins></a>.
+				 </div>
+		    <%  } else { %>
 		        <div class="container pt-3">	    	
 		    		<h2>Register</h2>
 					<form action="${pageContext.request.contextPath}/CustomerRegistration" method="post">	
@@ -87,6 +93,7 @@
 					  	  <button type="submit" value="Submit" class="btn btn-primary">Register</button>
 					</form>		 
 	    		</div>
+	    	<% } %>
 	    
 		<jsp:include page="/WEB-INF/footer.jsp" />
 			    

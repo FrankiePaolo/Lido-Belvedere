@@ -13,6 +13,8 @@ $(document).ready(function(){
             }); 
 	
 	$("#find_all").click(function(){
+		//We first clear the message div
+		$("#confirmationMessage1").html("<div id=\"confirmationMessage1\"></div>");
 		//This boolean variable allows the looping calls to update the list of all the bookings 
 		loopAll = true;
 		//Ajax call to gather all the bookings
@@ -24,12 +26,14 @@ $(document).ready(function(){
 	$("#filter_bookings").click(function(){	
 		//We check that the user has provided chair and date values
 		if(!$("#spot").val()){
-			alert("Attention: please provide a chair number.");
+			$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> Please provide a chair number.</div>");
 			return;
 		}else if(!$("#date").val()){
-			alert("Attention: please provide a date.");
+			$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> Please provide a date.</div>");
 			return;		
 		}else{
+			//We first clear the message div
+			$("#confirmationMessage1").html("<div id=\"confirmationMessage1\"></div>");
 			loopFiltered=true;
 			filter();
 			$('#modalCenter').modal("show");
@@ -130,6 +134,8 @@ function insert(element){
 
 //This method removes a booking
 function removeElement(id,date,time){
+	loopAll=false;
+	loopFiltered=false;
 	$.get({
 		url: "./RemoveBooking",
 		method: "get",
@@ -142,10 +148,10 @@ function removeElement(id,date,time){
 		success: function(message){
 			var str= message.trim();
 			if(str=="ERROR"){
-				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an unexpected issue.</div>");
+				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> There was an unexpected issue.</div>");
 				return;
 			}else if(str=="OK"){						
-				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully removed.</div>");					return;	
+				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Success!</strong> The booking was successfully removed.</div>");					return;	
 			}
 		}
 	})

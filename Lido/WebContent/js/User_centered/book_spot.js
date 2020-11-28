@@ -36,19 +36,21 @@ $(document).ready(function(){
 				
 		var inputDateFormatted=new Date(inputDate);	
 		if(inputDateFormatted>date){
+			$("#confirmationMessage").replaceWith("<div id=\"confirmationMessage\"></div>");
 			$("#userEmail").replaceWith("<div id=\"userEmail\">"+inputMail+"</div>")
 			$("#dateBeachSpot").replaceWith("<div id=\"dateBeachSpot\">"+inputDate+"</div>");
 			$("#timeBeachSpot").replaceWith("<div id=\"timeBeachSpot\">"+inputTime+"</div>");
 			$('.map').show();
 			loadMap(inputDate,inputTime);	
 		}else if(inputDateFormatted.getDate()==date.getDate()){
-			$('.map').hide();		
-			alert("Attention! You must book a day in advance");	
+			$('.map').hide();
+			$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> You must book a day in advance.</div>");			
 		}else if(inputDateFormatted<date){
-			$('.map').hide();		
-			alert("Attention! The date provided has already past");		
+			$('.map').hide();	
+			$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> The date provided has already past.</div>");			
 		}else{
-			$('.map').hide();		
+			$('.map').hide();	
+			$("#confirmationMessage").replaceWith("<div id=\"confirmationMessage\"></div>");
 		}
 	}
 	
@@ -79,13 +81,13 @@ $(document).ready(function(){
 				var str= data.trim();
 				if(str=="OK"){
 					loadMap(inputDate,inputTime);
-					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully added.</div>");
+					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Success!</strong> The booking was successfully added.</div>");
 				}else if(str=="USER_NOT_CUSTOMER"){
-					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> The user is not a customer.</div>");			
+					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> The user is not a customer.</div>");			
 				}else if(str=="USER_NOT_REGISTERED"){
-					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> The user is not registered.</div>");			
+					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> The user is not registered.</div>");			
 				}else if(str=="ERROR"){
-					$("#confirmationMessage").append("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an error in the booking process.</div>");
+					$("#confirmationMessage").append("<div id=\"confirmationMessage\" class=\"alert alert-danger alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> There was an error in the booking process.</div>");
 				}
 			}
 		})

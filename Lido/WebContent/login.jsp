@@ -18,8 +18,9 @@
 			<%
 			   String error =request.getParameter("error");
 			   if(error != null && error.equals("login")){ %>
-				<div class="alert alert-danger" role="alert">
-					Invalid user name or password. Please try again.
+				<div class="alert alert-danger alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Attention! </strong>Invalid user name or password. Please try again.
 				</div>
 			<% } %>
 				
