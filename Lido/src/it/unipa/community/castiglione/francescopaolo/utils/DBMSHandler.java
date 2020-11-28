@@ -231,34 +231,23 @@ public class DBMSHandler {
     }
     
     //Returns only the desired bookings
-    public static String filterBookings(int chair,String date,String time,String user,String past) {
-    	Date currentDate=new Date(System.currentTimeMillis());
+    public static String filterBookings(int chair,String date,String time,String user) {
+    	System.out.println(date);
     	String JSON = "";
         String sql_query;
         if(time.equals("Entire day")) {
             sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? AND Booking.Chair_ID=? AND Booking.Date=? "; 
         }else {
-        	sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? AND Booking.Chair_ID=? AND (Booking.Time=? OR Booking.TIme='Entire day') AND Booking.Date=? "; 
+        	sql_query="SELECT Booking.Date as date, Booking.Time as time, Booking.Chair_ID as id, User.Email as user FROM Booking,User WHERE Booking.User_ID=User.ID AND User.Email=? AND Booking.Chair_ID=? AND Booking.Date=? AND (Booking.Time=? OR Booking.TIme='Entire day') "; 
         }
-        if(past.equals("false")) {
-            sql_query+="AND Booking.Date > ? ";
-        }
-        sql_query+="ORDER BY Booking.Date";
+        sql_query+="ORDER BY Booking.Date;";
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setString(1,user);
         		preparedStatement.setInt(2,chair);
+        		preparedStatement.setString(3,date);
         		//In this case we don't need to specify the time in the SQL query
-        		if(time.equals("Entire day")) {
-	        		preparedStatement.setString(3,date);
-	        		if(past.equals("false")) {
-	        			preparedStatement.setString(4,currentDate.toString());
-	        		}
-        		}else {
-	        		preparedStatement.setString(3,time);
-	        		preparedStatement.setString(4,date);
-	        		if(past.equals("false")) {
-	        			preparedStatement.setString(5,currentDate.toString());
-	        		}
+        		if(!time.equals("Entire day")) {       		
+	        		preparedStatement.setString(4,time);
         		}
         		ResultSet resultSet = preparedStatement.executeQuery();
                 JSON = JSONConverter.resultSetToArray(resultSet).toString();

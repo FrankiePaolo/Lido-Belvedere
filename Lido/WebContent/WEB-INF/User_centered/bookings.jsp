@@ -51,11 +51,7 @@
 						        <option value="Afternoon">Afternoon</option>
 						        <option value="Entire day">Entire day</option>
 						    </select>                    	
-             		    </div><br/>
-             		    <div class="past_bookings">
-             		      <input type="checkbox" id="past_bookings">
- 						  <label for="past_bookings"> Show past bookings</label><br>             		    
-             		    </div>
+             		    </div><br/>            		 
              		    <button type="button" id="filter_bookings" class="btn btn-primary mt-3" >Find booking</button>                                	            		    
 			       </div> 
 			    </div>

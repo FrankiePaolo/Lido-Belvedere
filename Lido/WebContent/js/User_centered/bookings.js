@@ -78,7 +78,6 @@ function filter(){
 					date: $("#date").val(),
 					time: $("#time").val(),
 					user: $("#email").val(),	
-					past: $("#past_bookings").is(":checked")
 					},
 				dataType: 'json',
 				async: 'false',

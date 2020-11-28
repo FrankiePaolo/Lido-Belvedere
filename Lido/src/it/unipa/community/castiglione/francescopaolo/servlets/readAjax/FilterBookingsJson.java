@@ -33,7 +33,6 @@ public class FilterBookingsJson extends HttpServlet {
 		response.setContentType("application/json");
         String user=request.getRemoteUser();
         boolean isCustomer=request.isUserInRole("Customer");
-       
         //If the user is not a Customer then we need to get the user email from the Request parameter (i.e. user is a Cashier)
         if(!isCustomer) {
         	user=request.getParameter("user");
@@ -41,7 +40,6 @@ public class FilterBookingsJson extends HttpServlet {
 		int chair=Integer.parseInt(request.getParameter("chair"));
 		String date=request.getParameter("date");
 		String time=request.getParameter("time");
-		String past=request.getParameter("past");
 		PrintWriter out = response.getWriter();
 		
 		//We check the validity of provided data
@@ -53,7 +51,7 @@ public class FilterBookingsJson extends HttpServlet {
 			return;  	       	
 		} else {
 			try {
-				out.println(DBMSHandler.filterBookings(chair, date, time, user, past));
+				out.println(DBMSHandler.filterBookings(chair, date, time, user));
 				return;    
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
