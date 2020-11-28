@@ -2,30 +2,6 @@ $("#document").ready(function(){
 	getOrders(insert);
 })
 
-//We wish to update the orders list of the beach every 10 seconds
-function updateCall(){
-	setTimeout(function(){getOrders()}, 10000);
-}
-
-//Ajax call to get the orders
-function getOrders(){
-	$.ajax({
-			type: "get",
-			url: "./OrdersJson",
-			data:{
-				op:'list'
-				},
-			dataType: 'json',
-			async: 'true',
-			cache: 'true',
-			success: function(json) {
-				$("#orders").html("<div id=\"orders\"></div>");
-				json.forEach(insert);
-			},
-	})
-	updateCall();
-}
-
 //This method adds the orders 
 function insert(data){
 	
@@ -48,7 +24,7 @@ function insert(data){
 	"<hr/></div>");
 }
 
-//Sets the order with the gived id as ready
+//Sets the order with the given id as ready
 function setReady(id){
 	$.ajax({
 			type: "get",
@@ -65,7 +41,7 @@ function setReady(id){
 	})
 }
 
-//Sets the order with the gived id as delivered
+//Sets the order with the given id as delivered
 function setDelivered(id){
 	$.ajax({
 			type: "get",

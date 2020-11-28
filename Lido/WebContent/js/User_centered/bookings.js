@@ -1,3 +1,4 @@
+//This boolean variables allows us to control the looping Ajax calls 
 loopAll = false;
 loopFiltered = false;
 

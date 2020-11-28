@@ -3,9 +3,10 @@ var numberOfColumns=3;
 //The variable's value will be set by the ajax call
 var numberOfChairs;
 
+var inputDate ;
+var inputTime ;
+
 $(document).ready(function(){
-	var inputDate ;
-	var inputTime ;
 	var inputMail ;
 	var date = new Date();	
 	
@@ -106,7 +107,9 @@ function updateCall(inputDate,inputTime){
 }
 
 // Loads the beach map from the server
-function loadMap (inputDate,inputTime) {
+function loadMap (inputDateToCheck,inputTimeToCheck) {
+  //We only need to issue Ajax calls regarding the current selected date and avoid looping Ajax calls with past dates
+  if(inputDateToCheck==inputDate && inputTimeToCheck==inputTime){
     $.ajax({
         type: "GET",
         url: "./beachSpots.json",
@@ -131,6 +134,7 @@ function loadMap (inputDate,inputTime) {
 			updateCall(inputDate,inputTime);
         },
     });
+  }
 }
 
 //We only wish to show the available chairs
