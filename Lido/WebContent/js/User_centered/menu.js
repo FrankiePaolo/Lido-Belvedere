@@ -11,7 +11,7 @@ $(document).ready(function () {
         cache: 'false',
         success: function(json) {
             var menu = $('#menu');
-            menu.html('<h2 class="mb-5">Menu</h2>');
+            menu.html('<h2 class="mb-5">Menu<hr/></h2>');
             makeMenu(json);
             menu.append('<div id="summary"></div>  <button type="button" class="btn btn-primary mb-3 mt-3" '+
 				'id="submit_order">Confirm</button> <button type="button" class="btn btn-secondary ml-3 mb-3 mt-3" id="cancel_order">Clear</button>');

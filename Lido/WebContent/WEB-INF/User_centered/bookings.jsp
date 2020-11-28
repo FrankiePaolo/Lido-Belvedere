@@ -16,11 +16,9 @@
 	</head>
 	<body class="d-flex flex-column min-vh-100">
 	    	 
-	    	 <jsp:include page="/WEB-INF/header.jsp"/>
+	    	 <jsp:include page="/WEB-INF/header.jsp"/>	    	 
 	    	 
-	    	 <div class="container mt-5" >
-			    <div id="confirmationMessage1"></div>
-			 </div>
+			 <div id="confirmationMessage1"></div>			 
 
 	    	 <div class="container pt-3" id="container">
 			  <div class="row">

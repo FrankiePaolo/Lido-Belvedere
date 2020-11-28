@@ -3,6 +3,7 @@ var numberOfColumns=3;
 //The variable's value will be set by the ajax call
 var numberOfChairs;
 
+//Global variables
 var inputDate ;
 var inputTime ;
 
@@ -77,16 +78,13 @@ $(document).ready(function(){
 			success: function(data){
 				var str= data.trim();
 				if(str=="OK"){
-					hideAll();
+					loadMap(inputDate,inputTime);
 					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully added.</div>");
 				}else if(str=="USER_NOT_CUSTOMER"){
-					hideAll();
 					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> The user is not a customer.</div>");			
 				}else if(str=="USER_NOT_REGISTERED"){
-					hideAll();
 					$("#confirmationMessage").html("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> The user is not registered.</div>");			
 				}else if(str=="ERROR"){
-					hideAll();
 					$("#confirmationMessage").append("<div id=\"confirmationMessage\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an error in the booking process.</div>");
 				}
 			}
@@ -95,11 +93,6 @@ $(document).ready(function(){
 	});
 
 });
-
-function hideAll(){
-		$("#beachSpotInfo").hide();
-		$("#beachSpotSelection").hide();
-}
 
 //We wish to update the map of the beach every 10 seconds
 function updateCall(inputDate,inputTime){

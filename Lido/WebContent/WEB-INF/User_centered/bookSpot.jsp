@@ -17,9 +17,7 @@
 	<body class="d-flex flex-column min-vh-100">
 	    <jsp:include page="/WEB-INF/header.jsp" />	    
 	    
-	    <div class="container mt-5" >
-	    	<div id="confirmationMessage"></div>
-	    </div>
+	    <div id="confirmationMessage"></div>
 	    
 	    <div class="container mt-5 p-3 my-3 border" id="beachSpotInfo">
 			 <p>You must book a day in advance.<br/>

@@ -142,20 +142,12 @@ function removeElement(id,date,time){
 		success: function(message){
 			var str= message.trim();
 			if(str=="ERROR"){
-				hideAll();
 				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger\"><strong>Attention!</strong> There was an unexpected issue.</div>");
 				return;
 			}else if(str=="OK"){						
-				hideAll();
 				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success\"><strong>Success!</strong> The booking was successfully removed.</div>");					return;	
 			}
 		}
 	})
-}
-
-//This method hides the page
-function hideAll(){
-	$("#container").hide();
-	$("#modalCenter").hide();
 }
 
