@@ -1,4 +1,6 @@
 \documentclass{article}
+\usepackage{graphicx}
+\graphicspath{ {/home/frank/git/Lido-Belvedere/specifiche_lido_Castiglione_Francesco_Paolo} }
 \title{Gestione di un lido}
 
 \author{Francesco Paolo Castiglione(0706826)}
@@ -7,7 +9,7 @@
 \begin{document}
 \maketitle
 \section{Descrizione generale}
-Il sistema fornisce le tipiche funzionalità che caratterizzano un lido balneare quali la possibilità, da parte dei clienti,di accedere ai servizi del lido,le funzionalità della biglietteria che permettono di visualizzare o creare le prenotazioni, le funzionalità della cucina che permettono di segnalare lo stato di avanzamento degli ordini ed infine le funzionalità del bagnino che permettono di controllare lo stato attuale di occupazione della spiaggia e controllare l'identità dei clienti prenotati per le rispettive postazioni. 
+Il sistema fornisce le tipiche funzionalità che caratterizzano un lido balneare quali l'accesso, da parte dei clienti, ai servizi del lido, le funzionalità della biglietteria che permettono di visualizzare o creare le prenotazioni, le funzionalità della cucina che permettono di segnalare lo stato di avanzamento degli ordini ed infine le funzionalità del bagnino che permettono di controllare lo stato attuale di occupazione della spiaggia e controllare l'identità dei clienti prenotati per le rispettive postazioni. 
 
 \section{Architettura del sistema}
 
@@ -18,7 +20,7 @@ Tecnologie utilizzate:
 	\item \texttt{Apache Tomcat} quale middleware per il deployment della web application;
 	\item Database relazionale con DBMS \texttt{MySQL} per la memorizzazione dei dati, con corrispettivo connettore \texttt{JDBC} per interfacciarsi al DBMS tramite Java;
 	\item \texttt{JDBCRealm} per l'autenticazione degli utenti;
-	\item \texttt{JSON} per lo scambio di dati fra server e client;
+	\item \texttt{JSON} come formato dati per lo scambio di dati fra server e client;
 \end{enumerate}
 
 \newpage
@@ -57,8 +59,14 @@ In seguito al login, il cliente potrà accedere ai seguenti servizi:
 \begin{enumerate}
 	\item Può visualizzare lo stato delle ordinazioni;
 		
-	\item Può visualizzare le informazioni relative alla prenotazione cliccando sulla postazione occupata nella mappa della spiaggia 
+	\item Può cambiare lo stato delle ordinazioni, da \textit{in elaborazione} a \textit{pronta} a \textit{consegnata}
 \end{enumerate}
+
+\subsection{Modello dei dati}
+\begin{center}
+	\includegraphics[scale=0.5]{dbmodel}
+\end{center}
+
 
 	
 \end{document}
