@@ -48,7 +48,7 @@ public class OrdersJson extends HttpServlet {
             try {
                 id = Integer.parseInt(id_s);
             } catch (NumberFormatException e){
-                out.println("");
+                out.println("WRONG_ID");
                 return;
             }
             if (isChef) {
@@ -57,7 +57,7 @@ public class OrdersJson extends HttpServlet {
                 out.println(DBMSHandler.getOrderInfo(user, id));
             }
         } else {
-            out.println("");
+            out.println("UNEXPECTED_ERROR");
         }
     }
 

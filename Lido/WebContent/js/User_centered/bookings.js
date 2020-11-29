@@ -2,6 +2,9 @@
 loopAll = false;
 loopFiltered = false;
 
+//We need to make sure the user has provided an allowed chair ID so we use this global variable as a flag
+var allowedChairId=true;
+
 $(document).ready(function(){
 	//We get the Users emails so the Cashier does not need to type them
 	$.get("./beachSpots.json",
@@ -23,10 +26,22 @@ $(document).ready(function(){
 		$('#modalCenter').modal("show");	
 	});
 	
+	$("#spot").change(function(){
+		spotVal=$("#spot").val();
+		checkChairId(spotVal);
+		console.log(allowedChairId);	
+	})
+	
 	$("#filter_bookings").click(function(){	
-		//We check that the user has provided chair and date values
-		if(!$("#spot").val()){
+		spotVal=$("#spot").val();
+		
+		if(!spotVal){
+			//We check that the user has provided chair and date values
 			$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> Please provide a chair number.</div>");
+			return;
+		}else if(allowedChairId==false){
+			//We need to make sure the user has provided an allowed chair ID
+			$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> The chair number is not allowed.</div>");
 			return;
 		}else if(!$("#date").val()){
 			$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> Please provide a date.</div>");
@@ -46,6 +61,26 @@ $(document).ready(function(){
 		loopFiltered=false;
 	})
 });
+
+//We need to make sure the user has provided an allowed chair ID
+function checkChairId(spotVal){
+	$.get({
+		url: "./CheckChairId",
+		method: "get",
+	    data: {
+			chairId: spotVal,
+	    },
+		dataType: "text",
+		success: function(message){
+			var str= message.trim();
+			if(str=="WRONG_ID"){						
+				allowedChairId= false;
+			}else if(str=="OK"){						
+				allowedChairId= true;
+			}
+		}
+	})
+}
 
 //Ajax call to gather all the bookings
 function findAll(){
@@ -86,11 +121,11 @@ function filter(){
 				dataType: 'json',
 				async: 'false',
 				cache: 'false',
-				success: function(json) {
+				success: function(json) {							
 					//We first clear the modal
 					$("#bookings").html("<div id=\"bookings\"></div>");
 					json.forEach(insert);
-					updateFilterCall();
+					updateFilterCall();								
 				},
 			})	
 	}
@@ -150,8 +185,12 @@ function removeElement(id,date,time){
 			if(str=="ERROR"){
 				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> There was an unexpected issue.</div>");
 				return;
+			}else if(str=="WRONG_ID"){						
+				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Success!</strong> The ID provided is not allowed.</div>");					
+				return;
 			}else if(str=="OK"){						
-				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Success!</strong> The booking was successfully removed.</div>");					return;	
+				$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Success!</strong> The booking was successfully removed.</div>");						
+				return;
 			}
 		}
 	})

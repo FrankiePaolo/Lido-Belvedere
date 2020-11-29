@@ -35,8 +35,18 @@ function setReady(id){
 				},
 			async: 'true',
 			cache: 'false',
-			success: function() {
-				getOrders();
+			dataType: "text",
+			success: function(message){
+				var str= message.trim();
+				if(str=="UNEXPECTED_ERROR"){
+					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> There was an unexpected issue.</div>");
+					return;
+				}else if(str=="WRONG_ID"){						
+					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Success!</strong> The ID provided is not allowed.</div>");					
+					return;
+				}else if(str=="OK"){						
+					getOrders();
+				}
 			},
 	})
 }
@@ -52,8 +62,18 @@ function setDelivered(id){
 				},
 			async: 'true',
 			cache: 'false',
-			success: function() {
-				getOrders();
+			dataType: "text",
+			success: function(message){
+				var str= message.trim();
+				if(str=="UNEXPECTED_ERROR"){
+					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-danger success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Attention!</strong> There was an unexpected issue.</div>");
+					return;
+				}else if(str=="WRONG_ID"){						
+					$("#confirmationMessage1").html("<div id=\"confirmationMessage1\" class=\"alert alert-success alert-dismissible\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button><strong>Success!</strong> The ID provided is not allowed.</div>");					
+					return;
+				}else if(str=="OK"){						
+					getOrders();
+				}
 			},
 	})
 }	

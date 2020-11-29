@@ -64,6 +64,26 @@ public class DBMSHandler {
         return result;
     }
     
+    //We check if the chair id provided exists
+    public static boolean isChair(int id) {
+    	boolean isChair = false;
+    	String sql_query="SELECT * FROM lido_test.Chair WHERE ID=?;";
+    	// Tries to connect to the mysql database
+        try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
+             preparedStatement.setInt(1, id);
+             ResultSet resultSet=preparedStatement.executeQuery();
+             if(resultSet.next()) {
+            	 isChair= true;
+            }else {
+            	 isChair= false;
+             }
+             resultSet.close();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+         return isChair;
+    }
+    
     //We check if the user with provided email is a Customer
     public static boolean isCustomer(String email) {
     	boolean isCustomer = false;

@@ -37,29 +37,25 @@ public class FilterBookingsJson extends HttpServlet {
         if(!isCustomer) {
         	user=request.getParameter("user");
         }
-		int chair=Integer.parseInt(request.getParameter("chair"));
+        int chair;
+        try {
+    		chair=Integer.parseInt(request.getParameter("chair"));
+        } catch (NumberFormatException e){
+			e.printStackTrace();
+			return;
+        }        
 		String date=request.getParameter("date");
 		String time=request.getParameter("time");
 		PrintWriter out = response.getWriter();
 		
-		//We check the validity of provided data
-		if (!DBMSHandler.isRegistered(user)) {
-			out.println("USER_NOT_REGISTERED");
+		try {
+			out.println(DBMSHandler.filterBookings(chair, date, time, user));
+			return;    
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return;
-    	} else if (!DBMSHandler.isCustomer(user)) {
-			out.println("USER_NOT_CUSTOMER");
-			return;  	       	
-		} else {
-			try {
-				out.println(DBMSHandler.filterBookings(chair, date, time, user));
-				return;    
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return;
-			}
 		}
-		
 	}
 
 	/**

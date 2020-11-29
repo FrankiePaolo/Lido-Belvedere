@@ -43,7 +43,6 @@ public class BeachSpotsJson extends HttpServlet {
 				e.printStackTrace();
 			}      	
         }else if(op.equals("map")){
-    		response.setContentType("application/json");
         	String date = request.getParameter("Date");
             String time = request.getParameter("Time");
 			try {
@@ -54,7 +53,6 @@ public class BeachSpotsJson extends HttpServlet {
 				e.printStackTrace();
 			}
         }else if(op.equals("beachStatus")){
-    		response.setContentType("application/json");
         	String date = request.getParameter("Date");
             String time = request.getParameter("Time");
 			try {
@@ -65,7 +63,6 @@ public class BeachSpotsJson extends HttpServlet {
 				e.printStackTrace();
 			}
         }else if(op.equals("getEmails")){
-    		response.setContentType("application/json");			
     		try {
     			//Gets all the emails for all the Customers
 				out.println(DBMSHandler.getEmails());
@@ -73,8 +70,7 @@ public class BeachSpotsJson extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        }
-		
+        }	
 	}
 
 	/**

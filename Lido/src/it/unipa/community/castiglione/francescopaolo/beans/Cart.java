@@ -57,6 +57,7 @@ public class Cart implements Serializable{
      * param is the amount The selected amount to put in the cart
      */
     public void setItem_quantity(Integer item, Integer quantity){
+    	//We need to check that it is a positive quantity and not allow negative values
         if(quantity > 0){
             if(items_names.containsKey(item) && items_prices.containsKey(item)){
             	items_quantity.put(item, quantity);

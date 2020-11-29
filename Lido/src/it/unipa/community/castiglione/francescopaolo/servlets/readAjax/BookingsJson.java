@@ -35,26 +35,15 @@ public class BookingsJson extends HttpServlet {
         if(!isCustomer) {
         	user=request.getParameter("user");
         }
-		PrintWriter out = response.getWriter();
-		
-		//We check the validity of provided data
-		if (!DBMSHandler.isRegistered(user)) {
-			out.println("USER_NOT_REGISTERED");
-			return;
-    	} else if (!DBMSHandler.isCustomer(user)) {
-			out.println("USER_NOT_CUSTOMER");
-			return;  	       	
-		} else {
-			try {
-				out.println(DBMSHandler.getBookings(user,future));
-				return;    
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return;
-			}			
+		PrintWriter out = response.getWriter();	
+		try {
+			out.println(DBMSHandler.getBookings(user,future));
+			return;    
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;			
 		}
-		
     }
 
 	/**
