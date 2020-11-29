@@ -38,9 +38,17 @@
 			            <td></td>
 			        </tr>
 				   </table>
-                   <button id="confirmButton" class="btn btn-primary">Confirm order</button>
-                   <button onclick="location.href='./Menu'" type="button" class="ml-3 btn btn-secondary">Edit order</button>  
-                   <button type="button" id="cancel_order" class="ml-3 btn btn-danger">Cancel order</button>                            
+				     <div class="row">
+					    <div class="col-md-auto">
+                   			<button id="confirmButton" class="btn btn-primary">Confirm order</button>
+					    </div>
+					    <div class="col-md-auto">
+                   			<button onclick="location.href='./Menu'" type="button" class="mt-3 mt-md-0 btn btn-secondary">Edit order</button>  
+					    </div>
+					    <div class="col-md-auto">
+                   			<button type="button" id="cancel_order" class="mt-3 mt-md-0 btn btn-danger">Cancel order</button>                            
+					    </div>
+					  </div>
                 </div>
               </div>
              </div>
