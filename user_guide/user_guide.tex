@@ -36,7 +36,58 @@ Per avviare la web application seguire la procedura qui riporatata:
 	\end{enumerate}
 \end{itemize}
 
-\section{Creazione account}
+\section{Account preimpostati}
+Lo script \texttt{SQL\_DB\_CREATION.sql} crea e popola il database con degli account cliente e account dal ruolo di bagnino, addetto alla biglietteria o cuoco.
+Gli account sono:
+\begin{itemize}
+	\item \textbf{Email}: test1@test.it\newline\textbf{Password}: test1\newline\textbf{Ruolo}: Cliente(Customer)
+	\item \textbf{Email}: test2@test.it\newline\textbf{Password}: test2\newline\textbf{Ruolo}: Cliente(Customer)
+	\item \textbf{Email}: test3@test.it\newline\textbf{Password}: test3\newline\textbf{Ruolo}: Cliente(Customer)
+	\item \textbf{Email}: test4@test.it\newline\textbf{Password}: test4\newline\textbf{Ruolo}: Cliente(Customer)
+	\item \textbf{Email}: test5@test.it\newline\textbf{Password}: test5\newline\textbf{Ruolo}: Cliente(Customer)
+	\item \textbf{Email}: testCashier@test.it\newline\textbf{Password}: testCashier\newline\textbf{Ruolo}: Addetto alla biglietteria(Cashier)
+	\item \textbf{Email}: testLifeguard@test.it\newline\textbf{Password}: testLifeguard\newline\textbf{Ruolo}: Bagnino(Lifeguard)
+	\item \textbf{Email}: testChef@test.it\newline\textbf{Password}: testChef\newline\textbf{Ruolo}: Chef
+\end{itemize}
+\newpage
+\section{Registrazione}
+La pagina di registrazione permette a qualunque utente di creare un nuovo account cliente. Viene sempre effettuato un controllo sulla validità dei dati forniti dall'utente in fase di registrazione. Le password non sono salvate in chiaro nel database ma, grazie al plugin di \texttt{JDBCRealm} ne viene salvato soltanto il digest \texttt{SHA-256}.
+Per registrarsi l'utente deve fornire i seguenti dati:
+\begin{itemize}
+	\item Nome
+	\item Cognome
+	\item Email
+	\item Password
+	\item Conferma password
+\end{itemize}
+Se l'utente fornisce dati non validi o avviene qualche errore in fase di registrazione il relativo messaggio di errore viene mostrato all'utente. In caso di errore il form mantiene nome e cognome.
 
+\section{Login}
+La pagina di login permette a qualunque utente registrato di accedere alle funzionalità relative al proprio ruolo(utente,bagnino,cuoco,addetto alla biglietteria). Per accedere gli utenti devono fornire email e password. Le operazioni di autenticazione vengono effettuate automaticamente attraverso i \texttt{Realm JDBC} e sono le medesime per tutti i ruoli. In seguito al login il menu si popolerà in base alle opzioni consentite ad ogni ruolo.
 
+\section{Logout}
+La pagina di logout invalida la sessione corrente e reindirizza alla homepage.
+
+\section{Funzionalità cliente}
+I clienti hanno accesso, attraverso il menu, alle seguenti pagine:
+\begin{itemize}
+	\item Cibo(Food)
+	\begin{itemize}
+		\item Menu
+		\item Ordinazioni(My orders)
+	\end{itemize}
+	\item Spiaggia(Beach)
+	\begin{itemize}
+		\item Prenota un posto(Book a spot)
+		\item Prenotazioni(My bookings)
+	\end{itemize}
+	\item Account
+	\begin{itemize}
+		\item Info
+		\item Logout
+	\end{itemize}
+\end{itemize}
+\subsection{Cibo}
+\subsubsection{Menu}
+La pagina mostra i cibi e le bibite che è possibile ordinare. Per ogni elemento l'utente può specificare una quantità positiva e il saldo totale si aggiornerà automaticamente. Il cliente può resettare 
 \end{document}
