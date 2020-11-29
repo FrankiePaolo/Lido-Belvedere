@@ -1,2 +1,2 @@
 \contentsline {section}{\numberline {1}Avvio dell'applicazione}{1}%
-\contentsline {section}{\numberline {2}Creazione account}{1}%
+\contentsline {section}{\numberline {2}Creazione account}{2}%

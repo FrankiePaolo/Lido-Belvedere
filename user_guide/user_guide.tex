@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{url}
 \title{Manuale d'uso}
 \author{Francesco Paolo Castiglione}
 \date{2020-2021}
@@ -13,12 +14,29 @@
 Per avviare la web application seguire la procedura qui riporatata:
 
 \begin{itemize}
-	\item Impostare il database
+	\item Impostare ed avviare il database \texttt{MySQL}
 	\begin{enumerate}
-		\item Eseguire lo script
+		\item Eseguire lo script \texttt{SQL\_DB\_CREATION.sql} per creare e popolare il database
+		\item Modificare i campi \texttt{username}, \texttt{password} e \texttt{url} nella sezione \texttt{Resource} ed il campo \texttt{connectionURL} nella sezione \texttt{Realm} nel file \texttt{"/META-INF/context.xml"} affinchè coincidano con i dati della macchina sulla quale si sta avviando la web application.\newline	
+		I valori di default sono:
+		\begin{itemize}
+			\item Database: lido\_test
+			\item Username: root
+			\item Password: password
+		\end{itemize}
+		\item Avviare il server \texttt{MySQL}
+	\end{enumerate}
+	\item Impostare ed avviare \texttt{Apache Tomcat}
+	\begin{enumerate}
+		\item La web application è stata sviluppata e testata su \texttt{Apache Tomcat} versione \texttt{9.0.38}. Versioni differenti potrebbero portare ad eventuali problemi di compatibilità nel formato di \texttt{"/META-INF/context.xml"} e \texttt{"/META-INF/web.xml"}
+		\item Posizionare \texttt{Lido.war} all'interno della cartella \texttt{webapps} di \texttt{Apache Tomcat}
+		\item Spostare il file \texttt{.jar} \texttt{"/WEB-INF/lib/my-sql-connector-java-8.0.13.jar"} nella cartella \texttt{"\$CATALINA\_HOME/lib"}
+		\item Avviare il servizio di \texttt{Apache Tomcat}
+		\item Visitare l'url \url{http://localhost:8080/Lido/}
 	\end{enumerate}
 \end{itemize}
 
 \section{Creazione account}
+
 
 \end{document}
