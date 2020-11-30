@@ -8,7 +8,7 @@
 \maketitle
 
 \tableofcontents
-
+\newpage
 \section{Avvio dell'applicazione}
 
 Per avviare la web application seguire la procedura qui riporatata:
@@ -35,7 +35,7 @@ Per avviare la web application seguire la procedura qui riporatata:
 		\item Visitare l'url \url{http://localhost:8080/Lido/}
 	\end{enumerate}
 \end{itemize}
-
+\newpage
 \section{Account preimpostati}
 Lo script \texttt{SQL\_DB\_CREATION.sql} crea e popola il database con degli account cliente e account dal ruolo di bagnino, addetto alla biglietteria o cuoco.
 Gli account sono:
@@ -94,8 +94,35 @@ La pagina mostra i cibi e le bibite che è possibile ordinare. Per ogni elemento
 Questa pagina mostra l'elenco delle ordinazioni effettuate dall'utente. Cliccando sull'apposita icona, l'utente può visualizzare le informazioni relative all'ordinazione.
 \subsection{Spiaggia}
 \subsubsection{Prenota un posto}
-Questa pagina mostra all'utente una mappa della spiaggia relativa alla data e fascia oraria indicata. Lo stato di occupazione viene aggiornato ogni 10 secondi, mostrando quindi sempre lo stato attuale dell'occupazione della spiaggia. Cliccando sulla postazione libera all'utente viene mostrata una finestra modale di riepilogo, e cliccando conferma la prenotazione viene effettuata. In caso di errore viene mostrato all'utente il relativo messaggio, altrimenti viene mostrato un messaggio conferma prenotazione.
+Questa pagina mostra all'utente una mappa della spiaggia relativa alla data e fascia oraria indicata. Lo stato di occupazione viene aggiornato ogni 10 secondi (oltre a quando viene modificata la data o la fascia oraria), mostrando quindi sempre lo stato attuale dell'occupazione della spiaggia. Cliccando sulla postazione libera all'utente viene mostrata una finestra modale di riepilogo, e cliccando conferma la prenotazione viene effettuata. In caso di errore viene mostrato all'utente il relativo messaggio, altrimenti viene mostrato un messaggio conferma prenotazione.
 \subsubsection{Prenotazioni effettuate} 
-In questa pagina viene offerta all'utente la possibilità di filtrare le prenotazioni per postazione,giorno e fascia oraria o di visualizzare tutte le prenotazioni o tutte le prenotazioni future.
-Le prenotazioni vengono mostrate in una finestra modale , ed è presente la possibilità di eliminare le prenotazioni future(indicata dall'apposita icona).
+In questa pagina viene offerta all'utente la possibilità di filtrare le prenotazioni per postazione,giorno e fascia oraria o di visualizzare tutte le prenotazioni o soltanto le prenotazioni future.
+Le prenotazioni vengono mostrate in una finestra modale ed è presente la possibilità di eliminare le prenotazioni future (indicata dall'apposita icona).
+\subsubsection{Account}
+\subsubsection{Info}
+Questa pagina mostra la email dell'utente. 
+\newpage
+\section{Funzionalità addetti alla biglietteria}
+Gli addetti alla biglietteria hanno accesso, attraverso la barra di navigazione, alle seguenti funzionalità:
+\begin{itemize}
+	\item Nuova prenotazione(New booking)
+	\item Gestisci prenotazioni(Manage bookings))
+\end{itemize}
+\subsection{Nuova prenotazione}
+All'addetto alla biglietteria viene qui fornita la possibilita di prenotare una postazione per un utente registrato selezionando data e slot orario. La lista degli utenti viene fornita all'addetto (e proviene dal server) al fine di semplificare il processo di prenotazione. La mappa viene aggiornata ogni 10 secondi (oltre a quando viene modificata la data o la fascia oraria)
+\subsection{Gestisci prenotazioni}
+All'addetto alla biglietteria viene qui fornita la possibilita di visualizzare l'elenco delle prenotazioni relative all'utente selezionato. L'addetto alla biglietteria può filtrare le prenotazioni per numero di postazione, data e slot orario o visualizzare tutte le prenotazioni o soltanto le prenotazioni future.
+\section{Funzionalità bagnino}
+Il bagnino ha accesso,attraverso la barra di navigazione, alla seguente funzionalità :
+\begin{itemize}
+	\item Stato spiaggia (Beach status)
+\end{itemize} 
+\subsection{Stato spiaggia}
+Al bagnino viene mostrata la mappa della spiaggia in tempo reale (viene aggiornata ogni 5 secondi). Quando una postazione è occupata il bagino può cliccare sulla relativa icona e visualizzare, in una finestra modale, le informazioni relative alla prenotazione.
+\section{Funzionalità cuoco}
+Il cuoco ha accesso,attraverso la barra di navigazione, alla seguente funzionalità:
+\begin{itemize}
+	\item Stato spiaggia (Beach status)
+\end{itemize} 
+
 \end{document}
