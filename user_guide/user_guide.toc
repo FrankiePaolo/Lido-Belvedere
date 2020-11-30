@@ -1,8 +1,12 @@
 \contentsline {section}{\numberline {1}Avvio dell'applicazione}{1}%
 \contentsline {section}{\numberline {2}Account preimpostati}{2}%
-\contentsline {section}{\numberline {3}Registrazione}{3}%
-\contentsline {section}{\numberline {4}Login}{3}%
-\contentsline {section}{\numberline {5}Logout}{3}%
-\contentsline {section}{\numberline {6}Funzionalità cliente}{3}%
-\contentsline {subsection}{\numberline {6.1}Cibo}{4}%
-\contentsline {subsubsection}{\numberline {6.1.1}Menu}{4}%
+\contentsline {section}{\numberline {3}Registrazione}{4}%
+\contentsline {section}{\numberline {4}Login}{4}%
+\contentsline {section}{\numberline {5}Logout}{4}%
+\contentsline {section}{\numberline {6}Funzionalità cliente}{4}%
+\contentsline {subsection}{\numberline {6.1}Cibo}{5}%
+\contentsline {subsubsection}{\numberline {6.1.1}Menu}{5}%
+\contentsline {subsubsection}{\numberline {6.1.2}Ordinazioni}{5}%
+\contentsline {subsection}{\numberline {6.2}Spiaggia}{5}%
+\contentsline {subsubsection}{\numberline {6.2.1}Prenota un posto}{5}%
+\contentsline {subsubsection}{\numberline {6.2.2}Prenotazioni effettuate}{5}%
