@@ -47,10 +47,13 @@ Gli account sono:
 	\item \textbf{Email}: test5@test.it\newline\textbf{Password}: test5\newline\textbf{Ruolo}: Cliente(Customer)
 	\item \textbf{Email}: testCashier@test.it\newline\textbf{Password}: testCashier\newline\textbf{Ruolo}: Addetto alla biglietteria(Cashier)
 	\item \textbf{Email}: testLifeguard@test.it\newline\textbf{Password}: testLifeguard\newline\textbf{Ruolo}: Bagnino(Lifeguard)
-	\item \textbf{Email}: testChef@test.it\newline\textbf{Password}: testChef\newline\textbf{Ruolo}: Chef
+	\item \textbf{Email}: testChef@test.it\newline\textbf{Password}: testChef\newline\textbf{Ruolo}: Cuoco(Chef)
 \end{itemize}
 \newpage
-\section{Registrazione}
+\section{Funzionalità che non richiedono autenticazione}
+\subsection{Menu}
+Questa pagina mostra i cibi e le bibite che è possibile ordinare. Per ogni elemento l'utente può specificare una quantità positiva e il saldo totale si aggiornerà automaticamente. Il cliente può resettare o confermare l'ordinazione. Se l'ordine non viene cancellato, i dati verranno salvati per la durata della sessione. In seguito alla conferma, l'utente visualizza un ulteriore pagina di conferma, dove può modificare, eliminare o confermare la prenotazione. In seguito alla conferma viene chiesto all'utente di autenticarsi. In seguito all'autenticazione avvenuta con successo, l'utente viene reindirizzato alla pagina di conferma della prenotazione.
+\subsection{Registrazione}
 La pagina di registrazione permette a qualunque utente di creare un nuovo account cliente. Viene sempre effettuato un controllo sulla validità dei dati forniti dall'utente in fase di registrazione. Le password non sono salvate in chiaro nel database ma, grazie al plugin di \texttt{JDBCRealm} ne viene salvato soltanto il digest \texttt{SHA-256}.
 Per registrarsi l'utente deve fornire i seguenti dati:
 \begin{itemize}
@@ -62,11 +65,11 @@ Per registrarsi l'utente deve fornire i seguenti dati:
 \end{itemize}
 Se l'utente fornisce dati non validi o avviene qualche errore in fase di registrazione il relativo messaggio di errore viene mostrato all'utente. In caso di errore il form mantiene nome e cognome.
 
-\section{Login}
+\subsection{Login}
 La pagina di login permette a qualunque utente registrato di accedere alle funzionalità relative al proprio ruolo(utente,bagnino,cuoco,addetto alla biglietteria). Per accedere gli utenti devono fornire email e password. Le operazioni di autenticazione vengono effettuate automaticamente attraverso i \texttt{Realm JDBC} e sono le medesime per tutti i ruoli. In seguito al login il menu si popolerà in base alle opzioni consentite ad ogni ruolo.
 
-\section{Logout}
-La pagina di logout invalida la sessione corrente e reindirizza alla homepage.
+\subsection{Logout}
+La pagina di logout è accessibile da qualunque ruolo e invalida la sessione corrente e reindirizza alla homepage.
 
 \section{Funzionalità cliente}
 I clienti hanno accesso, attraverso il menu, alle seguenti pagine:
@@ -91,14 +94,14 @@ I clienti hanno accesso, attraverso il menu, alle seguenti pagine:
 \subsubsection{Menu}
 La pagina mostra i cibi e le bibite che è possibile ordinare. Per ogni elemento l'utente può specificare una quantità positiva e il saldo totale si aggiornerà automaticamente. Il cliente può resettare o confermare l'ordinazione. Se l'ordine non viene cancellato, i dati verranno salvati per la durata della sessione.
 \subsubsection{Ordinazioni}
-Questa pagina mostra l'elenco delle ordinazioni effettuate dall'utente. Cliccando sull'apposita icona, l'utente può visualizzare le informazioni relative all'ordinazione.
+Questa pagina mostra l'elenco delle ordinazioni effettuate dall'utente con rispettivo ID, Status (con appropriata colorazione dello stato,rispettivamente rossa,verde o blu per "in attesa","pronto","consegnato")  e data ed ora di prenotazione.. Cliccando sull'apposita icona, l'utente può visualizzare le informazioni relative all'ordinazione.
 \subsection{Spiaggia}
 \subsubsection{Prenota un posto}
 Questa pagina mostra all'utente una mappa della spiaggia relativa alla data e fascia oraria indicata. Lo stato di occupazione viene aggiornato ogni 10 secondi (oltre a quando viene modificata la data o la fascia oraria), mostrando quindi sempre lo stato attuale dell'occupazione della spiaggia. Cliccando sulla postazione libera all'utente viene mostrata una finestra modale di riepilogo, e cliccando conferma la prenotazione viene effettuata. In caso di errore viene mostrato all'utente il relativo messaggio, altrimenti viene mostrato un messaggio conferma prenotazione.
 \subsubsection{Prenotazioni effettuate} 
 In questa pagina viene offerta all'utente la possibilità di filtrare le prenotazioni per postazione,giorno e fascia oraria o di visualizzare tutte le prenotazioni o soltanto le prenotazioni future.
 Le prenotazioni vengono mostrate in una finestra modale ed è presente la possibilità di eliminare le prenotazioni future (indicata dall'apposita icona).
-\subsubsection{Account}
+\subsection{Account}
 \subsubsection{Info}
 Questa pagina mostra la email dell'utente. 
 \newpage
@@ -106,7 +109,7 @@ Questa pagina mostra la email dell'utente.
 Gli addetti alla biglietteria hanno accesso, attraverso la barra di navigazione, alle seguenti funzionalità:
 \begin{itemize}
 	\item Nuova prenotazione(New booking)
-	\item Gestisci prenotazioni(Manage bookings))
+	\item Gestisci prenotazioni(Manage bookings)
 \end{itemize}
 \subsection{Nuova prenotazione}
 All'addetto alla biglietteria viene qui fornita la possibilita di prenotare una postazione per un utente registrato selezionando data e slot orario. La lista degli utenti viene fornita all'addetto (e proviene dal server) al fine di semplificare il processo di prenotazione. La mappa viene aggiornata ogni 10 secondi (oltre a quando viene modificata la data o la fascia oraria)
@@ -122,7 +125,16 @@ Al bagnino viene mostrata la mappa della spiaggia in tempo reale (viene aggiorna
 \section{Funzionalità cuoco}
 Il cuoco ha accesso,attraverso la barra di navigazione, alla seguente funzionalità:
 \begin{itemize}
-	\item Stato spiaggia (Beach status)
+	\item Ordinazioni (Orders)
 \end{itemize} 
+\newpage
+\subsection{Ordinazioni}
+Il cuoco visualizza in questa pagina la lista delle ordinazioni mostrate con rispettivo ID, Status (con appropriata colorazione dello stato,rispettivamente rossa,verde o blu per "in attesa","pronto","consegnato")  e data ed ora di prenotazione.
+Cliccando sull'apposita icona, il cuoco può visualizzare su una finestra modale le informazioni relative all'ordinazione. Cliccando sull'apposita icona è possibile cambiare lo stato dell'ordinazione in "pronta" (se precedentemente in stato "in attesa") o in "consegnata" (se precedentemente in stato "pronta" o "in attesa").
+\subsection{Responsive web design}
+Grazie all'uso della libreria \texttt{Bootstrap 4} tutte le pagine della web application sono completamente responsive e si adattano a qualunque tipologia di schermo. Le pagine sono state testate per versione mobile sia utilizzando la modalità dispositivo degli strumenti di sviluppo di \texttt{Firefox 83.0} che su\texttt{Google Chrome} su \texttt{iOS 14, iPhone 7 plus}.
+\section{Sviluppo e testing}
+La web application è stata sviluppata con l'IDE \texttt{Eclipse for Enterprise Java Developers 2020-09 (4.17.0)} con \texttt{Apache Tomcat 9.0.38} e testata su \texttt{Firefox 83.0} su sistema operativo \texttt{Ubuntu 20.04 LTS} (macchina di sviluppo) e su \texttt{iOS 14, iPhone 7 plus} per verificare che la web application fosse responsive.
+
 
 \end{document}
