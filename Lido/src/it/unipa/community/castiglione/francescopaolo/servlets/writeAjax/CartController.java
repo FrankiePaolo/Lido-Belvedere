@@ -66,7 +66,7 @@ public class CartController extends HttpServlet {
 	                    out.println("UNEXPECTED_DATA");
 	                    return;
 	                }
-
+	                //If the id and quantity were successfully parsed
 	                cart.setItem_quantity(id, quantity);
 	                out.println("OK");
 	                break;

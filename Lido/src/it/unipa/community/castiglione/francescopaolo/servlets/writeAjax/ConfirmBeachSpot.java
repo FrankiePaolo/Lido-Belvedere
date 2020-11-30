@@ -42,7 +42,7 @@ public class ConfirmBeachSpot extends HttpServlet {
         	user= request.getRemoteUser();
         };
 
-        // Tries to add the reservation, checking first that the user is registered and is a Customer
+        // Tries to add the reservation, checking first that the user is registered and is a Customer, else we give an error
         try {
         	if (!DBMSHandler.isRegistered(user)) {
 				out.println("USER_NOT_REGISTERED");

@@ -48,7 +48,7 @@ public class CustomerRegistration extends HttpServlet {
 		String firstName=request.getParameter("firstName");
 		String lastName=request.getParameter("lastName");
 
-		//If there is some issue during the registration process, the user does not need to type the info again
+		//If there is some issue during the registration process, the user does not need to type the first name and last name again
 		customer_form.setFirstName(firstName);
 		customer_form.setLastName(lastName);
 		
@@ -60,12 +60,14 @@ public class CustomerRegistration extends HttpServlet {
 		if(email != null && password != null && password_repeat !=null && firstName != null && lastName != null ) {
 			Matcher matcher=pattern.matcher(firstName);
 			Matcher matcher2=pattern.matcher(lastName);
-			//We check if the two passwords match
 			if(!password.equals(password_repeat)) {
+				//We check if the two passwords match
 				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=noMatch");
 			}else if(password.length()<4) {
+				//We check the password length
 				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=shortPassword");
 			}else if((!matcher.matches()) | (!matcher2.matches())) {
+				//We need to make sure the user does not give us unwanted characters
 				response.sendRedirect(request.getContextPath()+"/RegisterCustomer?error=unexpectedCharacters");
 			}else if(DBMSHandler.isRegistered(email)) {
 				//There already is a customer with given email
