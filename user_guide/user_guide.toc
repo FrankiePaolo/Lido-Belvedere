@@ -21,5 +21,5 @@
 \contentsline {subsection}{\numberline {6.1}Stato spiaggia}{7}%
 \contentsline {section}{\numberline {7}Funzionalità cuoco}{7}%
 \contentsline {subsection}{\numberline {7.1}Ordinazioni}{8}%
-\contentsline {subsection}{\numberline {7.2}Responsive web design}{8}%
-\contentsline {section}{\numberline {8}Sviluppo e testing}{8}%
+\contentsline {section}{\numberline {8}Responsive web design}{8}%
+\contentsline {section}{\numberline {9}Sviluppo e testing}{8}%

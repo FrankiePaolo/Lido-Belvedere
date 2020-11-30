@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.19)  30 NOV 2020 14:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.11.19)  30 NOV 2020 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -94,13 +94,7 @@ Overfull \hbox (3.76614pt too wide) in paragraph at lines 53--53
 []\OT1/cmr/bx/n/14.4 Funzionalit^^Ra che non richiedono au-t-en-ti-cazione 
  []
 
-[4]
-Overfull \hbox (10.30624pt too wide) in paragraph at lines 97--98
-\OT1/cmr/m/n/10 tivo ID, Sta-tus (con ap-pro-pri-ata col-orazione dello stato,r
-ispettivamente rossa,verde
- []
-
-[5] [6] [7] [8] (./user_guide.aux) ) 
+[4] [5] [6] [7] [8] (./user_guide.aux) ) 
 Here is how much of TeX's memory you used:
  497 strings out of 483183
  8079 string characters out of 5966291
@@ -108,16 +102,17 @@ Here is how much of TeX's memory you used:
  15571 multiletter control sequences out of 15000+600000
  537393 words of font info for 41 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 25i,6n,21p,685b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/frank/.texlive2019/texmf-var/fonts/
-pk/ljfour/jknappen/ec/tctt1000.600pk> </home/frank/.texlive2019/texmf-var/fonts
-/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on user_guide.pdf (8 pages, 103017 bytes).
+ 25i,6n,21p,686b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/frank/.texlive2019/texmf-var/fo
+nts/pk/ljfour/jknappen/ec/tctt1000.600pk> </home/frank/.texlive2019/texmf-var/f
+onts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
+fb>
+Output written on user_guide.pdf (8 pages, 103400 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream
