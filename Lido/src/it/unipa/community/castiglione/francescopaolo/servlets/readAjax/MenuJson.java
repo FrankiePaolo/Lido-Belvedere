@@ -31,8 +31,15 @@ public class MenuJson extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         
-        //We get the Menu items from the DBMS
-        out.println(DBMSHandler.getItems());		
+        //We try to get the Menu items from the DBMS
+        try {
+            out.println(DBMSHandler.getItems());		
+			return;    
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
 	}
 
 	/**

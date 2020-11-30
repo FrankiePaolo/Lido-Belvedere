@@ -46,6 +46,7 @@ public class OrdersJson extends HttpServlet {
             String id_s = request.getParameter("id");
             int id;
             try {
+            	//We try to parse the id
                 id = Integer.parseInt(id_s);
             } catch (NumberFormatException e){
                 out.println("WRONG_ID");

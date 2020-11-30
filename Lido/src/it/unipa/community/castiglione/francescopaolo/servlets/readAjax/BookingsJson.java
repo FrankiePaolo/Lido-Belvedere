@@ -32,6 +32,7 @@ public class BookingsJson extends HttpServlet {
         String user=request.getRemoteUser();
         boolean isCustomer=request.isUserInRole("Customer");
         String future=request.getParameter("future");
+        //If the user is not a Customer we request the parameter user
         if(!isCustomer) {
         	user=request.getParameter("user");
         }

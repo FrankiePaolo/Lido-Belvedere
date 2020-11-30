@@ -47,7 +47,7 @@ public class FilterBookingsJson extends HttpServlet {
 		String date=request.getParameter("date");
 		String time=request.getParameter("time");
 		PrintWriter out = response.getWriter();
-		
+		//If the chair number was successfully parsed we try to filter the Bookings
 		try {
 			out.println(DBMSHandler.filterBookings(chair, date, time, user));
 			return;    
