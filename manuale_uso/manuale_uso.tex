@@ -16,11 +16,11 @@ Per avviare la web application seguire la procedura qui riporatata:
 \begin{itemize}
 	\item Impostare ed avviare il database \texttt{MySQL}
 	\begin{enumerate}
-		\item Eseguire lo script \texttt{SQL\_DB\_CREATION.sql} per creare e popolare il database
+		\item Eseguire lo script \texttt{database\_creation.sql} per creare e popolare il database
 		\item Modificare i campi \texttt{username}, \texttt{password} e \texttt{url} nella sezione \texttt{Resource} ed il campo \texttt{connectionURL} nella sezione \texttt{Realm} nel file \texttt{"/META-INF/context.xml"} affinchè coincidano con i dati della macchina sulla quale si sta avviando la web application.\newline	
 		I valori di default sono:
 		\begin{itemize}
-			\item Database: lido\_test
+			\item Database: lido\_castiglione
 			\item Username: root
 			\item Password: password
 		\end{itemize}
@@ -37,7 +37,7 @@ Per avviare la web application seguire la procedura qui riporatata:
 \end{itemize}
 \newpage
 \section{Account preimpostati}
-Lo script \texttt{SQL\_DB\_CREATION.sql} crea e popola il database con degli account cliente e account dal ruolo di bagnino, addetto alla biglietteria o cuoco.
+Lo script \texttt{database\_creation.sql} crea e popola il database con degli account cliente e account dal ruolo di bagnino, addetto alla biglietteria o cuoco.
 Gli account sono:
 \begin{itemize}
 	\item \textbf{Email}: test1@test.it\newline\textbf{Password}: test1\newline\textbf{Ruolo}: Cliente(Customer)

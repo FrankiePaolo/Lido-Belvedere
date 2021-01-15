@@ -18,7 +18,7 @@ public class DBMSHandler {
 	static {
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/lido_test");
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/lido_castiglione");
         } catch (NamingException e) {
             e.printStackTrace();
         }
@@ -67,7 +67,7 @@ public class DBMSHandler {
     //We check if the chair id provided exists
     public static boolean isChair(int id) {
     	boolean isChair = false;
-    	String sql_query="SELECT * FROM lido_test.Chair WHERE ID=?;";
+    	String sql_query="SELECT * FROM lido_castiglione.Chair WHERE ID=?;";
     	// Tries to connect to the mysql database
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
              preparedStatement.setInt(1, id);
@@ -195,7 +195,7 @@ public class DBMSHandler {
     public static String getBookedChairs(String date,String time) {
     	String JSON = "";
         String sql_query;
-        sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido_test.Booking,lido_test.User WHERE Booking.User_ID=User.ID AND Date=? AND (Time=? OR Time='Entire day');";
+        sql_query ="SELECT Date,Time,Chair_ID,FirstName,LastName,Email FROM lido_castiglione.Booking,lido_castiglione.User WHERE Booking.User_ID=User.ID AND Date=? AND (Time=? OR Time='Entire day');";
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {       	
         		preparedStatement.setDate(1, Date.valueOf(date));
             	preparedStatement.setString(2, time);
@@ -212,7 +212,7 @@ public class DBMSHandler {
     public static boolean removeBooking(String date, String time, int chairNum) {
         boolean success = false;
         String sql_query;
-        sql_query="DELETE FROM lido_test.Booking WHERE Booking.Date = ? AND Booking.Time = ? AND Booking.Chair_ID = ? ;"; 
+        sql_query="DELETE FROM lido_castiglione.Booking WHERE Booking.Date = ? AND Booking.Time = ? AND Booking.Chair_ID = ? ;"; 
         try (Connection connection = connect(); PreparedStatement preparedStatement = connection.prepareStatement(sql_query)) {
             	preparedStatement.setString(1, date);
             	preparedStatement.setString(2, time);
