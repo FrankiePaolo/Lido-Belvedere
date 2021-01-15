@@ -1,4 +1,4 @@
-<Context path="/Lido">
+<Context path="/lido_castiglione">
 
 	<Resource auth="Container"
 		driverClassName="com.mysql.cj.jdbc.Driver"		

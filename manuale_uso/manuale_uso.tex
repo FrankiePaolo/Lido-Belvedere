@@ -29,15 +29,15 @@ Per avviare la web application seguire la procedura qui riporatata:
 	\item Impostare ed avviare \texttt{Apache Tomcat}
 	\begin{enumerate}
 		\item La web application è stata sviluppata e testata su \texttt{Apache Tomcat} versione \texttt{9.0.38}. Versioni differenti potrebbero portare ad eventuali problemi di compatibilità nel formato di \texttt{"/META-INF/context.xml"} e \texttt{"/META-INF/web.xml"}
-		\item Posizionare \texttt{Lido.war} all'interno della cartella \texttt{webapps} di \texttt{Apache Tomcat}
+		\item Posizionare \texttt{lido\_castiglione.war} all'interno della cartella \texttt{webapps} di \texttt{Apache Tomcat}
 		\item Spostare il file \texttt{.jar} \texttt{"/WEB-INF/lib/my-sql-connector-java-8.0.13.jar"} nella cartella \texttt{"\$CATALINA\_HOME/lib"}
 		\item Avviare il servizio di \texttt{Apache Tomcat}
-		\item Visitare l'url \url{http://localhost:8080/Lido/}
+		\item Visitare l'url \url{http://localhost:8080/lido_castiglione/}
 	\end{enumerate}
 \end{itemize}
 \newpage
 \section{Account preimpostati}
-Lo script \texttt{database\_creation.sql} crea e popola il database con degli account cliente e account dal ruolo di bagnino, addetto alla biglietteria o cuoco.
+Lo script \texttt{database\_creation.sql} crea e popola il database con degli account cliente e account dal ruolo di bagnino, addetto alla biglietteria e cuoco.
 Gli account sono:
 \begin{itemize}
 	\item \textbf{Email}: test1@test.it\newline\textbf{Password}: test1\newline\textbf{Ruolo}: Cliente(Customer)
@@ -66,7 +66,7 @@ Per registrarsi l'utente deve fornire i seguenti dati:
 Se l'utente fornisce dati non validi o avviene qualche errore in fase di registrazione il relativo messaggio di errore viene mostrato all'utente. In caso di errore il form mantiene nome e cognome.
 
 \subsection{Login}
-La pagina di login permette a qualunque utente registrato di accedere alle funzionalità relative al proprio ruolo(utente,bagnino,cuoco,addetto alla biglietteria). Per accedere gli utenti devono fornire email e password. Le operazioni di autenticazione vengono effettuate automaticamente attraverso i \texttt{Realm JDBC} e sono le medesime per tutti i ruoli. In seguito al login il menu si popolerà in base alle opzioni consentite ad ogni ruolo.
+La pagina di login permette a qualunque utente registrato di accedere alle funzionalità relative al proprio ruolo (utente,bagnino,cuoco,addetto alla biglietteria). Per accedere gli utenti devono fornire email e password. Le operazioni di autenticazione vengono effettuate automaticamente attraverso i \texttt{Realm JDBC} e sono le medesime per tutti i ruoli. In seguito al login il menu si popolerà in base alle opzioni consentite ad ogni ruolo.
 
 \subsection{Logout}
 La pagina di logout è accessibile da qualunque ruolo e invalida la sessione corrente e reindirizza alla homepage.

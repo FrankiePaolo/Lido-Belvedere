@@ -116,16 +116,16 @@ INSERT INTO lido_castiglione.Chair(ID) VALUES(9);
 # Add some bookings
 INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-20','Morning',1,1,1);
 INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-20','Morning',2,2,2);
-INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-15','Morning',3,3,3);
+INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-25','Morning',3,3,3);
 INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-15','Morning',4,4,4);
 INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-20','Afternoon',5,5,5);
 INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-20','Afternoon',6,6,1);
-INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-15','Afternoon',7,7,2);
-INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-15','Afternoon',8,8,3);
+INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-25','Afternoon',7,7,2);
+INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-25','Afternoon',8,8,3);
 INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-20','Entire day',9,9,4);
 INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-20','Entire day',1,10,5);
-INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-15','Entire day',2,11,1);
-INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-15','Entire day',3,12,2);
+INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-25','Entire day',2,11,1);
+INSERT INTO lido_castiglione.Booking(Date,Time,Chair_ID,ID,User_ID) VALUES('2021-01-25','Entire day',3,12,2);
 
 # Add some orders
 INSERT INTO lido_castiglione.Order(ID,User_ID,State,Date) VALUES(1,1,'delivered','2021-01-01 13:15:17');
